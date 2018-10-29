@@ -32,7 +32,7 @@ public class Bot extends Jogador implements Serializable {
     primeiro : atacar posição randômica -> ...
      */
     public Bot() {
-        super("Javaligor");
+        super("Bot");
         this.posUltimo = new int[2];
         this.posInicalAcerto = new int[2];
         this.segundo = false;
