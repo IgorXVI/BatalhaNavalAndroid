@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NovoJogoActivity" />
+        <activity android:name=".LoadSaveActivity" />
+        <activity android:name=".SaveActivity" />
+        <activity android:name=".SobreActivity" />
+        <activity android:name=".JogadaHumanoActivity" />
+        <activity android:name=".JogadaBotActivity"></activity>
     </application>
 
 </manifest>
