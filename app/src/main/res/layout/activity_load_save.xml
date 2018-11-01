@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".LoadSaveActivity">
 
+    <TextView
+        android:id="@+id/lbl_digiteNomeSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
+        android:text="Digite o nome do seu almirante:"
+        app:layout_constraintBottom_toTopOf="@+id/edit_nomeSave"
+        app:layout_constraintEnd_toEndOf="@+id/edit_nomeSave" />
+
+    <EditText
+        android:id="@+id/edit_nomeSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="146dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="90dp"
+        android:text="Load"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

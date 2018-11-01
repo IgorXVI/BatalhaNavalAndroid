@@ -30,7 +30,10 @@ class JogadaHumanoActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.Save -> {
-                val intent = Intent(this, SaveActivity::class.java)
+                salvar()
+            }
+            R.id.SeusNavios -> {
+                val intent = Intent(this, NaviosHumanoActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -46,16 +49,29 @@ class JogadaHumanoActivity : AppCompatActivity() {
     fun salvar(){
         try {
             val intent = Intent(this, MainActivity::class.java)
-            val s = intent.getSerializableExtra("humano")
+            val bot = intent.getSerializableExtra("bot") as Bot
+            val humano = intent.getSerializableExtra("humano") as Jogador
+            val s = humano.nome.toString()
+
             val file = File(s + ".ser")
             val f = FileOutputStream(file)
             val o = ObjectOutputStream(f)
-            o.writeObject(this)
+            o.writeObject(humano)
             f.close()
             o.close()
-            var t = Toast.makeText(this, "Jogo salvo com sucesso!", Toast.LENGTH_SHORT)
+
+            val fileBot = File(s + "Bot.ser")
+            val fBot = FileOutputStream(fileBot)
+            val oBot = ObjectOutputStream(fBot)
+            oBot.writeObject(bot)
+            fBot.close()
+            oBot.close()
+
+            var t = Toast.makeText(this,
+                    "Jogo salvo com sucesso!", Toast.LENGTH_SHORT)
             t.show()
-        } catch (e: Exception) {
+        }
+        catch (e: Exception) {
             var t = Toast.makeText(this,
                     "Erro: Não foi possível salvar o jogo.", Toast.LENGTH_SHORT)
             t.show()
