@@ -1,5 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -37,14 +38,20 @@ class LoadSaveActivity : AppCompatActivity() {
             oi.close()
             fi.close()
 
-            val fileBot = File(nome + ".ser")
+            val fileBot = File(nome + "Bot.ser")
             val fiBot = FileInputStream(fileBot)
             val oiBot = ObjectInputStream(fiBot)
             val saveBot = oiBot.readObject() as Bot
             oiBot.close()
             fiBot.close()
 
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("humano", saveHumano)
+            intent.putExtra("bot", saveBot)
 
+            val intent2 = Intent(this, JogadaHumanoActivity::class.java)
+            startActivity(intent2)
+            finish()
         }
         catch (e: Exception) {
             var t = Toast.makeText(this,

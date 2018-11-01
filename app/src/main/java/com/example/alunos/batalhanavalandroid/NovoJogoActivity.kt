@@ -23,12 +23,12 @@ class NovoJogoActivity : AppCompatActivity() {
                 t.show()
             }
             else{
-                var intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("humano", Jogador(txt))
                 intent.putExtra("bot", Bot())
 
-                intent =  Intent(this, JogadaHumanoActivity::class.java)
-                startActivity(intent)
+                val intent2 =  Intent(this, JogadaHumanoActivity::class.java)
+                startActivity(intent2)
                 finish()
             }
         }
