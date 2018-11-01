@@ -21,7 +21,8 @@
         <activity android:name=".SaveActivity" />
         <activity android:name=".SobreActivity" />
         <activity android:name=".JogadaHumanoActivity" />
-        <activity android:name=".JogadaBotActivity"></activity>
+        <activity android:name=".JogadaBotActivity" />
+        <activity android:name=".NaviosHumanoActivity"></activity>
     </application>
 
 </manifest>

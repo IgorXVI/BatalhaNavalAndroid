@@ -4,6 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NovoJogoActivity">
+    tools:context=".NovoJogoActivity"
+    tools:layout_editor_absoluteY="25dp">
 
+    <TextView
+        android:id="@+id/lbl_digiteNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp"
+        android:text="Digite o nome do seu almirante:"
+        app:layout_constraintBottom_toTopOf="@+id/edit_digiteNome"
+        app:layout_constraintStart_toStartOf="@+id/edit_digiteNome" />
+
+    <EditText
+        android:id="@+id/edit_digiteNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_comecar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="29dp"
+        android:text="Começar Jogo"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_voltar"
+        app:layout_constraintEnd_toStartOf="@+id/btn_voltar"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_comecar" />
 </android.support.constraint.ConstraintLayout>

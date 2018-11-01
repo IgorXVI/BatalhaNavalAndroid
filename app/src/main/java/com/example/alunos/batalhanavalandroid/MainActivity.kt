@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,37 +13,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val actionBar = supportActionBar
-        actionBar!!.title = "Batalha Naval"
-        actionBar.elevation = 4.0F
-    }
+        var humano: Jogador
+        var bot: Bot
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.NovoJogo -> {
-                val intent = Intent(this, NovoJogoActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.Load -> {
-                val intent = Intent(this, LoadSaveActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.Save -> {
-                val intent = Intent(this, SaveActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.Sobre -> {
-                val intent = Intent(this, SobreActivity::class.java)
-                startActivity(intent)
-            }
+        btn_continuar.setOnClickListener {
+            val intent = Intent(this, JogadaHumanoActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-        return super.onOptionsItemSelected(item)
-        finish()
+
+        btn_novoJogo.setOnClickListener {
+            val intent = Intent(this, NovoJogoActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_load.setOnClickListener {
+            val intent = Intent(this, LoadSaveActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        btn_sobre.setOnClickListener {
+            val intent = Intent(this, SobreActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
