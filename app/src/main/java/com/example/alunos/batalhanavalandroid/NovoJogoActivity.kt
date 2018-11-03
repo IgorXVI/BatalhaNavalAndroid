@@ -26,6 +26,7 @@ class NovoJogoActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("humano", Jogador(txt))
                 intent.putExtra("bot", Bot())
+                intent.putExtra("comecou", true)
 
                 val intent2 =  Intent(this, JogadaHumanoActivity::class.java)
                 startActivity(intent2)

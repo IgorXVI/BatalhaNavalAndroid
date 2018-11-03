@@ -52,7 +52,7 @@ public class Jogador implements Serializable{
         }
     }
 
-    private void atirar(int x, int y, Jogador adversario) {
+    private void atirar(int x, int y, Jogador adversario){
         if (adversario.getTabuleiro().getTabuleiroDoJogador()[x][y] == '~') {
             adversario.getTabuleiro().setErro(x, y);
         } else {

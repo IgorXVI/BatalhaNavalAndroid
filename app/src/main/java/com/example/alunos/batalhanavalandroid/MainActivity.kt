@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +16,19 @@ class MainActivity : AppCompatActivity() {
 
         var humano: Jogador
         var bot: Bot
+        var comecou = false
 
         btn_continuar.setOnClickListener {
-            val intent = Intent(this, JogadaHumanoActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(comecou){
+                val intent = Intent(this, JogadaHumanoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else{
+                var t = Toast.makeText(this,
+                        "O jogo ainda não começou.", Toast.LENGTH_SHORT)
+                t.show()
+            }
         }
 
         btn_novoJogo.setOnClickListener {

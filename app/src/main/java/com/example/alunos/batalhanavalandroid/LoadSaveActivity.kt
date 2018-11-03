@@ -48,6 +48,7 @@ class LoadSaveActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("humano", saveHumano)
             intent.putExtra("bot", saveBot)
+            intent.putExtra("comecou", true)
 
             val intent2 = Intent(this, JogadaHumanoActivity::class.java)
             startActivity(intent2)

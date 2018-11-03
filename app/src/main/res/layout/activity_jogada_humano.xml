@@ -40,6 +40,7 @@
                 android:id="@+id/pos_0_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -48,6 +49,7 @@
                 android:id="@+id/pos_0_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -56,6 +58,7 @@
                 android:id="@+id/pos_0_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -64,6 +67,7 @@
                 android:id="@+id/pos_0_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -72,6 +76,7 @@
                 android:id="@+id/pos_0_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -80,6 +85,7 @@
                 android:id="@+id/pos_0_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -88,6 +94,7 @@
                 android:id="@+id/pos_0_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -101,6 +108,7 @@
                 android:id="@+id/pos_1_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -109,6 +117,7 @@
                 android:id="@+id/pos_1_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -117,6 +126,7 @@
                 android:id="@+id/pos_1_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -125,6 +135,7 @@
                 android:id="@+id/pos_1_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -133,6 +144,7 @@
                 android:id="@+id/pos_1_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -141,6 +153,7 @@
                 android:id="@+id/pos_1_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -149,6 +162,7 @@
                 android:id="@+id/pos_1_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="395dp" />
@@ -162,6 +176,7 @@
                 android:id="@+id/pos_2_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -170,6 +185,7 @@
                 android:id="@+id/pos_2_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -178,6 +194,7 @@
                 android:id="@+id/pos_2_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -186,6 +203,7 @@
                 android:id="@+id/pos_2_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -194,6 +212,7 @@
                 android:id="@+id/pos_2_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -202,6 +221,7 @@
                 android:id="@+id/pos_2_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -210,6 +230,7 @@
                 android:id="@+id/pos_2_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="215dp" />
@@ -223,6 +244,7 @@
                 android:id="@+id/pos_3_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -231,6 +253,7 @@
                 android:id="@+id/pos_3_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -239,6 +262,7 @@
                 android:id="@+id/pos_3_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -247,6 +271,7 @@
                 android:id="@+id/pos_3_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -255,6 +280,7 @@
                 android:id="@+id/pos_3_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -263,6 +289,7 @@
                 android:id="@+id/pos_3_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="275dp" />
@@ -271,6 +298,7 @@
                 android:id="@+id/pos_3_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -284,6 +312,7 @@
                 android:id="@+id/pos_4_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -292,6 +321,7 @@
                 android:id="@+id/pos_4_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -300,6 +330,7 @@
                 android:id="@+id/pos_4_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -308,6 +339,7 @@
                 android:id="@+id/pos_4_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -316,6 +348,7 @@
                 android:id="@+id/pos_4_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -324,6 +357,7 @@
                 android:id="@+id/pos_4_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -332,6 +366,7 @@
                 android:id="@+id/pos_4_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="335dp" />
@@ -345,6 +380,7 @@
                 android:id="@+id/pos_5_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -353,6 +389,7 @@
                 android:id="@+id/pos_5_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -361,6 +398,7 @@
                 android:id="@+id/pos_5_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="95dp" />
@@ -369,6 +407,7 @@
                 android:id="@+id/pos_5_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -377,6 +416,7 @@
                 android:id="@+id/pos_5_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -385,6 +425,7 @@
                 android:id="@+id/pos_5_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -393,6 +434,7 @@
                 android:id="@+id/pos_5_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -406,6 +448,7 @@
                 android:id="@+id/pos_6_0"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="214dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -414,6 +457,7 @@
                 android:id="@+id/pos_6_1"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="114dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -422,6 +466,7 @@
                 android:id="@+id/pos_6_2"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="314dp"
                 tools:layout_editor_absoluteY="35dp" />
@@ -430,6 +475,7 @@
                 android:id="@+id/pos_6_3"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -438,6 +484,7 @@
                 android:id="@+id/pos_6_4"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="64dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -446,6 +493,7 @@
                 android:id="@+id/pos_6_5"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="164dp"
                 tools:layout_editor_absoluteY="155dp" />
@@ -454,6 +502,7 @@
                 android:id="@+id/pos_6_6"
                 android:layout_width="50dp"
                 android:layout_height="60dp"
+                android:onClick="ataque"
                 app:srcCompat="@mipmap/agua"
                 tools:layout_editor_absoluteX="264dp"
                 tools:layout_editor_absoluteY="155dp" />
