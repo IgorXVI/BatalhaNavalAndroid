@@ -7,7 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_novo_jogo.*
 
-class NovoJogoActivity : AppCompatActivity() {
+class NovoJogoActivity : Jogo() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +23,12 @@ class NovoJogoActivity : AppCompatActivity() {
                 t.show()
             }
             else{
-                val intent = Intent(this, MainActivity::class.java)
-                var bot = Bot()
-                var humano = Jogador(txt)
-                intent.putExtra("humano", humano)
-                intent.putExtra("bot", bot)
-                intent.putExtra("comecou", true)
+                humano = Jogador(txt)
+                bot = Bot()
+                comecou = true
 
-                val intent2 =  Intent(this, JogadaHumanoActivity::class.java)
-                startActivity(intent2)
+                val intent =  Intent(this, JogadaHumanoActivity::class.java)
+                startActivity(intent)
                 finish()
             }
         }

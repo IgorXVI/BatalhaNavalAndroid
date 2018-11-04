@@ -8,21 +8,22 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_jogada_humano.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
 
-class JogadaHumanoActivity : AppCompatActivity() {
+class JogadaHumanoActivity : Jogo() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
-        val actionBar = supportActionBar
-        actionBar!!.title = "Sua Vez"
-        actionBar.elevation = 4.0F
-
         setImagensTabuleiro()
+
+        if(!humano.temBomba){
+            travarBomba()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,9 +53,6 @@ class JogadaHumanoActivity : AppCompatActivity() {
 
     fun salvar(){
         try {
-            val intent = Intent(this, MainActivity::class.java)
-            val bot = intent.getSerializableExtra("bot") as Bot
-            val humano = intent.getSerializableExtra("humano") as Jogador
             val s = humano.nome.toString()
 
             val file = File(s + ".ser")
@@ -129,11 +127,8 @@ class JogadaHumanoActivity : AppCompatActivity() {
     }
 
     fun setImagensTabuleiro(){
-        val intent = Intent(this, MainActivity::class.java)
-        val bot = intent.getSerializableExtra("bot") as Bot
-
         val tabuleiro = bot.tabuleiro
-        var c: Char
+        var c: Char?
         for(i in 0..6){
             for(j in 0..6){
                 c = tabuleiro.tabuleiroPublico[i][j]
@@ -150,15 +145,39 @@ class JogadaHumanoActivity : AppCompatActivity() {
     fun ataque(view: View) {
         travarTudo()
         var nome = resources.getResourceEntryName(view.id)
-        var x = nome[4].toInt()
-        var y = nome[6].toInt()
+        var x = nome[4].toInt() - 48
+        var y = nome[6].toInt() - 48
 
-        val intent = Intent(this, MainActivity::class.java)
-        val bot = intent.getSerializableExtra("bot") as Bot
-        val humano = intent.getSerializableExtra("humano") as Jogador
+        var bomba = false
+        if(btn_bomba.isChecked){
+            travarBomba()
+            bomba = true
+        }
 
-        humano.realizarJogada(x, y, bot, false)
+        humano.realizarJogada(x, y, bot, bomba)
         setImagensTabuleiro()
+        checkarSeGanhou()
         destravarTudo()
+    }
+
+    fun checkarSeGanhou(){
+        val ganhou = bot.tabuleiro.todosNaviosDestruidos()
+
+        if(ganhou){
+            comecou = false
+            var t = Toast.makeText(this, "Você ganhou!", Toast.LENGTH_SHORT)
+            t.show()
+
+            val intent =  Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    fun travarBomba(){
+        runOnUiThread {
+            btn_bomba.isClickable = false
+            btn_bomba.isChecked = false
+        }
     }
 }

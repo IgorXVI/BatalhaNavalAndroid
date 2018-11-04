@@ -10,7 +10,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.ObjectInputStream
 
-class LoadSaveActivity : AppCompatActivity() {
+class LoadSaveActivity : Jogo() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +51,12 @@ class LoadSaveActivity : AppCompatActivity() {
             oiBot.close()
             fiBot.close()
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("humano", saveHumano)
-            intent.putExtra("bot", saveBot)
-            intent.putExtra("comecou", true)
+            humano = saveHumano
+            bot = saveBot
+            comecou = true
 
-            val intent2 = Intent(this, JogadaHumanoActivity::class.java)
-            startActivity(intent2)
+            val intent = Intent(this, JogadaHumanoActivity::class.java)
+            startActivity(intent)
             finish()
         }
         catch (e: Exception) {
