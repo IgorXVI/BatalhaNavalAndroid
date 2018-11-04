@@ -27,6 +27,12 @@ class LoadSaveActivity : AppCompatActivity() {
                 loadSave(txt)
             }
         }
+
+        btn_voltar.setOnClickListener {
+            val intent =  Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun loadSave(nome: String){

@@ -130,7 +130,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
 
     fun setImagensTabuleiro(){
         val intent = Intent(this, MainActivity::class.java)
-        val bot = intent.getSerializableExtra("bot") as Jogador
+        val bot = intent.getSerializableExtra("bot") as Bot
 
         val tabuleiro = bot.tabuleiro
         var c: Char
