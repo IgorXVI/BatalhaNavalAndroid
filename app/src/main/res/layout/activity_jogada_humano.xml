@@ -9,13 +9,21 @@
 
     <TableLayout
         android:id="@+id/tableLayoutHumano"
-        android:layout_width="490dp"
-        android:layout_height="350dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/darker_gray"
         android:orientation="horizontal"
         android:padding="2dp"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="4dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_bomba"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -741,19 +749,26 @@
 
     <ToggleButton
         android:id="@+id/btn_bomba"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:checked="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="ToggleButton"
-        tools:layout_editor_absoluteX="506dp"
-        tools:layout_editor_absoluteY="154dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tableLayoutHumano"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_bomba" />
 
     <TextView
         android:id="@+id/lbl_bomba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="Bomba"
-        tools:layout_editor_absoluteX="518dp"
-        tools:layout_editor_absoluteY="127dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_bomba"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tableLayoutHumano"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 </android.support.constraint.ConstraintLayout>
