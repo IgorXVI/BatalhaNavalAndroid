@@ -22,7 +22,7 @@ class JogadaBotActivity : AppCompatActivity() {
 
         travarTudo()
 
-        Timer().schedule(2000){
+        Timer().schedule(1000){
             ataque()
         }
     }
@@ -100,7 +100,7 @@ class JogadaBotActivity : AppCompatActivity() {
         else{
             val intent = Intent(this, JogadaHumanoActivity::class.java)
 
-            Timer().schedule(2000){
+            Timer().schedule(1000){
                 startActivity(intent)
                 finish()
             }
