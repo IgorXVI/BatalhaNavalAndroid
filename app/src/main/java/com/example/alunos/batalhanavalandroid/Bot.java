@@ -11,7 +11,7 @@ public class Bot extends Jogador implements Serializable {
 
     private int[] posUltimo, posInicalAcerto;
     private boolean inimigoVertical, segundo, terceiro,
-            erro1, erro2, sentido, rst;
+            erro1, erro2, sentido, ultimoBomba;
 
     /*
     sentido = true : positivo
@@ -39,17 +39,14 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = false;
         this.erro1 = false;
         this.erro2 = false;
+        this.ultimoBomba = false;
     }
 
     public void realizarJogada(Jogador adversario) {
-        if(!rst && semFuturo(adversario)){
-            reset();
-        }
-
-        if(this.terceiro){
+        if(this.terceiro && !this.ultimoBomba){
             this.terceiroPasso(adversario);
         }
-        else if(this.segundo){
+        else if(this.segundo && !this.ultimoBomba){
             this.segundoPasso(adversario);
         }
         else{
@@ -61,6 +58,7 @@ public class Bot extends Jogador implements Serializable {
         int x, y;
         if(!this.inimigoVertical){
             y = this.posInicalAcerto[1];
+
             if(this.sentido){
                 x = this.posUltimo[0] + 1;
             }
@@ -77,6 +75,20 @@ public class Bot extends Jogador implements Serializable {
                 y = this.posUltimo[1] - 1;
             }
         }
+
+        if( x > 6 || x < 0 || y > 6 || y < 0 || (posJaAtacada(x, y, adversario)) ){
+            if(!this.erro1){
+                this.posUltimo = this.posInicalAcerto;
+                this.sentido = !(this.sentido);
+                this.erro1 = true;
+                terceiroPasso(adversario);
+            }
+            else{
+                reset();
+                primeiroPasso(adversario);
+            }
+        }
+
         this.ataqueStandard(x, y, adversario);
         if(!this.erro1){
             this.erro1 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
@@ -87,9 +99,9 @@ public class Bot extends Jogador implements Serializable {
         }
         else{
             this.erro2 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
-        }
-        if(this.erro2){
-            reset();
+            if(this.erro2){
+                reset();
+            }
         }
     }
 
@@ -133,7 +145,6 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X';
         if(this.terceiro){
             this.segundo = false;
-            this.rst = false;
         }
     }
 
@@ -156,7 +167,8 @@ public class Bot extends Jogador implements Serializable {
 
     private void ataqueStandard(int x, int y, Jogador adversario) {
         int[] arr = new int[2];
-        super.realizarJogada(x, y, adversario, this.gerarBomba());
+        this.ultimoBomba = gerarBomba();
+        super.realizarJogada(x, y, adversario, this.ultimoBomba);
         arr[0] = x;
         arr[1] = y;
         this.posUltimo = arr;
@@ -179,62 +191,11 @@ public class Bot extends Jogador implements Serializable {
         return bomba;
     }
 
-    private boolean semFuturo(Jogador adversario) {
-        int x = posUltimo[0];
-        int y = posUltimo[1];
-
-        int xi = posInicalAcerto[0];
-        int yi = posInicalAcerto[1];
-
-        boolean fimDireita = this.sentido && x == 6;
-        boolean fimEsquerda = !this.sentido && x == 0;
-        boolean fimCima = this.inimigoVertical && this.sentido && y == 6;
-        boolean fimBaixo = this.inimigoVertical && !this.sentido && y == 0;
-
-        boolean semDireita;
-        if(xi != 6){
-            semDireita = adversario.getTabuleiro().getTabuleiroPublico()[xi+1][yi] != '~';
-        }
-        else{
-            semDireita = true;
-        }
-
-        boolean semEsquerda;
-        if(xi != 0){
-            semEsquerda = adversario.getTabuleiro().getTabuleiroPublico()[xi-1][yi] != '~';
-        }
-        else{
-            semEsquerda = true;
-        }
-
-        boolean semCima;
-        if(yi != 6){
-            semCima = adversario.getTabuleiro().getTabuleiroPublico()[xi][yi+1] != '~';
-        }
-        else{
-            semCima = true;
-        }
-
-        boolean semBaixo;
-        if(yi != 0){
-            semBaixo = adversario.getTabuleiro().getTabuleiroPublico()[xi][yi-1] != '~';
-        }
-        else{
-            semBaixo = true;
-        }
-
-        boolean semHorizontal = !this.inimigoVertical && ((fimEsquerda && semDireita) || (fimDireita && semEsquerda));
-        boolean semVertical = this.inimigoVertical && ((fimCima && semBaixo) || (fimBaixo && semCima));
-        boolean bomba = semDireita && semEsquerda && semCima && semBaixo;
-        return semHorizontal || semVertical || bomba;
-    }
-
     private void reset(){
         this.segundo = false;
         this.terceiro = false;
         this.erro1 = false;
         this.erro2 = false;
-        this.rst = true;
     }
 
 }

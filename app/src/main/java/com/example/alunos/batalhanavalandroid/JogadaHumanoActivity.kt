@@ -160,27 +160,28 @@ class JogadaHumanoActivity : AppCompatActivity() {
 
         g.humano.realizarJogada(x, y, g.bot, bomba)
         setImagensTabuleiro()
-        checkarSeGanhou()
 
-        val intent = Intent(this, JogadaBotActivity::class.java)
-
-        Timer().schedule(1000){
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    fun checkarSeGanhou(){
         val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 
         if(ganhou){
             g.comecou = false
-            var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
-            t.show()
+
+            runOnUiThread {
+                var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
+                t.show()
+            }
 
             val intent =  Intent(this, MainActivity::class.java)
 
             Timer().schedule(2000){
+                startActivity(intent)
+                finish()
+            }
+        }
+        else{
+            val intent = Intent(this, JogadaBotActivity::class.java)
+
+            Timer().schedule(1000){
                 startActivity(intent)
                 finish()
             }

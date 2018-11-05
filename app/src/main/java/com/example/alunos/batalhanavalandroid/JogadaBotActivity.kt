@@ -79,25 +79,26 @@ class JogadaBotActivity : AppCompatActivity() {
     fun ataque() {
         g.bot.realizarJogada(g.humano)
         setImagensTabuleiro()
-        checkarSePerdeu()
 
-        val intent = Intent(this, JogadaHumanoActivity::class.java)
-
-        Timer().schedule(2000){
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    fun checkarSePerdeu(){
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 
         if(ganhou){
             g.comecou = false
-            var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_SHORT)
-            t.show()
+
+            runOnUiThread{
+                var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_SHORT)
+                t.show()
+            }
 
             val intent =  Intent(this, MainActivity::class.java)
+
+            Timer().schedule(2000){
+                startActivity(intent)
+                finish()
+            }
+        }
+        else{
+            val intent = Intent(this, JogadaHumanoActivity::class.java)
 
             Timer().schedule(2000){
                 startActivity(intent)
