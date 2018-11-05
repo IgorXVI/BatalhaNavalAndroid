@@ -11,7 +11,7 @@ public class Bot extends Jogador implements Serializable {
 
     private int[] posUltimo, posInicalAcerto;
     private boolean inimigoVertical, segundo, terceiro,
-            erro1, erro2, sentido;
+            erro1, erro2, sentido, rst;
 
     /*
     sentido = true : positivo
@@ -42,7 +42,7 @@ public class Bot extends Jogador implements Serializable {
     }
 
     public void realizarJogada(Jogador adversario) {
-        if(semFuturo(adversario)){
+        if(!rst && semFuturo(adversario)){
             reset();
         }
 
@@ -133,6 +133,7 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X';
         if(this.terceiro){
             this.segundo = false;
+            this.rst = false;
         }
     }
 
@@ -233,6 +234,7 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = false;
         this.erro1 = false;
         this.erro2 = false;
+        this.rst = true;
     }
 
 }
