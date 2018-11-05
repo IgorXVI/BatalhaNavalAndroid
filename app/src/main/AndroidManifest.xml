@@ -47,7 +47,7 @@
 
         <activity
             android:name=".JogadaBotActivity"
-            android:label="Sua Vez"
+            android:label="Vez do Bot"
             android:screenOrientation="landscape"
             />
 

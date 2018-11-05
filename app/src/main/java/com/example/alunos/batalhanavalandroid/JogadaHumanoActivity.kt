@@ -163,8 +163,11 @@ class JogadaHumanoActivity : AppCompatActivity() {
         checkarSeGanhou()
 
         val intent = Intent(this, JogadaBotActivity::class.java)
-        startActivity(intent)
-        finish()
+
+        Timer().schedule(1000){
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun checkarSeGanhou(){

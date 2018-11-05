@@ -31,6 +31,7 @@ class NovoJogoActivity : AppCompatActivity() {
 
                 val intent =  Intent(this, JogadaHumanoActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
 

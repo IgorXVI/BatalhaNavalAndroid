@@ -42,6 +42,10 @@ public class Bot extends Jogador implements Serializable {
     }
 
     public void realizarJogada(Jogador adversario) {
+        if(semFuturo(adversario)){
+            reset();
+        }
+
         if(this.terceiro){
             this.terceiroPasso(adversario);
         }
@@ -55,7 +59,7 @@ public class Bot extends Jogador implements Serializable {
 
     private void terceiroPasso(Jogador adversario){
         int x, y;
-        if(this.inimigoVertical){
+        if(!this.inimigoVertical){
             y = this.posInicalAcerto[1];
             if(this.sentido){
                 x = this.posUltimo[0] + 1;
@@ -85,9 +89,7 @@ public class Bot extends Jogador implements Serializable {
             this.erro2 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
         }
         if(this.erro2){
-            this.terceiro = false;
-            this.erro1 = false;
-            this.erro2 = false;
+            reset();
         }
     }
 
@@ -99,7 +101,7 @@ public class Bot extends Jogador implements Serializable {
         while (this.posJaAtacada(x, y, adversario)) {
             this.inimigoVertical = r.nextBoolean();
             this.sentido = r.nextBoolean();
-            if (this.inimigoVertical) {
+            if (!this.inimigoVertical) {
                 y = this.posInicalAcerto[1];
                 if (this.posInicalAcerto[0] == 6) {
                     this.sentido = false;
@@ -174,6 +176,63 @@ public class Bot extends Jogador implements Serializable {
             bomba = false;
         }
         return bomba;
+    }
+
+    private boolean semFuturo(Jogador adversario) {
+        int x = posUltimo[0];
+        int y = posUltimo[1];
+
+        int xi = posInicalAcerto[0];
+        int yi = posInicalAcerto[1];
+
+        boolean fimDireita = this.sentido && x == 6;
+        boolean fimEsquerda = !this.sentido && x == 0;
+        boolean fimCima = this.inimigoVertical && this.sentido && y == 6;
+        boolean fimBaixo = this.inimigoVertical && !this.sentido && y == 0;
+
+        boolean semDireita;
+        if(xi != 6){
+            semDireita = adversario.getTabuleiro().getTabuleiroPublico()[xi+1][yi] != '~';
+        }
+        else{
+            semDireita = true;
+        }
+
+        boolean semEsquerda;
+        if(xi != 0){
+            semEsquerda = adversario.getTabuleiro().getTabuleiroPublico()[xi-1][yi] != '~';
+        }
+        else{
+            semEsquerda = true;
+        }
+
+        boolean semCima;
+        if(yi != 6){
+            semCima = adversario.getTabuleiro().getTabuleiroPublico()[xi][yi+1] != '~';
+        }
+        else{
+            semCima = true;
+        }
+
+        boolean semBaixo;
+        if(yi != 0){
+            semBaixo = adversario.getTabuleiro().getTabuleiroPublico()[xi][yi-1] != '~';
+        }
+        else{
+            semBaixo = true;
+        }
+
+        boolean semHorizontal = !this.inimigoVertical && ((fimEsquerda && semDireita) || (fimDireita && semEsquerda));
+        boolean semVertical = this.inimigoVertical && ((fimCima && semBaixo) || (fimBaixo && semCima));
+        boolean bomba = semDireita && semEsquerda && semCima && semBaixo;
+        return semHorizontal || semVertical || bomba;
+    }
+
+    private void reset(){
+        this.segundo = false;
+        this.terceiro = false;
+        this.erro1 = false;
+        this.erro2 = false;
     }
 
 }

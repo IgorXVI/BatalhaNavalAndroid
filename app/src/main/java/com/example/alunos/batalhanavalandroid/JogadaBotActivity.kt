@@ -61,7 +61,7 @@ class JogadaBotActivity : AppCompatActivity() {
     }
 
     fun setImagensTabuleiro(){
-        val tabuleiro = g.bot.tabuleiro
+        val tabuleiro = g.humano.tabuleiro
         var c: Char?
         for(i in 0..6){
             for(j in 0..6){
@@ -82,8 +82,11 @@ class JogadaBotActivity : AppCompatActivity() {
         checkarSePerdeu()
 
         val intent = Intent(this, JogadaHumanoActivity::class.java)
-        startActivity(intent)
-        finish()
+
+        Timer().schedule(2000){
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun checkarSePerdeu(){
