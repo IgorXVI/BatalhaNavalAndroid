@@ -8,16 +8,18 @@ import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : Jogo(){
+class MainActivity : AppCompatActivity(){
+
+    val g = Global.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         btn_continuar.setOnClickListener {
-            if(comecou){
+            if(g.comecou){
                 val intent = Intent(this, JogadaHumanoActivity::class.java)
                 startActivity(intent)
-                finish()
             }
             else{
                 var t = Toast.makeText(this,
@@ -29,19 +31,16 @@ class MainActivity : Jogo(){
         btn_novoJogo.setOnClickListener {
             val intent = Intent(this, NovoJogoActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         btn_load.setOnClickListener {
             val intent = Intent(this, LoadSaveActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         btn_sobre.setOnClickListener {
             val intent = Intent(this, SobreActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

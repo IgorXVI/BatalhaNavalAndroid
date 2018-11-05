@@ -13,7 +13,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
 
-class JogadaHumanoActivity : Jogo() {
+class JogadaHumanoActivity : AppCompatActivity() {
+
+    val g = Global.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,7 @@ class JogadaHumanoActivity : Jogo() {
 
         setImagensTabuleiro()
 
-        if(!humano.temBomba){
+        if(!g.humano.temBomba){
             travarBomba()
         }
     }
@@ -53,19 +55,19 @@ class JogadaHumanoActivity : Jogo() {
 
     fun salvar(){
         try {
-            val s = humano.nome.toString()
+            val s = g.humano.nome.toString()
 
             val file = File(s + ".ser")
             val f = FileOutputStream(file)
             val o = ObjectOutputStream(f)
-            o.writeObject(humano)
+            o.writeObject(g.humano)
             f.close()
             o.close()
 
             val fileBot = File(s + "Bot.ser")
             val fBot = FileOutputStream(fileBot)
             val oBot = ObjectOutputStream(fBot)
-            oBot.writeObject(bot)
+            oBot.writeObject(g.bot)
             fBot.close()
             oBot.close()
 
@@ -127,7 +129,7 @@ class JogadaHumanoActivity : Jogo() {
     }
 
     fun setImagensTabuleiro(){
-        val tabuleiro = bot.tabuleiro
+        val tabuleiro = g.bot.tabuleiro
         var c: Char?
         for(i in 0..6){
             for(j in 0..6){
@@ -154,18 +156,21 @@ class JogadaHumanoActivity : Jogo() {
             bomba = true
         }
 
-        humano.realizarJogada(x, y, bot, bomba)
+        g.humano.realizarJogada(x, y, g.bot, bomba)
         setImagensTabuleiro()
         checkarSeGanhou()
-        destravarTudo()
+
+        val intent = Intent(this, JogadaBotActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     fun checkarSeGanhou(){
-        val ganhou = bot.tabuleiro.todosNaviosDestruidos()
+        val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 
         if(ganhou){
-            comecou = false
-            var t = Toast.makeText(this, "Você ganhou!", Toast.LENGTH_SHORT)
+            g.comecou = false
+            var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_LONG)
             t.show()
 
             val intent =  Intent(this, MainActivity::class.java)

@@ -3,7 +3,7 @@ package com.example.alunos.batalhanavalandroid
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class NaviosHumanoActivity : Jogo() {
+class NaviosHumanoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
