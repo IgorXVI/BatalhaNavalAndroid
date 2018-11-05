@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_jogada_humano.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.ObjectOutputStream
+import java.util.*
+import kotlin.concurrent.schedule
 
 class JogadaHumanoActivity : AppCompatActivity() {
 
@@ -170,12 +172,15 @@ class JogadaHumanoActivity : AppCompatActivity() {
 
         if(ganhou){
             g.comecou = false
-            var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_LONG)
+            var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
             t.show()
 
             val intent =  Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            Timer().schedule(2000){
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

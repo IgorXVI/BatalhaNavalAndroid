@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_jogada_humano.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 class JogadaBotActivity : AppCompatActivity() {
 
@@ -20,7 +22,9 @@ class JogadaBotActivity : AppCompatActivity() {
 
         travarTudo()
 
-        ataque()
+        Timer().schedule(2000){
+            ataque()
+        }
     }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
@@ -87,12 +91,15 @@ class JogadaBotActivity : AppCompatActivity() {
 
         if(ganhou){
             g.comecou = false
-            var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_LONG)
+            var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_SHORT)
             t.show()
 
             val intent =  Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            Timer().schedule(2000){
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }
