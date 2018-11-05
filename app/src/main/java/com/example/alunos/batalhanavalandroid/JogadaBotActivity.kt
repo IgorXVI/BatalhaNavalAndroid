@@ -22,13 +22,9 @@ class JogadaBotActivity : AppCompatActivity() {
 
         travarTudo()
 
-        //Timer().schedule(2000){
+        Timer().schedule(2000){
             ataque()
-        //}
-
-        g.humano = Jogador("Igor")
-        g.bot = Bot()
-        g.comecou = true
+        }
     }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
@@ -94,7 +90,7 @@ class JogadaBotActivity : AppCompatActivity() {
                 t.show()
             }
 
-            val intent =  Intent(this, JogadaBotActivity::class.java)
+            val intent =  Intent(this, MainActivity::class.java)
 
             Timer().schedule(2000){
                 startActivity(intent)
@@ -102,13 +98,12 @@ class JogadaBotActivity : AppCompatActivity() {
             }
         }
         else{
-            ataque()
-            /*val intent = Intent(this, JogadaHumanoActivity::class.java)
+            val intent = Intent(this, JogadaHumanoActivity::class.java)
 
             Timer().schedule(2000){
                 startActivity(intent)
                 finish()
-            }*/
+            }
         }
     }
 }

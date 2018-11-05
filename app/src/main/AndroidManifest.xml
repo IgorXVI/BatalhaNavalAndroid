@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="Menu Principal"
+            android:label="Batalha Naval"
             android:screenOrientation="portrait"
             >
             <intent-filter>
