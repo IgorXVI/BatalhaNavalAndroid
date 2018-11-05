@@ -11,7 +11,7 @@ public class Bot extends Jogador implements Serializable {
 
     private int[] posUltimo, posInicalAcerto;
     private boolean inimigoVertical, segundo, terceiro,
-            erro1, erro2, sentido, ultimoBomba;
+            erro1, erro2, sentido;
 
     /*
     sentido = true : positivo
@@ -39,14 +39,13 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = false;
         this.erro1 = false;
         this.erro2 = false;
-        this.ultimoBomba = false;
     }
 
     public void realizarJogada(Jogador adversario) {
-        if(this.terceiro && !this.ultimoBomba){
+        if(this.terceiro){
             this.terceiroPasso(adversario);
         }
-        else if(this.segundo && !this.ultimoBomba){
+        else if(this.segundo){
             this.segundoPasso(adversario);
         }
         else{
@@ -76,31 +75,51 @@ public class Bot extends Jogador implements Serializable {
             }
         }
 
-        if( x > 6 || x < 0 || y > 6 || y < 0 || (posJaAtacada(x, y, adversario)) ){
+        if(x > 6 || x < 0 || y > 6 || y < 0){
             if(!this.erro1){
                 this.posUltimo = this.posInicalAcerto;
                 this.sentido = !(this.sentido);
                 this.erro1 = true;
-                terceiroPasso(adversario);
+                this.terceiroPasso(adversario);
             }
             else{
-                reset();
-                primeiroPasso(adversario);
+                this.reset();
+                this.primeiroPasso(adversario);
             }
         }
-
-        this.ataqueStandard(x, y, adversario);
-        if(!this.erro1){
-            this.erro1 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
-            if(this.erro1){
+        else if(posJaErrada(x, y, adversario)){
+            if(!this.erro1){
                 this.posUltimo = this.posInicalAcerto;
                 this.sentido = !(this.sentido);
+                this.erro1 = true;
+                this.terceiroPasso(adversario);
+            }
+            else{
+                this.reset();
+                this.primeiroPasso(adversario);
             }
         }
+        else if(posJaAcertada(x, y, adversario)){
+            int[] arr = new int[2];
+            arr[0] = x;
+            arr[1] = y;
+            this.posUltimo = arr;
+            this.terceiroPasso(adversario);
+        }
         else{
-            this.erro2 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
-            if(this.erro2){
-                reset();
+            this.ataqueStandard(x, y, adversario);
+            if(!this.erro1){
+                this.erro1 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
+                if(this.erro1){
+                    this.posUltimo = this.posInicalAcerto;
+                    this.sentido = !(this.sentido);
+                }
+            }
+            else{
+                this.erro2 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
+                if(this.erro2){
+                    this.reset();
+                }
             }
         }
     }
@@ -167,8 +186,7 @@ public class Bot extends Jogador implements Serializable {
 
     private void ataqueStandard(int x, int y, Jogador adversario) {
         int[] arr = new int[2];
-        this.ultimoBomba = gerarBomba();
-        super.realizarJogada(x, y, adversario, this.ultimoBomba);
+        super.realizarJogada(x, y, adversario, false);
         arr[0] = x;
         arr[1] = y;
         this.posUltimo = arr;
@@ -178,6 +196,18 @@ public class Bot extends Jogador implements Serializable {
         char c;
         c = adversario.getTabuleiro().getTabuleiroPublico()[x][y];
         return c != '~';
+    }
+
+    private boolean posJaErrada(int x, int y, Jogador adversario) {
+        char c;
+        c = adversario.getTabuleiro().getTabuleiroPublico()[x][y];
+        return c == '*';
+    }
+
+    private boolean posJaAcertada(int x, int y, Jogador adversario) {
+        char c;
+        c = adversario.getTabuleiro().getTabuleiroPublico()[x][y];
+        return c == 'X';
     }
 
     private boolean gerarBomba() {

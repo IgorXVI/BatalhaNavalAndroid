@@ -22,9 +22,9 @@ class JogadaBotActivity : AppCompatActivity() {
 
         travarTudo()
 
-        Timer().schedule(2000){
+        //Timer().schedule(2000){
             ataque()
-        }
+        //}
     }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
@@ -90,20 +90,22 @@ class JogadaBotActivity : AppCompatActivity() {
                 t.show()
             }
 
-            val intent =  Intent(this, MainActivity::class.java)
+            /*val intent =  Intent(this, MainActivity::class.java)
 
             Timer().schedule(2000){
                 startActivity(intent)
                 finish()
-            }
+            }*/
+
+            ataque()
         }
         else{
             val intent = Intent(this, JogadaHumanoActivity::class.java)
 
-            Timer().schedule(2000){
+            //Timer().schedule(2000){
                 startActivity(intent)
                 finish()
-            }
+            //}
         }
     }
 }

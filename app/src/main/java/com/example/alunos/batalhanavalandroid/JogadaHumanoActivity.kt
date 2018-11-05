@@ -120,6 +120,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
         val pos = pegarPos(x, y)
         runOnUiThread {
             pos.setImageResource(R.mipmap.espuma)
+            pos.isClickable = false;
         }
     }
 
@@ -127,6 +128,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
         val pos = pegarPos(x, y)
         runOnUiThread {
             pos.setImageResource(R.mipmap.explosao)
+            pos.isClickable = false;
         }
     }
 

@@ -29,7 +29,7 @@ class NovoJogoActivity : AppCompatActivity() {
                 g.bot = Bot()
                 g.comecou = true
 
-                val intent =  Intent(this, JogadaHumanoActivity::class.java)
+                val intent =  Intent(this, JogadaBotActivity::class.java)
                 startActivity(intent)
                 finish()
             }
