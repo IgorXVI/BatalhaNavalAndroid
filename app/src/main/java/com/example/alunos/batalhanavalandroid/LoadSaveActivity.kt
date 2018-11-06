@@ -39,15 +39,15 @@ class LoadSaveActivity : AppCompatActivity() {
 
     fun loadSave(nome: String){
         try {
-            val file = File(nome + ".ser")
-            val fi = FileInputStream(file)
+            val fileName = nome + ".ser"
+            val fi = openFileInput(fileName);
             val oi = ObjectInputStream(fi)
             val saveHumano = oi.readObject() as Jogador
             oi.close()
             fi.close()
 
-            val fileBot = File(nome + "Bot.ser")
-            val fiBot = FileInputStream(fileBot)
+            val fileNameBot = nome + "Bot.ser"
+            val fiBot = openFileInput(fileNameBot);
             val oiBot = ObjectInputStream(fiBot)
             val saveBot = oiBot.readObject() as Bot
             oiBot.close()

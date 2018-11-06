@@ -1,5 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -59,15 +60,15 @@ class JogadaHumanoActivity : AppCompatActivity() {
         try {
             val s = g.humano.nome.toString()
 
-            val file = File(s + ".ser")
-            val f = FileOutputStream(file)
+            val fileName = s + ".ser"
+            val f = openFileOutput(fileName, Context.MODE_PRIVATE);
             val o = ObjectOutputStream(f)
             o.writeObject(g.humano)
             f.close()
             o.close()
 
-            val fileBot = File(s + "Bot.ser")
-            val fBot = FileOutputStream(fileBot)
+            val fileNameBot = s + "Bot.ser"
+            val fBot = openFileOutput(fileNameBot, Context.MODE_PRIVATE);
             val oBot = ObjectOutputStream(fBot)
             oBot.writeObject(g.bot)
             fBot.close()
