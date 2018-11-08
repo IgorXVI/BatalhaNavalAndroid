@@ -2,6 +2,7 @@ package com.example.alunos.batalhanavalandroid
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,9 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import android.widget.ToggleButton
 import kotlinx.android.synthetic.main.activity_jogada_humano.*
-import java.io.File
-import java.io.FileOutputStream
 import java.io.ObjectOutputStream
 import java.util.*
 import kotlin.concurrent.schedule
@@ -19,6 +19,7 @@ import kotlin.concurrent.schedule
 class JogadaHumanoActivity : AppCompatActivity() {
 
     val g = Global.getInstance()
+    var mp: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,14 +156,16 @@ class JogadaHumanoActivity : AppCompatActivity() {
         var x = nome[4].toInt() - 48
         var y = nome[6].toInt() - 48
 
+        val btn_bomba = findViewById<ToggleButton>(R.id.btn_bomba)
         var bomba = false
-        if(btn_bomba.isChecked){
+        if(btn_bomba.isChecked && g.humano.temBomba){
             travarBomba()
             bomba = true
         }
 
         g.humano.realizarJogada(x, y, g.bot, bomba)
         setImagensTabuleiro()
+        som(x, y, bomba)
 
         val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 
@@ -175,26 +178,54 @@ class JogadaHumanoActivity : AppCompatActivity() {
             }
 
             val intent =  Intent(this, MainActivity::class.java)
-
-            Timer().schedule(2000){
-                startActivity(intent)
-                finish()
-            }
+            mudarActivity(intent)
         }
         else{
             val intent = Intent(this, JogadaBotActivity::class.java)
-
-            Timer().schedule(1000){
-                startActivity(intent)
-                finish()
-            }
+            mudarActivity(intent)
         }
     }
 
     fun travarBomba(){
+        val btn_bomba = findViewById<ToggleButton>(R.id.btn_bomba)
         runOnUiThread {
             btn_bomba.isClickable = false
             btn_bomba.isChecked = false
+        }
+    }
+
+    fun som(x: Int, y: Int, bomba: Boolean){
+        if(bomba){
+            if(x > 0){
+                som(x-1, y, false)
+            }
+            if(x < 6){
+                som(x+1, y, false)
+            }
+            if(y > 0){
+                som(x, y-1, false)
+            }
+            if(y < 6){
+                som(x, y+1, false)
+            }
+        }
+        val acertou = g.bot.tabuleiro.tabuleiroPublico[x][y] == 'X'
+        if(acertou){
+            mp = MediaPlayer.create(this, R.raw.explosao_som)
+        }
+        else{
+            mp = MediaPlayer.create(this, R.raw.espuma_som)
+        }
+        mp?.start()
+        mp?.setOnCompletionListener {
+            mp?.release()
+        }
+    }
+
+    fun mudarActivity(intent: Intent){
+        Timer().schedule(3000){
+            startActivity(intent)
+            finish()
         }
     }
 }

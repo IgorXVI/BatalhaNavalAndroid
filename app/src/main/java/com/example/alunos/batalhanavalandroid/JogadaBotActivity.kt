@@ -1,6 +1,7 @@
 package com.example.alunos.batalhanavalandroid
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ import kotlin.concurrent.schedule
 class JogadaBotActivity : AppCompatActivity() {
 
     val g = Global.getInstance()
+    var mp: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,7 @@ class JogadaBotActivity : AppCompatActivity() {
 
         travarTudo()
 
-        Timer().schedule(1000){
+        Timer().schedule(500){
             ataque()
         }
     }
@@ -79,6 +81,10 @@ class JogadaBotActivity : AppCompatActivity() {
     fun ataque() {
         g.bot.realizarJogada(g.humano)
         setImagensTabuleiro()
+        val x = g.bot.posUltimo[0]
+        val y = g.bot.posUltimo[1]
+
+        som(x,y)
 
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 
@@ -91,19 +97,32 @@ class JogadaBotActivity : AppCompatActivity() {
             }
 
             val intent =  Intent(this, MainActivity::class.java)
-
-            Timer().schedule(2000){
-                startActivity(intent)
-                finish()
-            }
+            mudarActivity(intent)
         }
         else{
             val intent = Intent(this, JogadaHumanoActivity::class.java)
+            mudarActivity(intent)
+        }
+    }
 
-            Timer().schedule(1000){
-                startActivity(intent)
-                finish()
-            }
+    fun som(x: Int, y: Int){
+        val acertou = g.humano.tabuleiro.tabuleiroPublico[x][y] == 'X'
+        if(acertou){
+            mp = MediaPlayer.create(this, R.raw.explosao_som)
+        }
+        else{
+            mp = MediaPlayer.create(this, R.raw.espuma_som)
+        }
+        mp?.start()
+        mp?.setOnCompletionListener {
+            mp?.release()
+        }
+    }
+
+    fun mudarActivity(intent: Intent){
+        Timer().schedule(3000){
+            startActivity(intent)
+            finish()
         }
     }
 }

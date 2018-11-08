@@ -111,7 +111,6 @@ public class Bot extends Jogador implements Serializable {
             if(!this.erro1){
                 this.erro1 = !(adversario.getTabuleiro().getTabuleiroPublico()[x][y] == 'X');
                 if(this.erro1){
-                    this.posUltimo = this.posInicalAcerto;
                     this.sentido = !(this.sentido);
                 }
             }
@@ -226,6 +225,10 @@ public class Bot extends Jogador implements Serializable {
         this.terceiro = false;
         this.erro1 = false;
         this.erro2 = false;
+    }
+
+    public int[] getPosUltimo(){
+        return this.posUltimo;
     }
 
 }
