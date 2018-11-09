@@ -9,16 +9,23 @@
 
     <TableLayout
         android:id="@+id/tableLayoutBot"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxHeight="280dp"
+        android:minWidth="455dp"
+        android:minHeight="280dp"
+        android:stretchColumns="*"
+        android:stretchRows="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_0_0"
@@ -113,8 +120,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_1_0"
@@ -209,8 +216,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_2_0"
@@ -305,8 +312,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_3_0"
@@ -401,8 +408,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_4_0"
@@ -497,8 +504,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_5_0"
@@ -593,8 +600,8 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp">
 
             <ImageButton
                 android:id="@+id/pos_6_0"

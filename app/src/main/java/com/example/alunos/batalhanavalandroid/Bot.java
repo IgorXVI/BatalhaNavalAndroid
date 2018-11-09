@@ -185,7 +185,7 @@ public class Bot extends Jogador implements Serializable {
 
     private void ataqueStandard(int x, int y, Jogador adversario) {
         int[] arr = new int[2];
-        super.realizarJogada(x, y, adversario, false);
+        super.realizarJogada(x, y, adversario);
         arr[0] = x;
         arr[1] = y;
         this.posUltimo = arr;
@@ -207,17 +207,6 @@ public class Bot extends Jogador implements Serializable {
         char c;
         c = adversario.getTabuleiro().getTabuleiroPublico()[x][y];
         return c == 'X';
-    }
-
-    private boolean gerarBomba() {
-        boolean bomba;
-        Random r = new Random();
-        if (this.getTemBomba()) {
-            bomba = r.nextBoolean();
-        } else {
-            bomba = false;
-        }
-        return bomba;
     }
 
     private void reset(){

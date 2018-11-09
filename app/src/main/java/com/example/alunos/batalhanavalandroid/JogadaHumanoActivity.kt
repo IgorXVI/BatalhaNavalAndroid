@@ -26,10 +26,6 @@ class JogadaHumanoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_jogada_humano)
 
         setImagensTabuleiro()
-
-        if(!g.humano.temBomba){
-            travarBomba()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -156,16 +152,9 @@ class JogadaHumanoActivity : AppCompatActivity() {
         var x = nome[4].toInt() - 48
         var y = nome[6].toInt() - 48
 
-        val btn_bomba = findViewById<ToggleButton>(R.id.btn_bomba)
-        var bomba = false
-        if(btn_bomba.isChecked && g.humano.temBomba){
-            travarBomba()
-            bomba = true
-        }
-
-        g.humano.realizarJogada(x, y, g.bot, bomba)
+        g.humano.realizarJogada(x, y, g.bot)
         setImagensTabuleiro()
-        som(x, y, bomba)
+        som(x, y)
 
         val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 
@@ -186,29 +175,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
         }
     }
 
-    fun travarBomba(){
-        val btn_bomba = findViewById<ToggleButton>(R.id.btn_bomba)
-        runOnUiThread {
-            btn_bomba.isClickable = false
-            btn_bomba.isChecked = false
-        }
-    }
-
-    fun som(x: Int, y: Int, bomba: Boolean){
-        if(bomba){
-            if(x > 0){
-                som(x-1, y, false)
-            }
-            if(x < 6){
-                som(x+1, y, false)
-            }
-            if(y > 0){
-                som(x, y-1, false)
-            }
-            if(y < 6){
-                som(x, y+1, false)
-            }
-        }
+    fun som(x: Int, y: Int){
         val acertou = g.bot.tabuleiro.tabuleiroPublico[x][y] == 'X'
         if(acertou){
             mp = MediaPlayer.create(this, R.raw.explosao_som)
