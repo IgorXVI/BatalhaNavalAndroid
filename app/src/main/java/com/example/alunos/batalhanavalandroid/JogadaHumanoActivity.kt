@@ -20,6 +20,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
 
     val g = Global.getInstance()
     var mp: MediaPlayer? = null
+    var menuJogada: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class JogadaHumanoActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
+        menuJogada = menu
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -190,6 +192,9 @@ class JogadaHumanoActivity : AppCompatActivity() {
     }
 
     fun mudarActivity(intent: Intent){
+        menuJogada?.getItem(R.id.SeusNavios)?.setEnabled(false)
+        menuJogada?.getItem(R.id.Save)?.setEnabled(false)
+        menuJogada?.getItem(R.id.MainMenu)?.setEnabled(false)
         Timer().schedule(3000){
             startActivity(intent)
             finish()
