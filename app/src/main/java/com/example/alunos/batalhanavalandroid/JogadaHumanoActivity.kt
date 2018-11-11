@@ -192,9 +192,9 @@ class JogadaHumanoActivity : AppCompatActivity() {
     }
 
     fun mudarActivity(intent: Intent){
-        menuJogada?.getItem(R.id.SeusNavios)?.setEnabled(false)
-        menuJogada?.getItem(R.id.Save)?.setEnabled(false)
-        menuJogada?.getItem(R.id.MainMenu)?.setEnabled(false)
+        //menuJogada?.getItem(R.id.SeusNavios)?.setEnabled(false)
+        //menuJogada?.getItem(R.id.Save)?.setEnabled(false)
+        //menuJogada?.getItem(R.id.MainMenu)?.setEnabled(false)
         Timer().schedule(3000){
             startActivity(intent)
             finish()

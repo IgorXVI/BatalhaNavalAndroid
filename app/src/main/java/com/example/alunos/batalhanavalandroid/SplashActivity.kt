@@ -3,6 +3,8 @@ package com.example.alunos.batalhanavalandroid
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SplashActivity : AppCompatActivity() {
 
@@ -10,7 +12,9 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        Timer().schedule(1000){
+            startActivity(intent)
+            finish()
+        }
     }
 }
