@@ -18,14 +18,14 @@ open class JogadaHumanoActivity : Jogada() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
-        if(g.humano.jaAtacou){
+        //if(g.humano.jaAtacou){
             val intent = Intent(this, JogadaBotActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        else{
-            setImagensTabuleiro(g.bot.tabuleiro)
-        }
+        //}
+        //else{
+        //    setImagensTabuleiro(g.bot.tabuleiro)
+        //}
     }
 
     fun ataque(view: View) {

@@ -17,7 +17,7 @@ class JogadaBotActivity : Jogada() {
 
         travarTudo()
 
-        Timer().schedule(1000){
+        Timer().schedule(500){
             ataque()
         }
     }
@@ -28,9 +28,9 @@ class JogadaBotActivity : Jogada() {
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
-        som(x,y, g.humano.tabuleiro)
+        //som(x,y, g.humano.tabuleiro)
 
-        salvar()
+        //salvar()
 
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 

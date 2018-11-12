@@ -101,7 +101,7 @@ open class Jogada: AppCompatActivity() {
     }
 
     fun mudarActivity(intent: Intent){
-        Timer().schedule(3000){
+        Timer().schedule(500){
             startActivity(intent)
             finish()
         }

@@ -109,7 +109,12 @@ class AI(val tabuleiro: Tabuleiro) {
             }
         }
 
-        if (x > 6 || x < 0 || y > 6 || y < 0) {
+        var fim = x > 6 || x < 0 || y > 6 || y < 0
+        if(!fim){
+            fim = posJaErrada(x, y)
+        }
+
+        if(fim) {
             if (!this.erro1) {
                 this.sentido = !this.sentido
                 this.erro1 = true
@@ -118,24 +123,12 @@ class AI(val tabuleiro: Tabuleiro) {
                 this.reset()
                 this.primeiroPasso()
             }
-        } else if (posJaErrada(x, y)) {
-            if (!this.erro1) {
-                this.sentido = !this.sentido
-                this.erro1 = true
-                this.terceiroPasso()
-            } else {
-                this.reset()
-                this.primeiroPasso()
-            }
-        } else if (posJaAcertada(x, y)) {
-            val arr = IntArray(2)
-            arr[0] = x
-            arr[1] = y
-            this.posUltimo = arr
-            this.terceiroPasso()
         } else {
             this.posUltimo[0] = x
             this.posUltimo[1] = y
+            if (posJaAcertada(x, y)){
+                this.terceiroPasso()
+            }
         }
     }
 
@@ -228,6 +221,9 @@ class AI(val tabuleiro: Tabuleiro) {
         var baixo: Boolean
         var esquerda: Boolean
         var direita: Boolean
+        var centro: Boolean
+
+        centro = !posJaAtacada(x, y)
 
         if(x > 0){
             esquerda = !posJaAtacada(x-1, y)
@@ -257,7 +253,7 @@ class AI(val tabuleiro: Tabuleiro) {
             cima = false;
         }
 
-        return !cima && !baixo && !direita && !esquerda;
+        return !centro && !cima && !baixo && !direita && !esquerda;
     }
 
     fun posAdjacenteAcerto(): IntArray{
