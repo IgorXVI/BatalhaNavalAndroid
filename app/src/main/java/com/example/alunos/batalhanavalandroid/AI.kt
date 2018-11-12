@@ -2,8 +2,9 @@ package com.example.alunos.batalhanavalandroid
 
 import java.util.*
 import kotlin.jvm.internal.Ref
+import java.io.Serializable
 
-class AI(val tabuleiro: Tabuleiro) {
+class AI(val tabuleiro: Tabuleiro): Serializable {
 
     /*
     sentido = true : positivo
