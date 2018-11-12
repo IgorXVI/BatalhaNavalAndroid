@@ -35,8 +35,8 @@ open class JogadaHumanoActivity : Jogada() {
         var y = nome[6].toInt() - 48
 
         g.humano.realizarJogada(x, y, g.bot)
-        setImagensTabuleiro(g.humano.tabuleiro)
-        som(x, y)
+        setImagensTabuleiro(g.bot.tabuleiro)
+        som(x, y, g.bot.tabuleiro)
 
         salvar()
 

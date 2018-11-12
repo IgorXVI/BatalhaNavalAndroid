@@ -28,7 +28,7 @@ class JogadaBotActivity : Jogada() {
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
-        som(x,y)
+        som(x,y, g.humano.tabuleiro)
 
         salvar()
 

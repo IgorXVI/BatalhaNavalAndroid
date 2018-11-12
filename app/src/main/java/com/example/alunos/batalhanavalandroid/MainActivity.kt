@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(){
     fun novoJogo(){
         g.humano = Jogador()
         g.bot = Bot(g.humano)
-        g.arquivoJogo = ArquivoJogo(g.humano, g.bot)
+        g.arquivoJogo = ArquivoJogo()
 
         val intent =  Intent(this, JogadaHumanoActivity::class.java)
         startActivity(intent)
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(){
             menssagemErroLoad()
         }
         else{
-            val deuCerto = g.arquivoJogo.load(this)
+            val deuCerto = g.arquivoJogo.load(g, this)
             if(deuCerto){
                 val intent = Intent(this, JogadaHumanoActivity::class.java)
                 startActivity(intent)

@@ -11,20 +11,10 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
             android:name=".MainActivity"
-            android:label="Menu Principal"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".NovoJogoActivity"
-            android:label="Novo Jogo"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".LoadSaveActivity"
-            android:label="Load Save"
-            android:screenOrientation="portrait"/>
+            android:label="Menu Principal"/>
         <activity
             android:name=".SobreActivity"
-            android:label="Sobre"
-            android:screenOrientation="portrait"/>
+            android:label="Sobre"/>
         <activity
             android:name=".JogadaHumanoActivity"
             android:label="Sua Vez"

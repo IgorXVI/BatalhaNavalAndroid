@@ -86,8 +86,8 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
-    fun som(x: Int, y: Int){
-        val acertou = g.bot.tabuleiro.tabuleiroPublico[x][y] == 'X'
+    fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
+        val acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
         if(acertou){
             mp = MediaPlayer.create(this, R.raw.explosao_som)
         }
@@ -108,7 +108,7 @@ open class Jogada: AppCompatActivity() {
     }
 
     fun salvar(){
-        val salvou = g.arquivoJogo.salvar(this)
+        val salvou = g.arquivoJogo.salvar(g,this)
         if(!salvou){
             menssagemErroSave()
         }
