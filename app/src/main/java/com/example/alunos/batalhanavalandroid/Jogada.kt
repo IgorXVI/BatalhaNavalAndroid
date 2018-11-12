@@ -90,23 +90,6 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
-    fun salvar(){
-        val salvou = salvarArquivo()
-        if(!salvou){
-            menssagemErroSave()
-        }
-    }
-
-    fun menssagemErroSave(){
-
-        runOnUiThread {
-            val text = Toast.makeText(this, "Não foi possível salvar o jogo.",
-                    Toast.LENGTH_SHORT)
-            text.show()
-        }
-
-    }
-
     fun salvarArquivo(): Boolean{
         try {
             val fileName = "humano.ser"
@@ -127,6 +110,23 @@ open class Jogada: AppCompatActivity() {
         catch (e: Exception) {
             return false
         }
+    }
+
+    fun salvar(){
+        val salvou = salvarArquivo()
+        if(!salvou){
+            menssagemErroSave()
+        }
+    }
+
+    fun menssagemErroSave(){
+
+        runOnUiThread {
+            val text = Toast.makeText(this, "Não foi possível salvar o jogo.",
+                    Toast.LENGTH_SHORT)
+            text.show()
+        }
+
     }
 
 }
