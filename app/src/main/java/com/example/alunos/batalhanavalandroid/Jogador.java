@@ -10,13 +10,17 @@ public class Jogador implements Serializable{
 
     private String nome;
     private Tabuleiro tabuleiro;
+    private Boolean jaAtacou;
 
-    Jogador(String nome) {
-        this.nome = nome;
+    Jogador() {
+        this.nome = "Humano";
+        this.jaAtacou = false;
         this.tabuleiro = new Tabuleiro();
     }
 
     public void realizarJogada(int x, int y, Jogador adversario) {
+        this.jaAtacou = true;
+        adversario.jaAtacou = false;
         if (adversario.getTabuleiro().getTabuleiroDoJogador()[x][y] == '~') {
             adversario.getTabuleiro().setErro(x, y);
         } else {
@@ -28,15 +32,19 @@ public class Jogador implements Serializable{
         return this.tabuleiro;
     }
 
-    public String getNome() {
-        return this.nome;
+    public Boolean getJaAtacou() {
+        return this.jaAtacou;
     }
 
-    public void setNome(String novoNome) {
-        this.nome = novoNome;
-    }
+    public String getNome() { return this.nome; }
+
+    public void setNome(String novoNome) { this.nome = novoNome; }
 
     public void setTabuleiro(Tabuleiro t){
         this.tabuleiro = t;
+    }
+
+    public void setNome(Boolean novoJaAtacou) {
+        this.jaAtacou = novoJaAtacou;
     }
 }

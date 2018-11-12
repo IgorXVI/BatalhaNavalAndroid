@@ -1,14 +1,14 @@
 package com.example.alunos.batalhanavalandroid;
 
+import android.content.Context;
+
 public class Global {
     private static Jogador humano;
     private static Bot bot;
-    private static Boolean comecou;
     private static Global instance;
+    private static ArquivoJogo arquivoJogo;
 
-    Global(){
-        Global.comecou = false;
-    }
+    Global(){ }
 
     public void setHumano(Jogador j) {
         Global.humano = j;
@@ -26,13 +26,9 @@ public class Global {
         return Global.bot;
     }
 
-    public void setComecou(Boolean c){
-        Global.comecou = c;
-    }
+    public void setArquivoJogo(ArquivoJogo a){ Global.arquivoJogo = a; }
 
-    public Boolean getComecou(){
-        return Global.comecou;
-    }
+    public ArquivoJogo getArquivoJogo(){ return Global.arquivoJogo; }
 
     public static synchronized Global getInstance(){
         if(instance == null){

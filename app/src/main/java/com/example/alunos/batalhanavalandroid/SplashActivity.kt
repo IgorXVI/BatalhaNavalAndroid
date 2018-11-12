@@ -12,7 +12,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val intent = Intent(this, MainActivity::class.java)
-        Timer().schedule(1000){
+        Timer().schedule(500){
             startActivity(intent)
             finish()
         }
