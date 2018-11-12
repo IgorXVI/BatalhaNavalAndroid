@@ -27,8 +27,6 @@ class JogadaBotActivity : Jogada() {
         val y = g.bot.cerebro.posUltimo[1]
         som(x,y, g.humano.tabuleiro)
 
-        salvar()
-
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 
         if(ganhou){
