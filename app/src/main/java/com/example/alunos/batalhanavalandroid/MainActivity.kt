@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity(){
             startActivity(intent)
             finish()
         }
-        else{
-            menssagemErroLoad()
-        }
+        //else{
+        //    menssagemErroLoad()
+        //}
     }
 
     fun menssagemErroLoad(){
@@ -80,9 +80,16 @@ class MainActivity : AppCompatActivity(){
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
-            return derrotaHumano || derrotaBot
+            return true
         }
         catch (e: Exception) {
+
+            runOnUiThread {
+                val text = Toast.makeText(this, "cú.",
+                        Toast.LENGTH_SHORT)
+                text.show()
+            }
+
             return false
         }
     }

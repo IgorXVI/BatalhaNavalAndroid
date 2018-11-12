@@ -20,7 +20,7 @@ public class Jogador implements Serializable{
 
     public void realizarJogada(int x, int y, Jogador adversario) {
         this.jaAtacou = true;
-        adversario.jaAtacou = false;
+        adversario.setJaAtacou(false);
         if (adversario.getTabuleiro().getTabuleiroDoJogador()[x][y] == '~') {
             adversario.getTabuleiro().setErro(x, y);
         } else {
@@ -44,7 +44,7 @@ public class Jogador implements Serializable{
         this.tabuleiro = t;
     }
 
-    public void setNome(Boolean novoJaAtacou) {
+    public void setJaAtacou(Boolean novoJaAtacou) {
         this.jaAtacou = novoJaAtacou;
     }
 }
