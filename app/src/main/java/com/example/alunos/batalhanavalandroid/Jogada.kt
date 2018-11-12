@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.ObjectOutputStream
@@ -16,27 +14,6 @@ open class Jogada: AppCompatActivity() {
 
     val g = Global.getInstance()
     var mp: MediaPlayer? = null
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.MenuPrincipal -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            R.id.Sobre -> {
-                val intent = Intent(this, SobreActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
         var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
