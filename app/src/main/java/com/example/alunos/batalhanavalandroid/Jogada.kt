@@ -87,7 +87,11 @@ open class Jogada: AppCompatActivity() {
     }
 
     fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
-        val acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
+        var acertou = x == -1 && y == -1
+        if(!acertou){
+            acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
+        }
+
         if(acertou){
             mp = MediaPlayer.create(this, R.raw.explosao_som)
         }
