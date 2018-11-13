@@ -2,7 +2,6 @@ package com.example.alunos.batalhanavalandroid
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.Toast
 import java.util.*
 import kotlin.concurrent.schedule
@@ -30,7 +29,7 @@ class JogadaBotActivity : Jogada() {
         val y = g.bot.cerebro.posUltimo[1]
         som(x,y, g.humano.tabuleiro)
 
-        //salvar()
+        salvar()
 
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 

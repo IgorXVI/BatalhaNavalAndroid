@@ -1,5 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageButton
 import android.widget.Toast
+import java.io.ObjectOutputStream
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -112,7 +114,7 @@ open class Jogada: AppCompatActivity() {
     }
 
     fun salvar(){
-        val salvou = g.arquivoJogo.salvar(g,this)
+        val salvou = salvarArquivo()
         if(!salvou){
             menssagemErroSave()
         }
@@ -126,6 +128,28 @@ open class Jogada: AppCompatActivity() {
             text.show()
         }
 
+    }
+
+    fun salvarArquivo(): Boolean{
+        try {
+            val fileName = "humano.ser"
+            val f = openFileOutput(fileName, Context.MODE_PRIVATE)
+            val o = ObjectOutputStream(f)
+            o.writeObject(g.humano)
+            f.close()
+            o.close()
+
+            val fileNameBot = "bot.ser"
+            val fBot = openFileOutput(fileNameBot, Context.MODE_PRIVATE)
+            val oBot = ObjectOutputStream(fBot)
+            oBot.writeObject(g.bot)
+            fBot.close()
+            oBot.close()
+            return true
+        }
+        catch (e: Exception) {
+            return false
+        }
     }
 
 }

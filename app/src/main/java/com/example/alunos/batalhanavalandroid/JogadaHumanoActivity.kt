@@ -1,16 +1,9 @@
 package com.example.alunos.batalhanavalandroid
 
 import android.content.Intent
-import android.media.MediaPlayer
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.ImageButton
 import android.widget.Toast
-import java.util.*
-import kotlin.concurrent.schedule
 
 open class JogadaHumanoActivity : Jogada() {
 
