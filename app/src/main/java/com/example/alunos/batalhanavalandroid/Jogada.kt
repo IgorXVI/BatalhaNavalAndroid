@@ -89,8 +89,8 @@ open class Jogada: AppCompatActivity() {
     }
 
     fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
-        var acertou = x == -1 && y == -1
-        if(!acertou){
+        var acertou = !(x == -1 && y == -1)
+        if(acertou){
             acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
         }
 
