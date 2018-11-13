@@ -47,14 +47,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     fun ataque(){
 
-        for(i in 0..6){
-
-            for(j in 0..6){
-                this.tabuleiroProb[i][j] = 0
-            }
-
-        }
-
         if(terceiro){
             this.terceiroPasso()
         }
@@ -182,16 +174,18 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     private fun primeiroPasso(){
+        this.resetTabuleiroProb()
+
         var x: Int
         var y: Int
 
-        x = this.posAdjacenteAcerto()[0]
-        y = this.posAdjacenteAcerto()[1]
-
-        if(x == -1 && y == -1){
-            x = this.posRandomica()[0]
-            y = this.posRandomica()[1]
+        for(i in 1..4){
+            this.probHorizontal(i)
+            this.probVertical(i)
         }
+
+        x = this.posMaisProb()[0]
+        y = this.posMaisProb()[1]
 
         this.posUltimo[0] = x
         this.posUltimo[1] = y
@@ -291,6 +285,16 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         return pos
     }
 
+    fun resetTabuleiroProb(){
+        for(i in 0..6){
+
+            for(j in 0..6){
+                this.tabuleiroProb[i][j] = 0
+            }
+
+        }
+    }
+
     fun probHorizontal(tamanho: Int){
         var erro = false
         var xInicial = 0
@@ -314,7 +318,56 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             i = 0
             erro = false
         }
+    }
 
+    fun probVertical(tamanho: Int){
+        var erro = false
+        var yInicial = 0
+        var yFinal = tamanho - 1
+        var i = 0
+
+        for(x in 0..6){
+            for(y in yInicial..yFinal){
+                erro = posJaAtacada(x, y)
+                i++
+            }
+            if(!erro){
+                i = 0
+                for(y in yInicial..yFinal){
+                    this.tabuleiroProb[x][y] += 1
+                    i++
+                }
+            }
+            yInicial++
+            yFinal++
+            i = 0
+            erro = false
+        }
+    }
+
+    fun posMaisProb(): IntArray{
+        var maior = 0
+        var x = -1
+        var y = -1
+
+        for(i in 0..6){
+
+            for(j in 0..6){
+
+                if(this.tabuleiroProb[i][j] > maior){
+                    maior = this.tabuleiroProb[i][j]
+                    x = i
+                    y = j
+                }
+
+            }
+
+        }
+
+        val pos = IntArray(2)
+        pos[0] = x
+        pos[1] = y
+        return pos
     }
 
 }
