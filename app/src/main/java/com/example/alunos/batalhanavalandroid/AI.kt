@@ -35,16 +35,15 @@ class AI(val tabuleiro: Tabuleiro) {
     private var erro1 = false
     private var erro2 = false
     private var sentido = false
-    private var segundo = false
-    private var terceiro = false
+    var segundo = false
+    var terceiro = false
 
     init {
         this.posUltimo[0] = -1
         this.posUltimo[1] = -1
     }
 
-    fun ataque(): IntArray{
-        checkAcerto()
+    fun ataque(){
         if(terceiro){
             this.terceiroPasso()
         }
@@ -54,10 +53,9 @@ class AI(val tabuleiro: Tabuleiro) {
         else{
             this.primeiroPasso()
         }
-        return this.posUltimo
     }
 
-    private fun checkAcerto(){
+    fun checkAcerto(){
         val x = posUltimo[0]
         val y = posUltimo[1]
         if(x != -1 && y != -1){
@@ -82,9 +80,6 @@ class AI(val tabuleiro: Tabuleiro) {
             }
             else{
                 this.segundo = posJaAcertada(x, y)
-                if(this.segundo){
-                    this.posInicalAcerto = posUltimo
-                }
             }
         }
     }
@@ -138,39 +133,46 @@ class AI(val tabuleiro: Tabuleiro) {
         val r = Random()
         x = this.posInicalAcerto[0]
         y = this.posInicalAcerto[1]
-        while (this.posJaAtacada(x, y)) {
-            this.inimigoVertical = r.nextBoolean()
-            this.sentido = r.nextBoolean()
-            if (!this.inimigoVertical) {
-                y = this.posInicalAcerto[1]
-                if (this.posInicalAcerto[0] == 6) {
-                    this.sentido = false
-                }
-                if (this.posInicalAcerto[0] == 0) {
-                    this.sentido = true
-                }
-                if (this.sentido) {
-                    x = this.posInicalAcerto[0] + 1
+
+        if(posInutil(x, y)){
+            this.reset()
+            this.primeiroPasso()
+        }
+        else{
+            while (this.posJaAtacada(x, y)) {
+                this.inimigoVertical = r.nextBoolean()
+                this.sentido = r.nextBoolean()
+                if (!this.inimigoVertical) {
+                    y = this.posInicalAcerto[1]
+                    if (this.posInicalAcerto[0] == 6) {
+                        this.sentido = false
+                    }
+                    if (this.posInicalAcerto[0] == 0) {
+                        this.sentido = true
+                    }
+                    if (this.sentido) {
+                        x = this.posInicalAcerto[0] + 1
+                    } else {
+                        x = this.posInicalAcerto[0] - 1
+                    }
                 } else {
-                    x = this.posInicalAcerto[0] - 1
-                }
-            } else {
-                x = this.posInicalAcerto[0]
-                if (this.posInicalAcerto[1] == 6) {
-                    this.sentido = false
-                }
-                if (this.posInicalAcerto[1] == 0) {
-                    this.sentido = true
-                }
-                if (this.sentido) {
-                    y = this.posInicalAcerto[1] + 1
-                } else {
-                    y = this.posInicalAcerto[1] - 1
+                    x = this.posInicalAcerto[0]
+                    if (this.posInicalAcerto[1] == 6) {
+                        this.sentido = false
+                    }
+                    if (this.posInicalAcerto[1] == 0) {
+                        this.sentido = true
+                    }
+                    if (this.sentido) {
+                        y = this.posInicalAcerto[1] + 1
+                    } else {
+                        y = this.posInicalAcerto[1] - 1
+                    }
                 }
             }
+            this.posUltimo[0] = x
+            this.posUltimo[1] = y
         }
-        this.posUltimo[0] = x
-        this.posUltimo[1] = y
     }
 
     private fun primeiroPasso(){
@@ -184,7 +186,7 @@ class AI(val tabuleiro: Tabuleiro) {
             val r = Random()
             x = r.nextInt(7)
             y = r.nextInt(7)
-            while (this.posInutil(x, y)) {
+            while (this.posJaAtacada(x,y) || this.posInutil(x, y)) {
                 x = r.nextInt(7)
                 y = r.nextInt(7)
             }
@@ -192,6 +194,8 @@ class AI(val tabuleiro: Tabuleiro) {
 
         this.posUltimo[0] = x
         this.posUltimo[1] = y
+        this.posInicalAcerto[0] = x
+        this.posInicalAcerto[1] = y
     }
 
     private fun posJaAtacada(x: Int, y: Int): Boolean {
@@ -214,46 +218,45 @@ class AI(val tabuleiro: Tabuleiro) {
         this.terceiro = false
         this.erro1 = false
         this.erro2 = false
+        this.posUltimo[0] = -1
+        this.posUltimo[1] = -1
     }
 
     private fun posInutil(x: Int, y: Int): Boolean{
-        var cima: Boolean
-        var baixo: Boolean
-        var esquerda: Boolean
-        var direita: Boolean
-        var centro: Boolean
-
-        centro = !posJaAtacada(x, y)
+        var semCima: Boolean
+        var semBaixo: Boolean
+        var semEsquerda: Boolean
+        var semDireita: Boolean
 
         if(x > 0){
-            esquerda = !posJaAtacada(x-1, y)
+            semEsquerda = posJaAtacada(x-1, y)
         }
         else{
-            esquerda = false
+            semEsquerda = true
         }
 
         if(x < 6){
-            direita = !posJaAtacada(x+1, y)
+            semDireita = posJaAtacada(x+1, y)
         }
         else{
-            direita = false;
+            semDireita = true
         }
 
         if(y > 0){
-            baixo = !posJaAtacada(x, y-1);
+            semBaixo = posJaAtacada(x, y-1)
         }
         else{
-            baixo = false;
+            semBaixo = true
         }
 
         if(y < 6){
-            cima = !posJaAtacada(x, y+1);
+            semCima = posJaAtacada(x, y+1)
         }
         else{
-            cima = false;
+            semCima = true
         }
 
-        return !centro && !cima && !baixo && !direita && !esquerda;
+        return semCima && semBaixo && semDireita && semEsquerda
     }
 
     fun posAdjacenteAcerto(): IntArray{

@@ -18,8 +18,12 @@ public class Bot extends Jogador implements Serializable {
     }
 
     public void realizarJogada() {
-        int[] pos = this.cerebro.ataque();
-        super.realizarJogada(pos[0], pos[1], this.humano);
+        int x, y;
+        this.cerebro.ataque();
+        x = this.cerebro.getPosUltimo()[0];
+        y = this.cerebro.getPosUltimo()[1];
+        super.realizarJogada(x, y, this.humano);
+        this.cerebro.checkAcerto();
     }
 
     public Jogador getHumano(){
