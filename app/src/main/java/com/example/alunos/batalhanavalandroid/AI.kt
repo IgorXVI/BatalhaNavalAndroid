@@ -14,8 +14,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     /*
    Passos do ataque:
 
-   primeiro : atacar uma posição randômica adjacente à um acerto, se não ouver nenhuma atacar
-   posição randômica útil ->
+   primeiro : atacar a posição mais provável de conter um navio ->
 
    segundo : se o primeiro passo resultar em sucesso, atacar posição na vertical
    ou na horizontal do último ataque e repetir esse passo até um acerto, quando o
@@ -24,10 +23,10 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
    terceiro : atacar posições relativas ao ponto de acerto até errar pela primeira vez, então
    inverter o sentido de ataque e atacar até errar uma segunda vez ->
 
-   primeiro : atacar posição randômica útil -> ...
+   primeiro : atacar a posição mais provável de conter um navio -> ...
 
 
-   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro) até alguém ganhar
+   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro->segundo->terceiro->...) até alguém ganhar
     */
 
     var posUltimo = IntArray(2)
