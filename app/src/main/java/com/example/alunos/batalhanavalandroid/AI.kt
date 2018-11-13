@@ -26,7 +26,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
    primeiro : atacar a posição mais provável de conter um navio -> ...
 
 
-   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro->segundo->terceiro->...) até alguém ganhar
+   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro -> segundo-> terceiro-> ...) até alguém ganhar
     */
 
     var posUltimo = IntArray(2)
