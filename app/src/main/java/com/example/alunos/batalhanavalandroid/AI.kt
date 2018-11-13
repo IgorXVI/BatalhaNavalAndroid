@@ -304,7 +304,9 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(y in 0..6){
             for(x in xInicial..xFinal){
                 erro = posJaAtacada(x, y)
-                i++
+                if(erro){
+                    break
+                }
             }
             if(!erro){
                 i = 0
@@ -315,7 +317,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
             xInicial++
             xFinal++
-            i = 0
             erro = false
         }
     }
@@ -329,7 +330,9 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(x in 0..6){
             for(y in yInicial..yFinal){
                 erro = posJaAtacada(x, y)
-                i++
+                if(erro){
+                    break
+                }
             }
             if(!erro){
                 i = 0
@@ -340,7 +343,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
             yInicial++
             yFinal++
-            i = 0
             erro = false
         }
     }
