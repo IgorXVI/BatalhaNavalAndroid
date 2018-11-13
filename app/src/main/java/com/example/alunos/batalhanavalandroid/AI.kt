@@ -38,6 +38,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     private var sentido = false
     var segundo = false
     var terceiro = false
+    private var tabuleiroProb = Array(7, {IntArray(7)})
 
     init {
         this.posUltimo[0] = -1
@@ -45,6 +46,15 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     fun ataque(){
+
+        for(i in 0..6){
+
+            for(j in 0..6){
+                this.tabuleiroProb[i][j] = 0
+            }
+
+        }
+
         if(terceiro){
             this.terceiroPasso()
         }
@@ -105,12 +115,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
         }
 
-        var fim = x > 6 || x < 0 || y > 6 || y < 0
-        if(!fim){
-            fim = posJaErrada(x, y)
-        }
-
-        if(fim) {
+        if(posJaErrada(x, y)) {
             if (!this.erro1) {
                 this.sentido = !this.sentido
                 this.erro1 = true
@@ -184,13 +189,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         y = this.posAdjacenteAcerto()[1]
 
         if(x == -1 && y == -1){
-            val r = Random()
-            x = r.nextInt(7)
-            y = r.nextInt(7)
-            while (this.posJaAtacada(x,y) || this.posInutil(x, y)) {
-                x = r.nextInt(7)
-                y = r.nextInt(7)
-            }
+            x = this.posRandomica()[0]
+            y = this.posRandomica()[1]
         }
 
         this.posUltimo[0] = x
@@ -200,16 +200,25 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     private fun posJaAtacada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
         val c = this.tabuleiro.tabuleiroPublico[x][y]
         return c != '~'
     }
 
     private fun posJaErrada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
         val c = this.tabuleiro.tabuleiroPublico[x][y]
         return c == '*'
     }
 
     private fun posJaAcertada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
         val c = this.tabuleiro.tabuleiroPublico[x][y]
         return c == 'X'
     }
@@ -224,38 +233,10 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     private fun posInutil(x: Int, y: Int): Boolean{
-        var semCima: Boolean
-        var semBaixo: Boolean
-        var semEsquerda: Boolean
-        var semDireita: Boolean
-
-        if(x > 0){
-            semEsquerda = posJaAtacada(x-1, y)
-        }
-        else{
-            semEsquerda = true
-        }
-
-        if(x < 6){
-            semDireita = posJaAtacada(x+1, y)
-        }
-        else{
-            semDireita = true
-        }
-
-        if(y > 0){
-            semBaixo = posJaAtacada(x, y-1)
-        }
-        else{
-            semBaixo = true
-        }
-
-        if(y < 6){
-            semCima = posJaAtacada(x, y+1)
-        }
-        else{
-            semCima = true
-        }
+        val semEsquerda = posJaAtacada(x-1, y)
+        val semDireita = posJaAtacada(x+1, y)
+        val semBaixo = posJaAtacada(x, y-1)
+        val semCima = posJaAtacada(x, y+1)
 
         return semCima && semBaixo && semDireita && semEsquerda
     }
@@ -265,36 +246,28 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(i in 0..6){
             for(j in 0..6){
                 if(posJaAcertada(i,j)){
-                    if(i > 0){
-                        if(!posJaAtacada(i-1,j)){
-                            pos[0] = i - 1
-                            pos[1] = j
-                            return pos
-                        }
+                    if(!posJaAtacada(i-1,j)){
+                        pos[0] = i - 1
+                        pos[1] = j
+                        return pos
                     }
 
-                    if(i < 6){
-                        if(!posJaAtacada(i+1,j)){
-                            pos[0] = i + 1
-                            pos[1] = j
-                            return pos
-                        }
+                    if(!posJaAtacada(i+1,j)){
+                        pos[0] = i + 1
+                        pos[1] = j
+                        return pos
                     }
 
-                    if(j > 0){
-                        if(!posJaAtacada(i,j-1)){
-                            pos[0] = i
-                            pos[1] = j - 1
-                            return pos
-                        }
+                    if(!posJaAtacada(i,j-1)){
+                        pos[0] = i
+                        pos[1] = j - 1
+                        return pos
                     }
 
-                    if(j < 6){
-                        if(!posJaAtacada(i, j+1)){
-                            pos[0] = i
-                            pos[1] = j + 1
-                            return pos
-                        }
+                    if(!posJaAtacada(i, j+1)){
+                        pos[0] = i
+                        pos[1] = j + 1
+                        return pos
                     }
                 }
             }
@@ -302,6 +275,46 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         pos[0] = -1
         pos[1] = -1
         return pos
+    }
+
+    fun posRandomica(): IntArray{
+        val r = Random()
+        var x = r.nextInt(7)
+        var y = r.nextInt(7)
+        while (this.posJaAtacada(x,y) || this.posInutil(x, y)) {
+            x = r.nextInt(7)
+            y = r.nextInt(7)
+        }
+        val pos = IntArray(2)
+        pos[0] = x
+        pos[1] = y
+        return pos
+    }
+
+    fun probHorizontal(tamanho: Int){
+        var erro = false
+        var xInicial = 0
+        var xFinal = tamanho - 1
+        var i = 0
+
+        for(y in 0..6){
+            for(x in xInicial..xFinal){
+                erro = posJaAtacada(x, y)
+                i++
+            }
+            if(!erro){
+                i = 0
+                for(x in xInicial..xFinal){
+                    this.tabuleiroProb[x][y] += 1
+                    i++
+                }
+            }
+            xInicial++
+            xFinal++
+            i = 0
+            erro = false
+        }
+
     }
 
 }
