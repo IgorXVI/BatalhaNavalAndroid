@@ -179,7 +179,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         var x: Int
         var y: Int
 
-        for(i in 1..4){
+        for(i in 2..4){
             this.probHorizontal(i)
             this.probVertical(i)
         }
@@ -235,6 +235,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         return semCima && semBaixo && semDireita && semEsquerda
     }
 
+    /*
     fun posAdjacenteAcerto(): IntArray{
         var pos = IntArray(2)
         for(i in 0..6){
@@ -283,7 +284,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         pos[0] = x
         pos[1] = y
         return pos
-    }
+    }*/
 
     fun resetTabuleiroProb(){
         for(i in 0..6){
