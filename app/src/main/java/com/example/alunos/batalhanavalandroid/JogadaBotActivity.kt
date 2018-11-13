@@ -20,7 +20,15 @@ class JogadaBotActivity : Jogada() {
     }
 
     fun ataque() {
+
+        runOnUiThread {
+            val text = Toast.makeText(this, "ataque!",
+                    Toast.LENGTH_SHORT)
+            text.show()
+        }
+
         g.bot.realizarJogada()
+        salvarArquivo()
         setImagensTabuleiro(g.humano.tabuleiro)
 
         val x = g.bot.cerebro.posUltimo[0]

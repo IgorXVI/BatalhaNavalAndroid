@@ -90,7 +90,7 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
-    fun salvarArquivo(): Boolean{
+    fun salvarArquivo(){
         try {
             val fileName = "humano.ser"
             val f = openFileOutput(fileName, Context.MODE_PRIVATE)
@@ -105,16 +105,8 @@ open class Jogada: AppCompatActivity() {
             oBot.writeObject(g.bot)
             fBot.close()
             oBot.close()
-            return true
         }
         catch (e: Exception) {
-            return false
-        }
-    }
-
-    fun salvar(){
-        val salvou = salvarArquivo()
-        if(!salvou){
             menssagemErroSave()
         }
     }

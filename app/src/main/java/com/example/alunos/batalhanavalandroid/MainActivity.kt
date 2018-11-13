@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btn_continuar.setOnClickListener {
-            continuar()
+            loadArquivo()
         }
 
         btn_novoJogo.setOnClickListener {
@@ -37,18 +37,6 @@ class MainActivity : AppCompatActivity(){
         finish()
     }
 
-    fun continuar(){
-        val deuCerto = loadArquivo()
-        if(deuCerto){
-            val intent = Intent(this, JogadaHumanoActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        else{
-            menssagemErroLoad()
-        }
-    }
-
     fun menssagemErroLoad(){
 
         runOnUiThread {
@@ -59,7 +47,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-    fun loadArquivo(): Boolean{
+    fun loadArquivo(){
         try {
             val fileName = "humano.ser"
             val fi = openFileInput(fileName);
@@ -80,10 +68,18 @@ class MainActivity : AppCompatActivity(){
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
-            return derrotaHumano || derrotaBot
+
+            if(derrotaHumano || derrotaBot){
+                menssagemErroLoad()
+            }
+            else{
+                val intent = Intent(this, JogadaHumanoActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
         catch (e: Exception) {
-            return false
+            menssagemErroLoad()
         }
     }
 }

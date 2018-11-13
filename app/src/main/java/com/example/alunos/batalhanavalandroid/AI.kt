@@ -14,7 +14,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     /*
    Passos do ataque:
 
-   primeiro : atacar uma posição adjacente à um acerto, se não ouver nenhuma atacar
+   primeiro : atacar uma posição randômica adjacente à um acerto, se não ouver nenhuma atacar
    posição randômica útil ->
 
    segundo : se o primeiro passo resultar em sucesso, atacar posição na vertical
