@@ -316,7 +316,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
             xInicial++
             xFinal++
-            erro = false
         }
 
         var yInicial = 0
@@ -338,7 +337,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
             yInicial++
             yFinal++
-            erro = false
         }
 
     }
