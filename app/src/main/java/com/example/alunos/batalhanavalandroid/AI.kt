@@ -179,8 +179,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         var y: Int
 
         for(i in 2..4){
-            this.probHorizontal(i)
-            this.probVertical(i)
+            this.prob(i)
         }
 
         x = this.posMaisProb()[0]
@@ -295,7 +294,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         }
     }
 
-    fun probHorizontal(tamanho: Int){
+    fun prob(tamanho: Int){
         var erro = false
         var xInicial = 0
         var xFinal = tamanho - 1
@@ -319,13 +318,9 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             xFinal++
             erro = false
         }
-    }
 
-    fun probVertical(tamanho: Int){
-        var erro = false
         var yInicial = 0
         var yFinal = tamanho - 1
-        var i = 0
 
         for(x in 0..6){
             for(y in yInicial..yFinal){
@@ -345,6 +340,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             yFinal++
             erro = false
         }
+
     }
 
     fun posMaisProb(): IntArray{
