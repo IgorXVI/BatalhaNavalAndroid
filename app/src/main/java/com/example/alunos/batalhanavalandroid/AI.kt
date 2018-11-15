@@ -279,7 +279,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                         break
                     }
                     if(posJaAcertada(x, y)){
-                        peso += 5
+                        peso += 2
                     }
                 }
                 if(!erro){
@@ -305,7 +305,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                         break
                     }
                     if(posJaAcertada(x, y)){
-                        peso += 5
+                        peso += 2
                     }
                 }
                 if(!erro){

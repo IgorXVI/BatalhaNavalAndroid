@@ -24,9 +24,25 @@ class JogadaBotActivity : Jogada() {
         salvarArquivo()
         setImagensTabuleiro(g.humano.tabuleiro)
 
+        var s = ""
+        for(i in 0..6){
+            for(j in 0..6){
+                s += g.bot.cerebro.tabuleiroProb[i][j].toString()
+                if(j != 6){
+                    s += " "
+                }
+            }
+            s += "\n"
+        }
+
+        runOnUiThread{
+            var t = Toast.makeText(this, s, Toast.LENGTH_SHORT)
+            t.show()
+        }
+
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
-        som(x,y, g.humano.tabuleiro)
+        //som(x,y, g.humano.tabuleiro)
 
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 
