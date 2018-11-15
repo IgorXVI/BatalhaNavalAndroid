@@ -38,7 +38,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     private var sentido = false
     var segundo = false
     var terceiro = false
-    private var tabuleiroProb = Array(7, {IntArray(7)})
+    var tabuleiroProb = Array(7, {IntArray(7)})
 
     init {
         this.posUltimo[0] = -1

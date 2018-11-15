@@ -24,23 +24,20 @@ class JogadaBotActivity : Jogada() {
         salvarArquivo()
         setImagensTabuleiro(g.humano.tabuleiro)
 
-        if(g.bot.cerebro.terceiro){
-            runOnUiThread{
-                var t = Toast.makeText(this, "terceiro", Toast.LENGTH_SHORT)
-                t.show()
+        var s = "."
+        for(i in 0..6){
+            for(j in 0..6){
+                s += g.bot.cerebro.tabuleiroProb[i][j].toString()
+                if(j != 6){
+                    s += " "
+                }
             }
+            s += "\n"
         }
-        else if(g.bot.cerebro.segundo){
-            runOnUiThread{
-                var t = Toast.makeText(this, "segundo", Toast.LENGTH_SHORT)
-                t.show()
-            }
-        }
-        else{
-            runOnUiThread{
-                var t = Toast.makeText(this, "primeiro", Toast.LENGTH_SHORT)
-                t.show()
-            }
+
+        runOnUiThread{
+            var t = Toast.makeText(this, s, Toast.LENGTH_SHORT)
+            t.show()
         }
 
         val x = g.bot.cerebro.posUltimo[0]
