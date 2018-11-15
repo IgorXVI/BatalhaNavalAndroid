@@ -26,7 +26,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
    primeiro : atacar a posição mais provável de conter um navio -> ...
 
 
-   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro -> segundo-> terceiro-> ...) até alguém ganhar
+   repetir o ciclo (primeiro -> segundo -> terceiro -> primeiro -> segundo-> terceiro-> ...)
+   até alguém ganhar
     */
 
     var posUltimo = IntArray(2)
@@ -58,16 +59,29 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     fun checkAcerto(){
+
+        /*confere o resultado do último ataque, com base nele determina qual vai ser o próximo
+        passo*/
+
         val x = posUltimo[0]
         val y = posUltimo[1]
         if(x != -1 && y != -1){
             if(terceiro){
+
+                //aqui a função confere se o último ataque do terceiro passo resultou em erro
+
                 if (!this.erro1) {
+
+                    //se for o primeiro erro, inverte o sentido de ataque
+
                     this.erro1 = !posJaAcertada(x, y)
                     if (this.erro1) {
                         this.sentido = !this.sentido
                     }
                 } else {
+
+                    //se for o segundo erro, termina o terceiro passo
+
                     this.erro2 = !posJaAcertada(x, y)
                     if (this.erro2) {
                         this.reset()
@@ -75,18 +89,29 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                 }
             }
             else if(segundo){
+
+                /*aqui a função confere se o último ataque do segundo passo resultou em acerto,
+                se sim vai para o terceiro passo*/
+
                this.terceiro = posJaAcertada(x, y)
                if(this.terceiro){
                    this.segundo = false
                }
             }
             else{
+
+                /*aqui a função confere se o último ataque do primeiro passo resultou em acerto,
+                se sim vai para o segundo passo*/
+
                 this.segundo = posJaAcertada(x, y)
             }
         }
     }
 
     private fun terceiroPasso(){
+
+        /*aqui a função pega a proxima posição em relação à última posição de ataque (posUltimo)
+        com base no sentido de ataque*/
         val x: Int
         val y: Int
         if (!this.inimigoVertical) {
@@ -107,11 +132,20 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         }
 
         if(posJaErrada(x, y)) {
+
+            //se a posição ja estiver errada conta como um erro do terceiro passo
+
             if (!this.erro1) {
+
+                //se for o primeiro erro, inverte o sentido de ataque e recomeça o terceiro passo
+
                 this.sentido = !this.sentido
                 this.erro1 = true
                 this.terceiroPasso()
             } else {
+
+                //se for o segundo erro, termina o terceiro passo e começa o primeiro
+
                 this.reset()
                 this.primeiroPasso()
             }
@@ -119,6 +153,10 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             this.posUltimo[0] = x
             this.posUltimo[1] = y
             if (posJaAcertada(x, y)){
+
+                /*se a posição ja tiver um acerto recomeça o terceiro passo, isso vai fazer
+                com que a função ignore todos os acertos já existentes na mesma linha ou coluna*/
+
                 this.terceiroPasso()
             }
         }
@@ -132,6 +170,11 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         y = this.posInicalAcerto[1]
 
         if(posCercada(x, y)){
+
+            /*a função pega um acerto adjacente e determina ele como a última posição atacada
+            (posUltimo), também determina o alinhamento do navio e o sentido do proximo ataque
+            baseado na localização desse acerto adjacente em relação à posição inicial de acerto*/
+
             if(posJaAcertada(x-1, y)){
                 this.inimigoVertical = false
                 this.sentido = false
@@ -157,17 +200,16 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             this.terceiroPasso()
         }
         else{
+
+            /*baseado em um alinhamento randômico e em um sentido randômico a função pega uma
+            posição, que não foi atacada, adjacente à posição inicial de acerto e determina
+            ela como a última posição atacada (posUltimo)*/
+
             while (this.posJaAtacada(x, y)) {
                 this.inimigoVertical = r.nextBoolean()
                 this.sentido = r.nextBoolean()
                 if (!this.inimigoVertical) {
                     y = this.posInicalAcerto[1]
-                    if (this.posInicalAcerto[0] == 6) {
-                        this.sentido = false
-                    }
-                    if (this.posInicalAcerto[0] == 0) {
-                        this.sentido = true
-                    }
                     if (this.sentido) {
                         x = this.posInicalAcerto[0] + 1
                     } else {
@@ -175,12 +217,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                     }
                 } else {
                     x = this.posInicalAcerto[0]
-                    if (this.posInicalAcerto[1] == 6) {
-                        this.sentido = false
-                    }
-                    if (this.posInicalAcerto[1] == 0) {
-                        this.sentido = true
-                    }
                     if (this.sentido) {
                         y = this.posInicalAcerto[1] + 1
                     } else {
@@ -194,11 +230,14 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     private fun primeiroPasso(){
+
+        //aqui eu gero as probabilades de acerto para cada posição nessa jogada
         this.resetTabuleiroProb()
         for(i in 2..4){
             this.prob(i)
         }
 
+        //aqui eu pego a posição com maior probabilidade de acerto
         var x = -1
         var y = -1
         var maior = 0
@@ -223,6 +262,10 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     fun prob(tamanho: Int){
+
+        /* aqui eu uso um algoritmo de função probabilidade, inspirado nesse artigo:
+        "datagenetics.com/blog/december32011" na parte de "Probability Density Functions"*/
+
         var erro = false
         var xInicial = 0
         var xFinal = tamanho - 1
@@ -288,7 +331,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     private fun posJaAtacada(x: Int, y: Int): Boolean {
         if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
+            return true
         }
         val c = this.tabuleiro.tabuleiroPublico[x][y]
         return c != '~'
@@ -296,7 +339,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     private fun posJaErrada(x: Int, y: Int): Boolean {
         if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
+            return true
         }
         val c = this.tabuleiro.tabuleiroPublico[x][y]
         return c == '*'

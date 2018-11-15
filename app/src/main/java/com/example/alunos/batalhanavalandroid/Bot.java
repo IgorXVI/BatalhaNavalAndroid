@@ -22,6 +22,9 @@ public class Bot extends Jogador implements Serializable {
         this.cerebro.ataque();
         x = this.cerebro.getPosUltimo()[0];
         y = this.cerebro.getPosUltimo()[1];
+
+        //realiza um ataque com a última posição de ataque, determinada pelo AI
+
         super.realizarJogada(x, y, this.humano);
         this.cerebro.checkAcerto();
     }
