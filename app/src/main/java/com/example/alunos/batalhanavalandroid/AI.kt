@@ -267,8 +267,9 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         "datagenetics.com/blog/december32011" na parte de "Probability Density Functions"*/
 
         var erro = false
-        var xFinal = tamanho - 1
         var peso = 1
+
+        var xFinal = tamanho - 1
 
         for(y in 0..6){
             for(xInicial in 0..6){
