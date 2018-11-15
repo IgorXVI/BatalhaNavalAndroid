@@ -20,16 +20,28 @@ class JogadaBotActivity : Jogada() {
     }
 
     fun ataque() {
-
-        runOnUiThread {
-            val text = Toast.makeText(this, "ataque!",
-                    Toast.LENGTH_SHORT)
-            text.show()
-        }
-
         g.bot.realizarJogada()
         salvarArquivo()
         setImagensTabuleiro(g.humano.tabuleiro)
+
+        if(g.bot.cerebro.terceiro){
+            runOnUiThread{
+                var t = Toast.makeText(this, "terceiro", Toast.LENGTH_SHORT)
+                t.show()
+            }
+        }
+        else if(g.bot.cerebro.segundo){
+            runOnUiThread{
+                var t = Toast.makeText(this, "segundo", Toast.LENGTH_SHORT)
+                t.show()
+            }
+        }
+        else{
+            runOnUiThread{
+                var t = Toast.makeText(this, "primeiro", Toast.LENGTH_SHORT)
+                t.show()
+            }
+        }
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
