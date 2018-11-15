@@ -30,12 +30,12 @@ public class Navio implements Serializable{
         this.vertical = r.nextBoolean();
         this.posInicial[0] = r.nextInt(7);
         this.posInicial[1] = r.nextInt(7);
-        if (this.vertical) {
+        if (!this.vertical) {
+            this.posFinal[1] = this.posInicial[1];
             this.posFinal[0] = this.posInicial[0] + this.tamanho -1;
             if(this.posFinal[0] >= 7){
                 this.posFinal[0] = this.posInicial[0] - this.tamanho + 1;
             }
-            this.posFinal[1] = this.posInicial[1];
         } else {
             this.posFinal[0] = this.posInicial[0];
             this.posFinal[1] = this.posInicial[1] + this.tamanho -1;
@@ -43,6 +43,41 @@ public class Navio implements Serializable{
                 this.posFinal[1] = this.posInicial[1] - this.tamanho + 1;
             }
         }
+    }
+
+    public int[][] getPosicoes() {
+        int[][] posicoes = new int[this.tamanho][2];
+        int inicio;
+
+        if(!this.vertical){
+            if(this.posInicial[0] < this.posFinal[0]){
+                inicio = this.posInicial[0];
+            }
+            else{
+                inicio = this.posFinal[0];
+            }
+
+            for(int i = 0; i < this.tamanho; i++){
+                posicoes[i][1] = this.posInicial[1];
+                posicoes[i][0] = inicio;
+                inicio++;
+            }
+        }
+        else{
+            if(this.posInicial[1] < this.posFinal[1]){
+                inicio = this.posInicial[1];
+            }
+            else{
+                inicio = this.posFinal[1];
+            }
+
+            for(int i = 0; i < this.tamanho; i++){
+                posicoes[i][0] = this.posInicial[0];
+                posicoes[i][1] = inicio;
+                inicio++;
+            }
+        }
+        return posicoes;
     }
 
     public boolean getVertical() {

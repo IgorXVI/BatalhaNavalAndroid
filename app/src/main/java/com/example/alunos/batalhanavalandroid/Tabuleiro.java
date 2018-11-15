@@ -36,7 +36,7 @@ public class Tabuleiro implements Serializable{
         y4 = navios.get(b).getPosFinal()[1];
 
         if (navios.get(a).getVertical() == navios.get(b).getVertical()) {
-            if (navios.get(a).getVertical()) {
+            if (!navios.get(a).getVertical()) {
                 if (x1 > x2) {
                     aux1 = x2;
                     x2 = x1;
@@ -94,7 +94,7 @@ public class Tabuleiro implements Serializable{
             yi = navios.get(k).getPosInicial()[1];
             xf = navios.get(k).getPosFinal()[0];
             yf = navios.get(k).getPosFinal()[1];
-            if (navios.get(k).getVertical()) {
+            if (!navios.get(k).getVertical()) {
                 if (xi < xf) {
                     for (int i = xi; i <= xf; i++) {
                         this.aux[i][yi] = (char) ('a'+k);
@@ -118,6 +118,86 @@ public class Tabuleiro implements Serializable{
         }
     }
 
+    public boolean navioDestruido(int tamanho){
+        Navio n = this.navios.get(tamanho - 2);
+        int x, y;
+        for(int i = 0; i < tamanho; i++){
+            x = n.getPosicoes()[i][0];
+            y = n.getPosicoes()[i][1];
+            if(this.tabuleiro[x][y] != 'X'){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean posParteNavio(int x, int y, int tamanho){
+        Navio n = this.navios.get(tamanho - 2);
+        int x1, y1;
+        for(int i = 0; i < tamanho; i++){
+            x1 = n.getPosicoes()[i][0];
+            y1 = n.getPosicoes()[i][1];
+
+            if(x == x1 && y == y1){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean posParteNavioDestruido(int x, int y){
+        for(int i = 2; i <= 4; i++){
+            if(navioDestruido(i) && posParteNavio(x, y, i)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean todosNaviosDestruidos(){
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 7; j++){
+                if(this.aux[i][j] != '~' && this.tabuleiro[i][j] != 'X'){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean posCercada(int x, int y){
+        boolean semEsquerda = posJaAtacada(x-1, y);
+        boolean semDireita = posJaAtacada(x+1, y);
+        boolean semBaixo = posJaAtacada(x, y-1);
+        boolean semCima = posJaAtacada(x, y+1);
+
+        return semCima && semBaixo && semDireita && semEsquerda;
+    }
+
+    public boolean posJaAtacada(int x, int y){
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return true;
+        }
+        char c = this.tabuleiro[x][y];
+        return c != '~';
+    }
+
+    public boolean posJaErrada(int x, int y){
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return true;
+        }
+        char c = this.tabuleiro[x][y];
+        return c == '*';
+    }
+
+    public boolean posJaAcertada(int x, int y){
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false;
+        }
+        char c = this.tabuleiro[x][y];
+        return c == 'X';
+    }
+
     public char[][] getTabuleiroDoJogador(){
         return this.aux;
     }
@@ -133,14 +213,5 @@ public class Tabuleiro implements Serializable{
     public void setErro(int x, int y){
         this.tabuleiro[x][y] = '*';
     }
-    public boolean todosNaviosDestruidos(){
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 7; j++){
-                if(this.aux[i][j] != '~' && this.tabuleiro[i][j] != 'X'){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+
 }

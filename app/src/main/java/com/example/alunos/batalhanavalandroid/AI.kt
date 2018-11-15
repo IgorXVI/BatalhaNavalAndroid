@@ -74,7 +74,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
                     //se for o primeiro erro, inverte o sentido de ataque
 
-                    this.erro1 = !posJaAcertada(x, y)
+                    this.erro1 = !this.tabuleiro.posJaAcertada(x, y)
                     if (this.erro1) {
                         this.sentido = !this.sentido
                     }
@@ -82,7 +82,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
                     //se for o segundo erro, termina o terceiro passo
 
-                    this.erro2 = !posJaAcertada(x, y)
+                    this.erro2 = !this.tabuleiro.posJaAcertada(x, y)
                     if (this.erro2) {
                         this.reset()
                     }
@@ -93,7 +93,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                 /*aqui a função confere se o último ataque do segundo passo resultou em acerto,
                 se sim vai para o terceiro passo*/
 
-               this.terceiro = posJaAcertada(x, y)
+               this.terceiro = this.tabuleiro.posJaAcertada(x, y)
                if(this.terceiro){
                    this.segundo = false
                }
@@ -103,7 +103,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                 /*aqui a função confere se o último ataque do primeiro passo resultou em acerto,
                 se sim vai para o segundo passo*/
 
-                this.segundo = posJaAcertada(x, y)
+                this.segundo = this.tabuleiro.posJaAcertada(x, y)
             }
         }
     }
@@ -131,7 +131,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             }
         }
 
-        if(posJaErrada(x, y)) {
+        if(this.tabuleiro.posJaErrada(x, y)) {
 
             //se a posição ja estiver errada conta como um erro do terceiro passo
 
@@ -152,7 +152,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         } else {
             this.posUltimo[0] = x
             this.posUltimo[1] = y
-            if (posJaAcertada(x, y)){
+            if (this.tabuleiro.posJaAcertada(x, y)){
 
                 /*se a posição ja tiver um acerto recomeça o terceiro passo, isso vai fazer
                 com que a função ignore todos os acertos já existentes na mesma linha ou coluna*/
@@ -169,23 +169,23 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         x = this.posInicalAcerto[0]
         y = this.posInicalAcerto[1]
 
-        if(posCercada(x, y)){
+        if(this.tabuleiro.posCercada(x, y)){
 
             /*a função pega um acerto adjacente e determina ele como a última posição atacada
             (posUltimo), também determina o alinhamento do navio e o sentido do proximo ataque
             baseado na localização desse acerto adjacente em relação à posição inicial de acerto*/
 
-            if(posJaAcertada(x-1, y)){
+            if(this.tabuleiro.posJaAcertada(x-1, y)){
                 this.inimigoVertical = false
                 this.sentido = false
                 x--
             }
-            else if(posJaAcertada(x+1, y)){
+            else if(this.tabuleiro.posJaAcertada(x+1, y)){
                 this.inimigoVertical = false
                 this.sentido = true
                 x++
             }
-            else if(posJaAcertada(x, y-1)){
+            else if(this.tabuleiro.posJaAcertada(x, y-1)){
                 this.inimigoVertical = true
                 this.sentido = false
                 y--
@@ -205,7 +205,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             posição, que não foi atacada, adjacente à posição inicial de acerto e determina
             ela como a última posição atacada (posUltimo)*/
 
-            while (this.posJaAtacada(x, y)) {
+            while (this.tabuleiro.posJaAtacada(x, y)) {
                 this.inimigoVertical = r.nextBoolean()
                 this.sentido = r.nextBoolean()
                 if (!this.inimigoVertical) {
@@ -274,17 +274,17 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(y in 0..6){
             for(xInicial in 0..6){
                 for(x in xInicial..xFinal){
-                    erro = posJaErrada(x, y)
+                    erro = this.tabuleiro.posJaErrada(x, y)
                     if(erro){
                         break
                     }
-                    if(posJaAcertada(x, y)){
-                        peso += 2
+                    if(this.tabuleiro.posJaAcertada(x, y)){
+                        peso++
                     }
                 }
                 if(!erro){
                     for(x in xInicial..xFinal){
-                        if(!posJaAcertada(x, y)){
+                        if(!this.tabuleiro.posJaAcertada(x, y)){
                             this.tabuleiroProb[x][y] += peso
                         }
                     }
@@ -300,17 +300,17 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(x in 0..6){
             for(yInicial in 0..6){
                 for(y in yInicial..yFinal){
-                    erro = posJaErrada(x, y)
+                    erro = this.tabuleiro.posJaErrada(x, y)
                     if(erro){
                         break
                     }
-                    if(posJaAcertada(x, y)){
-                        peso += 2
+                    if(this.tabuleiro.posJaAcertada(x, y)){
+                        peso++
                     }
                 }
                 if(!erro){
                     for(y in yInicial..yFinal){
-                        if(!posJaAcertada(x, y)){
+                        if(!this.tabuleiro.posJaAcertada(x, y)){
                             this.tabuleiroProb[x][y] += peso
                         }
                     }
@@ -321,39 +321,6 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
             yFinal = tamanho - 1
         }
 
-    }
-
-    private fun posCercada(x: Int, y: Int): Boolean{
-        val semEsquerda = posJaAtacada(x-1, y)
-        val semDireita = posJaAtacada(x+1, y)
-        val semBaixo = posJaAtacada(x, y-1)
-        val semCima = posJaAtacada(x, y+1)
-
-        return semCima && semBaixo && semDireita && semEsquerda
-    }
-
-    private fun posJaAtacada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return true
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c != '~'
-    }
-
-    private fun posJaErrada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return true
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c == '*'
-    }
-
-    private fun posJaAcertada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c == 'X'
     }
 
     fun resetTabuleiroProb(){
