@@ -267,55 +267,57 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         "datagenetics.com/blog/december32011" na parte de "Probability Density Functions"*/
 
         var erro = false
-        var xInicial = 0
         var xFinal = tamanho - 1
         var peso = 1
 
         for(y in 0..6){
-            for(x in xInicial..xFinal){
-                erro = posJaErrada(x, y)
-                if(erro){
-                    break
-                }
-                if(posJaAcertada(x, y)){
-                    peso++
-                }
-            }
-            if(!erro){
+            for(xInicial in 0..6){
                 for(x in xInicial..xFinal){
-                    if(!posJaAcertada(x, y)){
-                        this.tabuleiroProb[x][y] += peso
+                    erro = posJaErrada(x, y)
+                    if(erro){
+                        break
+                    }
+                    if(posJaAcertada(x, y)){
+                        peso++
                     }
                 }
+                if(!erro){
+                    for(x in xInicial..xFinal){
+                        if(!posJaAcertada(x, y)){
+                            this.tabuleiroProb[x][y] += peso
+                        }
+                    }
+                }
+                xFinal++
+                peso = 1
             }
-            xInicial++
-            xFinal++
-            peso = 1
+            xFinal = tamanho - 1
         }
 
-        var yInicial = 0
         var yFinal = tamanho - 1
 
         for(x in 0..6){
-            for(y in yInicial..yFinal){
-                erro = posJaErrada(x, y)
-                if(erro){
-                    break
-                }
-                if(posJaAcertada(x, y)){
-                    peso++
-                }
-            }
-            if(!erro){
+            for(yInicial in 0..6){
                 for(y in yInicial..yFinal){
-                    if(!posJaAcertada(x, y)){
-                        this.tabuleiroProb[x][y] += peso
+                    erro = posJaErrada(x, y)
+                    if(erro){
+                        break
+                    }
+                    if(posJaAcertada(x, y)){
+                        peso++
                     }
                 }
+                if(!erro){
+                    for(y in yInicial..yFinal){
+                        if(!posJaAcertada(x, y)){
+                            this.tabuleiroProb[x][y] += peso
+                        }
+                    }
+                }
+                yFinal++
+                peso = 1
             }
-            yInicial++
-            yFinal++
-            peso = 1
+            yFinal = tamanho - 1
         }
 
     }
