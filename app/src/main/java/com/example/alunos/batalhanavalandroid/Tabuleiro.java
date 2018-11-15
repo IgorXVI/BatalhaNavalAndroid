@@ -198,6 +198,10 @@ public class Tabuleiro implements Serializable{
         return c == 'X';
     }
 
+    public boolean posObstaculo(int x, int y){
+        return this.posParteNavioDestruido(x, y) || this.posJaErrada(x, y);
+    }
+
     public char[][] getTabuleiroDoJogador(){
         return this.aux;
     }

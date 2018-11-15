@@ -234,7 +234,9 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         //aqui eu gero as probabilades de acerto para cada posição nessa jogada
         this.resetTabuleiroProb()
         for(i in 2..4){
-            this.gerarTabuleiroProb(i)
+            if(!this.tabuleiro.navioDestruido(i)){
+                this.gerarTabuleiroProb(i)
+            }
         }
 
         //aqui eu pego a posição com maior probabilidade de acerto
@@ -274,7 +276,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(y in 0..6){
             for(xInicial in 0..6){
                 for(x in xInicial..xFinal){
-                    erro = this.tabuleiro.posJaErrada(x, y)
+                    erro = this.tabuleiro.posObstaculo(x, y)
                     if(erro){
                         break
                     }
@@ -300,7 +302,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         for(x in 0..6){
             for(yInicial in 0..6){
                 for(y in yInicial..yFinal){
-                    erro = this.tabuleiro.posJaErrada(x, y)
+                    erro = this.tabuleiro.posObstaculo(x, y)
                     if(erro){
                         break
                     }
