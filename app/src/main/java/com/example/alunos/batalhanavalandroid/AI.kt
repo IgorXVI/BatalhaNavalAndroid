@@ -231,7 +231,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     private fun primeiroPasso(){
 
-        //aqui eu gero as probabilades de acerto para cada posição nessa jogada
+        /*aqui eu gero as probabilades de acerto para cada posição nessa jogada, com os navios que
+        ainda não foram destruídos*/
         this.resetTabuleiroProb()
         for(i in 2..4){
             if(!this.tabuleiro.navioDestruido(i)){
