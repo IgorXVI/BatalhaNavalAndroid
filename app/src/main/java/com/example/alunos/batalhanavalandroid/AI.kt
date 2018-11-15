@@ -131,9 +131,30 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         x = this.posInicalAcerto[0]
         y = this.posInicalAcerto[1]
 
-        if(posInutil(x, y)){
-            this.reset()
-            this.primeiroPasso()
+        if(posCercada(x, y)){
+            if(posJaAcertada(x-1, y)){
+                this.inimigoVertical = false
+                this.sentido = false
+                x--
+            }
+            else if(posJaAcertada(x+1, y)){
+                this.inimigoVertical = false
+                this.sentido = true
+                x++
+            }
+            else if(posJaAcertada(x, y-1)){
+                this.inimigoVertical = true
+                this.sentido = false
+                y--
+            }
+            else{
+                this.inimigoVertical = true
+                this.sentido = true
+                y++
+            }
+            this.posUltimo[0] = x
+            this.posUltimo[1] = y
+            this.terceiroPasso()
         }
         else{
             while (this.posJaAtacada(x, y)) {
@@ -174,124 +195,31 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     private fun primeiroPasso(){
         this.resetTabuleiroProb()
-
-        var x: Int
-        var y: Int
-
         for(i in 2..4){
             this.prob(i)
         }
 
-        x = this.posMaisProb()[0]
-        y = this.posMaisProb()[1]
+        var x = -1
+        var y = -1
+        var maior = 0
+        for(i in 0..6){
+
+            for(j in 0..6){
+
+                if(this.tabuleiroProb[i][j] > maior){
+                    maior = this.tabuleiroProb[i][j]
+                    x = i
+                    y = j
+                }
+
+            }
+
+        }
 
         this.posUltimo[0] = x
         this.posUltimo[1] = y
         this.posInicalAcerto[0] = x
         this.posInicalAcerto[1] = y
-    }
-
-    private fun posJaAtacada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c != '~'
-    }
-
-    private fun posJaErrada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c == '*'
-    }
-
-    private fun posJaAcertada(x: Int, y: Int): Boolean {
-        if(x > 6 || x < 0 || y > 6 || y < 0){
-            return false
-        }
-        val c = this.tabuleiro.tabuleiroPublico[x][y]
-        return c == 'X'
-    }
-
-    private fun reset(){
-        this.segundo = false
-        this.terceiro = false
-        this.erro1 = false
-        this.erro2 = false
-        this.posUltimo[0] = -1
-        this.posUltimo[1] = -1
-    }
-
-    private fun posInutil(x: Int, y: Int): Boolean{
-        val semEsquerda = posJaAtacada(x-1, y)
-        val semDireita = posJaAtacada(x+1, y)
-        val semBaixo = posJaAtacada(x, y-1)
-        val semCima = posJaAtacada(x, y+1)
-
-        return semCima && semBaixo && semDireita && semEsquerda
-    }
-
-    /*
-    fun posAdjacenteAcerto(): IntArray{
-        var pos = IntArray(2)
-        for(i in 0..6){
-            for(j in 0..6){
-                if(posJaAcertada(i,j)){
-                    if(!posJaAtacada(i-1,j)){
-                        pos[0] = i - 1
-                        pos[1] = j
-                        return pos
-                    }
-
-                    if(!posJaAtacada(i+1,j)){
-                        pos[0] = i + 1
-                        pos[1] = j
-                        return pos
-                    }
-
-                    if(!posJaAtacada(i,j-1)){
-                        pos[0] = i
-                        pos[1] = j - 1
-                        return pos
-                    }
-
-                    if(!posJaAtacada(i, j+1)){
-                        pos[0] = i
-                        pos[1] = j + 1
-                        return pos
-                    }
-                }
-            }
-        }
-        pos[0] = -1
-        pos[1] = -1
-        return pos
-    }
-
-    fun posRandomica(): IntArray{
-        val r = Random()
-        var x = r.nextInt(7)
-        var y = r.nextInt(7)
-        while (this.posJaAtacada(x,y) || this.posInutil(x, y)) {
-            x = r.nextInt(7)
-            y = r.nextInt(7)
-        }
-        val pos = IntArray(2)
-        pos[0] = x
-        pos[1] = y
-        return pos
-    }*/
-
-    fun resetTabuleiroProb(){
-        for(i in 0..6){
-
-            for(j in 0..6){
-                this.tabuleiroProb[i][j] = 0
-            }
-
-        }
     }
 
     fun prob(tamanho: Int){
@@ -349,29 +277,56 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
     }
 
-    fun posMaisProb(): IntArray{
-        var maior = 0
-        var x = -1
-        var y = -1
+    private fun posCercada(x: Int, y: Int): Boolean{
+        val semEsquerda = posJaAtacada(x-1, y)
+        val semDireita = posJaAtacada(x+1, y)
+        val semBaixo = posJaAtacada(x, y-1)
+        val semCima = posJaAtacada(x, y+1)
 
+        return semCima && semBaixo && semDireita && semEsquerda
+    }
+
+    private fun posJaAtacada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
+        val c = this.tabuleiro.tabuleiroPublico[x][y]
+        return c != '~'
+    }
+
+    private fun posJaErrada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
+        val c = this.tabuleiro.tabuleiroPublico[x][y]
+        return c == '*'
+    }
+
+    private fun posJaAcertada(x: Int, y: Int): Boolean {
+        if(x > 6 || x < 0 || y > 6 || y < 0){
+            return false
+        }
+        val c = this.tabuleiro.tabuleiroPublico[x][y]
+        return c == 'X'
+    }
+
+    fun resetTabuleiroProb(){
         for(i in 0..6){
 
             for(j in 0..6){
-
-                if(this.tabuleiroProb[i][j] > maior){
-                    maior = this.tabuleiroProb[i][j]
-                    x = i
-                    y = j
-                }
-
+                this.tabuleiroProb[i][j] = 0
             }
 
         }
+    }
 
-        val pos = IntArray(2)
-        pos[0] = x
-        pos[1] = y
-        return pos
+    private fun reset(){
+        this.segundo = false
+        this.terceiro = false
+        this.erro1 = false
+        this.erro2 = false
+        this.posUltimo[0] = -1
+        this.posUltimo[1] = -1
     }
 
 }
