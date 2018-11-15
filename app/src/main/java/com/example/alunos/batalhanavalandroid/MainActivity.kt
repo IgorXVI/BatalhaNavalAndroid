@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity(){
     fun loadArquivo(){
         try {
             val fileName = "humano.ser"
-            val fi = openFileInput(fileName);
+            val fi = openFileInput(fileName)
             val oi = ObjectInputStream(fi)
             val saveHumano = oi.readObject() as Jogador
             oi.close()
             fi.close()
 
             val fileNameBot = "bot.ser"
-            val fiBot = openFileInput(fileNameBot);
+            val fiBot = openFileInput(fileNameBot)
             val oiBot = ObjectInputStream(fiBot)
             val saveBot = oiBot.readObject() as Bot
             oiBot.close()
