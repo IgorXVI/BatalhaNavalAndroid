@@ -298,24 +298,28 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         var erro = false
         var xInicial = 0
         var xFinal = tamanho - 1
-        var i = 0
+        var peso = 1
 
         for(y in 0..6){
             for(x in xInicial..xFinal){
-                erro = posJaAtacada(x, y)
+                erro = posJaErrada(x, y)
                 if(erro){
                     break
                 }
+                if(posJaAcertada(x, y)){
+                    peso++
+                }
             }
             if(!erro){
-                i = 0
                 for(x in xInicial..xFinal){
-                    this.tabuleiroProb[x][y] += 1
-                    i++
+                    if(!posJaAcertada(x, y)){
+                        this.tabuleiroProb[x][y] += peso
+                    }
                 }
             }
             xInicial++
             xFinal++
+            peso = 1
         }
 
         var yInicial = 0
@@ -323,20 +327,24 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
         for(x in 0..6){
             for(y in yInicial..yFinal){
-                erro = posJaAtacada(x, y)
+                erro = posJaErrada(x, y)
                 if(erro){
                     break
                 }
+                if(posJaAcertada(x, y)){
+                    peso++
+                }
             }
             if(!erro){
-                i = 0
                 for(y in yInicial..yFinal){
-                    this.tabuleiroProb[x][y] += 1
-                    i++
+                    if(!posJaAcertada(x, y)){
+                        this.tabuleiroProb[x][y] += peso
+                    }
                 }
             }
             yInicial++
             yFinal++
+            peso = 1
         }
 
     }
