@@ -234,7 +234,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         //aqui eu gero as probabilades de acerto para cada posição nessa jogada
         this.resetTabuleiroProb()
         for(i in 2..4){
-            this.prob(i)
+            this.gerarTabuleiroProb(i)
         }
 
         //aqui eu pego a posição com maior probabilidade de acerto
@@ -261,7 +261,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
         this.posInicalAcerto[1] = y
     }
 
-    fun prob(tamanho: Int){
+    fun gerarTabuleiroProb(tamanho: Int){
 
         /* aqui eu uso um algoritmo de função probabilidade, inspirado nesse artigo:
         "datagenetics.com/blog/december32011" na parte de "Probability Density Functions"*/
