@@ -11,6 +11,8 @@ class NaviosHumanoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navios_humano)
+
+        zerarPos()
     }
 
     fun zerarPos(){
