@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import java.util.*
+import kotlin.concurrent.schedule
 
 class JogadaHumanoActivity : Jogada() {
 
@@ -44,34 +46,13 @@ class JogadaHumanoActivity : Jogada() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun ataque(view: View) {
-        travarTudo()
-        var nome = resources.getResourceEntryName(view.id)
-        var x = nome[4].toInt() - 48
-        var y = nome[6].toInt() - 48
+    override fun mudarActivity(intent: Intent){
+        menuPrincipalItem?.setEnabled(false)
+        sobreItem?.setEnabled(false)
 
-        g.humano.realizarJogada(x, y, g.bot)
-        salvarArquivo()
-        setImagensTabuleiro(g.bot.tabuleiro)
-        som(x, y, g.bot.tabuleiro)
-
-        val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
-
-        if(ganhou){
-
-            runOnUiThread {
-                var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
-                t.show()
-            }
-
-            val intent =  Intent(this, MainActivity::class.java)
-            mudarActivity(intent)
-        }
-        else{
-            val intent = Intent(this, JogadaBotActivity::class.java)
-            menuPrincipalItem?.setEnabled(false)
-            sobreItem?.setEnabled(false)
-            mudarActivity(intent)
+        Timer().schedule(3100){
+            startActivity(intent)
+            finish()
         }
     }
 

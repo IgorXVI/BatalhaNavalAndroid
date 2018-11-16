@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import java.io.ObjectOutputStream
@@ -65,6 +66,35 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
+    open fun ataque(view: View) {
+        travarTudo()
+        var nome = resources.getResourceEntryName(view.id)
+        var x = nome[4].toInt() - 48
+        var y = nome[6].toInt() - 48
+
+        g.humano.realizarJogada(x, y, g.bot)
+        salvarArquivo()
+        setImagensTabuleiro(g.bot.tabuleiro)
+        som(x, y, g.bot.tabuleiro)
+
+        val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
+
+        if(ganhou){
+
+            runOnUiThread {
+                var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
+                t.show()
+            }
+
+            val intent =  Intent(this, MainActivity::class.java)
+            mudarActivity(intent)
+        }
+        else{
+            val intent = Intent(this, JogadaBotActivity::class.java)
+            mudarActivity(intent)
+        }
+    }
+
     fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
         var acertou = !(x == -1 && y == -1)
         if(acertou){
@@ -83,7 +113,7 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
-    fun mudarActivity(intent: Intent){
+    open fun mudarActivity(intent: Intent){
         Timer().schedule(3100){
             startActivity(intent)
             finish()

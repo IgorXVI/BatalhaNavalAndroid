@@ -27,7 +27,7 @@
             android:screenOrientation="landscape"/>
         <activity
             android:name=".NaviosHumanoActivity"
-            android:label="Posição dos Seus Navios"
+            android:label="Posicione os Seus Navios"
             android:screenOrientation="landscape"/>
         <activity
             android:name=".SplashActivity"

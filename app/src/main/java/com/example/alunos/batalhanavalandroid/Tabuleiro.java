@@ -23,8 +23,12 @@ public class Tabuleiro implements Serializable{
         this.gerarTabuleiro();
     }
 
-    private boolean overlap(int a, int b) {
+    public boolean overlap(int tamanho1, int tamanho2) {
         double nt1, dt1, nt2, dt2, t1, t2, x1, y1, x2, y2, x3, y3, x4, y4, aux1;
+        int a,b;
+
+        a = tamanho1 - 2;
+        b = tamanho2 - 2;
 
         x1 = navios.get(a).getPosInicial()[0];
         y1 = navios.get(a).getPosInicial()[1];
@@ -76,19 +80,23 @@ public class Tabuleiro implements Serializable{
     }
 
     public void gerarTabuleiro() {
-        int xi, xf, yi, yf;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 this.tabuleiro[i][j] = '~';
                 this.aux[i][j] = '~';
             }
         }
-        while (overlap(1, 2)) {
+        while (overlap(3, 4)) {
             navios.get(1).gerarPosicoes();
         }
-        while (overlap(0, 1) || overlap(0, 2)) {
+        while (overlap(2, 3) || overlap(2, 4)) {
             navios.get(0).gerarPosicoes();
         }
+        gerarTabuleiroAux();
+    }
+
+    public void gerarTabuleiroAux(){
+        int xi, xf, yi, yf;
         for (int k = 0; k < 3; k++) {
             xi = navios.get(k).getPosInicial()[0];
             yi = navios.get(k).getPosInicial()[1];
@@ -217,6 +225,8 @@ public class Tabuleiro implements Serializable{
         return false;
     }
 
+    public Navio getNavio(int tamanho){ return this.navios.get(tamanho -2 ); }
+
     public char[][] getTabuleiroDoJogador(){
         return this.aux;
     }
@@ -231,6 +241,11 @@ public class Tabuleiro implements Serializable{
 
     public void setErro(int x, int y){
         this.tabuleiro[x][y] = '*';
+    }
+
+    public void setNavio(Navio n) {
+        int index  = n.getTamanho() - 2;
+        this.navios.set(index, n);
     }
 
 }
