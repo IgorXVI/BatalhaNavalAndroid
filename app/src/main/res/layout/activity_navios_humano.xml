@@ -675,6 +675,7 @@
             android:id="@+id/navio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="left"
             tools:layout_editor_absoluteX="462dp"
@@ -709,96 +710,20 @@
 
         </RadioGroup>
 
-        <LinearLayout
-            android:id="@+id/pos"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="462dp"
-            tools:layout_editor_absoluteY="114dp">
-
-            <TextView
-                android:id="@+id/lbl_X"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="X:"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="411dp"
-                tools:layout_editor_absoluteY="120dp" />
-
-            <EditText
-                android:id="@+id/edit_X"
-                style="@android:style/Widget.EditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="1"
-                android:gravity="center"
-                android:inputType="numberDecimal"
-                android:singleLine="true"
-                android:text="0"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="434dp"
-                tools:layout_editor_absoluteY="112dp" />
-
-            <TextView
-                android:id="@+id/lbl_Y"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Y:"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="477dp"
-                tools:layout_editor_absoluteY="120dp" />
-
-            <EditText
-                android:id="@+id/edit_Y"
-                style="@android:style/Widget.EditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="1"
-                android:gravity="center"
-                android:inputType="numberDecimal"
-                android:singleLine="true"
-                android:text="0"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="506dp"
-                tools:layout_editor_absoluteY="112dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/botoes"
+        <ToggleButton
+            android:id="@+id/btn_alinhamento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:checked="false"
             android:gravity="center"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="462dp"
-            tools:layout_editor_absoluteY="175dp">
-
-            <ToggleButton
-                android:id="@+id/btn_alinhamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="ToggleButton"
-                android:textOff="Horizontal"
-                android:textOn="Vertical"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="415dp"
-                tools:layout_editor_absoluteY="162dp" />
-
-            <Button
-                android:id="@+id/btn_posicionar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Posicionar"
-                android:textSize="14sp"
-                tools:layout_editor_absoluteX="419dp"
-                tools:layout_editor_absoluteY="223dp" />
-
-        </LinearLayout>
+            android:text="ToggleButton"
+            android:textOff="Horizontal"
+            android:textOn="Vertical"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="415dp"
+            tools:layout_editor_absoluteY="162dp" />
 
     </LinearLayout>
 
