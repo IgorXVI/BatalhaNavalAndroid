@@ -4,6 +4,802 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NaviosHumanoActivity">
+    tools:context=".NaviosHumanoActivity"
+    tools:layout_editor_absoluteY="73dp">
+
+    <TableLayout
+        android:id="@+id/tabuleiro"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1.5:1"
+        app:layout_constraintEnd_toStartOf="@+id/painel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_0_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="335dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="335dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="335dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="335dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="335dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_0_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="335dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_1_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <ImageButton
+                android:id="@+id/pos_1_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="395dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_2_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="215dp" />
+
+            <ImageButton
+                android:id="@+id/pos_2_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="215dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_3_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="275dp" />
+
+            <ImageButton
+                android:id="@+id/pos_3_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="275dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_4_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_4_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="335dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_5_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_5_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="35dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/pos_6_0"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="214dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="114dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="314dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_4"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="64dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_5"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="164dp"
+                tools:layout_editor_absoluteY="155dp" />
+
+            <ImageButton
+                android:id="@+id/pos_6_6"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="0.5dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@mipmap/agua"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="155dp" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/painel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tabuleiro"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/navio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            tools:layout_editor_absoluteX="462dp"
+            tools:layout_editor_absoluteY="7dp">
+
+            <RadioButton
+                android:id="@+id/radioBtn_cruzador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cruzador"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="465dp"
+                tools:layout_editor_absoluteY="109dp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_encouracado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Encouraçado"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="462dp"
+                tools:layout_editor_absoluteY="7dp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_portaAvioes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Porta-aviões"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="465dp"
+                tools:layout_editor_absoluteY="149dp" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/pos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="462dp"
+            tools:layout_editor_absoluteY="114dp">
+
+            <TextView
+                android:id="@+id/lbl_X"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X:"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="411dp"
+                tools:layout_editor_absoluteY="120dp" />
+
+            <EditText
+                android:id="@+id/edit_X"
+                style="@android:style/Widget.EditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="1"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="0"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="434dp"
+                tools:layout_editor_absoluteY="112dp" />
+
+            <TextView
+                android:id="@+id/lbl_Y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y:"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="477dp"
+                tools:layout_editor_absoluteY="120dp" />
+
+            <EditText
+                android:id="@+id/edit_Y"
+                style="@android:style/Widget.EditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="1"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:text="0"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="506dp"
+                tools:layout_editor_absoluteY="112dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/botoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="462dp"
+            tools:layout_editor_absoluteY="175dp">
+
+            <ToggleButton
+                android:id="@+id/btn_alinhamento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="ToggleButton"
+                android:textOff="Horizontal"
+                android:textOn="Vertical"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="415dp"
+                tools:layout_editor_absoluteY="162dp" />
+
+            <Button
+                android:id="@+id/btn_posicionar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posicionar"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="419dp"
+                tools:layout_editor_absoluteY="223dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

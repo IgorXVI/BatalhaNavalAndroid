@@ -25,7 +25,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -37,7 +37,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -49,7 +49,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -61,7 +61,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -73,7 +73,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -85,7 +85,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -97,7 +97,7 @@
 
             <ImageButton
                 android:id="@+id/pos_0_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -116,7 +116,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -128,7 +128,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -140,7 +140,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -152,7 +152,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -164,7 +164,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -176,7 +176,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -188,7 +188,7 @@
 
             <ImageButton
                 android:id="@+id/pos_1_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -207,7 +207,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -219,7 +219,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -231,7 +231,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -243,7 +243,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -255,7 +255,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -267,7 +267,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -279,7 +279,7 @@
 
             <ImageButton
                 android:id="@+id/pos_2_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -298,7 +298,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -310,7 +310,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -322,7 +322,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -334,7 +334,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -346,7 +346,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -358,7 +358,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -370,7 +370,7 @@
 
             <ImageButton
                 android:id="@+id/pos_3_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -389,7 +389,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -401,7 +401,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -413,7 +413,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -425,7 +425,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -437,7 +437,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -449,7 +449,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -461,7 +461,7 @@
 
             <ImageButton
                 android:id="@+id/pos_4_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -480,7 +480,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -492,7 +492,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -504,7 +504,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -516,7 +516,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -528,7 +528,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -540,7 +540,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -552,7 +552,7 @@
 
             <ImageButton
                 android:id="@+id/pos_5_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -571,7 +571,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_0"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -583,7 +583,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_1"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -595,7 +595,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_2"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -607,7 +607,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_3"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -619,7 +619,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_4"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -631,7 +631,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_5"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
@@ -643,7 +643,7 @@
 
             <ImageButton
                 android:id="@+id/pos_6_6"
-                android:layout_width="65dp"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
