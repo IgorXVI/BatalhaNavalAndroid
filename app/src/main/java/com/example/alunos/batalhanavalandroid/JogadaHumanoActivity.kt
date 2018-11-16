@@ -46,16 +46,6 @@ class JogadaHumanoActivity : Jogada() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun mudarActivity(intent: Intent){
-        menuPrincipalItem?.setEnabled(false)
-        sobreItem?.setEnabled(false)
-
-        Timer().schedule(3100){
-            startActivity(intent)
-            finish()
-        }
-    }
-
     fun ataque(view: View){
         travarTudo()
         var nome = resources.getResourceEntryName(view.id)
@@ -80,6 +70,9 @@ class JogadaHumanoActivity : Jogada() {
             mudarActivity(intent)
         }
         else{
+            menuPrincipalItem?.setEnabled(false)
+            sobreItem?.setEnabled(false)
+
             val intent = Intent(this, JogadaBotActivity::class.java)
             mudarActivity(intent)
         }
