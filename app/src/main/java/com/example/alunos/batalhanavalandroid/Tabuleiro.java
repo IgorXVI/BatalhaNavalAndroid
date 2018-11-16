@@ -129,9 +129,7 @@ public class Tabuleiro implements Serializable{
     public boolean navioDestruido(int tamanho){
         Navio n = this.navios.get(tamanho - 2);
         int x, y;
-        int[][] posicoes = new int[tamanho][2];
-
-        posicoes = n.getPosicoes();
+        int[][] posicoes = n.getPosicoes();
 
         for(int i = 0; i < tamanho; i++){
             x = posicoes[i][0];
@@ -146,9 +144,7 @@ public class Tabuleiro implements Serializable{
     public boolean posParteNavio(int x, int y, int tamanho){
         Navio n = this.navios.get(tamanho - 2);
         int x1, y1;
-        int[][] posicoes = new int[tamanho][2];
-
-        posicoes = n.getPosicoes();
+        int[][] posicoes = n.getPosicoes();
 
         for(int i = 0; i < tamanho; i++){
             x1 = posicoes[i][0];
