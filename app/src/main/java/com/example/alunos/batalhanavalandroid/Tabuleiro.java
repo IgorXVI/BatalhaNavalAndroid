@@ -202,6 +202,21 @@ public class Tabuleiro implements Serializable{
         return this.posParteNavioDestruido(x, y) || this.posJaErrada(x, y);
     }
 
+    public boolean posInutil(int x, int y){
+        return this.posJaAtacada(x, y) || this.posCercada(x, y);
+    }
+
+    public boolean jaTemAcerto(){
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 7; j++){
+                if(posJaAcertada(i,j)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public char[][] getTabuleiroDoJogador(){
         return this.aux;
     }

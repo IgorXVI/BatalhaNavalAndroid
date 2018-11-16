@@ -14,7 +14,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     /*
    Passos do ataque:
 
-   primeiro : atacar a posição mais provável de conter um navio ->
+   primeiro : atacar uma posição randômica útil até acertar a primeira vez, se já ouver um acerto
+   atacar a posição mais provável de conter um navio ->
 
    segundo : se o primeiro passo resultar em sucesso, atacar posição na vertical
    ou na horizontal do último ataque e repetir esse passo até um acerto, quando o
@@ -41,6 +42,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     var tabuleiroProb = Array(7, {IntArray(7)})
 
     init {
+        this.resetTabuleiroProb()
         this.posUltimo[0] = -1
         this.posUltimo[1] = -1
     }
@@ -230,32 +232,43 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     }
 
     private fun primeiroPasso(){
-
-        /*aqui eu gero as probabilades de acerto para cada posição nessa jogada, com os navios que
-        ainda não foram destruídos*/
-        this.resetTabuleiroProb()
-        for(i in 2..4){
-            if(!this.tabuleiro.navioDestruido(i)){
-                this.gerarTabuleiroProb(i)
-            }
-        }
-
-        //aqui eu pego a posição com maior probabilidade de acerto
         var x = -1
         var y = -1
-        var maior = 0
-        for(i in 0..6){
+        if(!this.tabuleiro.jaTemAcerto()){
+            //aqui a função gera uma posição randômica não atacada e não cercada
+            val r = Random()
+            x = r.nextInt(7)
+            y = r.nextInt(7)
+            while (this.tabuleiro.posInutil(x, y)) {
+                x = r.nextInt(7)
+                y = r.nextInt(7)
+            }
+        }
+        else{
+            /*aqui eu gero as probabilades de acerto para cada posição nessa jogada, com os navios
+            que ainda não foram destruídos*/
+            this.resetTabuleiroProb()
+            for(i in 2..4){
+                if(!this.tabuleiro.navioDestruido(i)){
+                    this.gerarTabuleiroProb(i)
+                }
+            }
 
-            for(j in 0..6){
+            //aqui eu pego a posição com maior probabilidade de acerto
+            var maior = 0
+            for(i in 0..6){
 
-                if(this.tabuleiroProb[i][j] > maior){
-                    maior = this.tabuleiroProb[i][j]
-                    x = i
-                    y = j
+                for(j in 0..6){
+
+                    if(this.tabuleiroProb[i][j] > maior){
+                        maior = this.tabuleiroProb[i][j]
+                        x = i
+                        y = j
+                    }
+
                 }
 
             }
-
         }
 
         this.posUltimo[0] = x
