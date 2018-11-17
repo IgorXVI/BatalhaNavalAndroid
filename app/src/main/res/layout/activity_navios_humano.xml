@@ -11,13 +11,14 @@
         android:id="@+id/tabuleiro"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="27dp"
+        android:foregroundGravity="top"
         android:gravity="top"
         android:stretchColumns="*"
         app:layout_constraintBottom_toTopOf="@+id/painel"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -712,7 +713,7 @@
         android:id="@+id/painel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
         android:gravity="bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -724,11 +725,10 @@
             android:id="@+id/navio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="left"
-            tools:layout_editor_absoluteX="462dp"
-            tools:layout_editor_absoluteY="7dp">
+            android:foregroundGravity="bottom|left"
+            android:gravity="bottom|left"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="380dp">
 
             <RadioButton
                 android:id="@+id/radioBtn_cruzador"
@@ -763,18 +763,18 @@
             android:id="@+id/botoes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:foregroundGravity="bottom|right"
+            android:gravity="bottom|right"
+            android:minWidth="110dp"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="439dp"
-            tools:layout_editor_absoluteY="256dp">
+            tools:layout_editor_absoluteX="230dp"
+            tools:layout_editor_absoluteY="380dp">
 
             <ToggleButton
                 android:id="@+id/btn_alinhamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:checked="true"
                 android:gravity="center"
                 android:text="ToggleButton"
                 android:textOff="Horizontal"
