@@ -773,6 +773,15 @@
             tools:layout_editor_absoluteX="415dp"
             tools:layout_editor_absoluteY="162dp" />
 
+        <Button
+            android:id="@+id/btn_comecar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Começar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="458dp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
