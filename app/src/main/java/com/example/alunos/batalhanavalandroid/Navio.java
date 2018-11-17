@@ -105,10 +105,12 @@ public class Navio implements Serializable{
     }
 
     public void setPosInicial(int[] novaPosInicial) {
-        this.posInicial = novaPosInicial;
+        this.posInicial[0] = novaPosInicial[0];
+        this.posInicial[1] = novaPosInicial[1];
     }
 
     public void setPosFinal(int[] novaPosFinal) {
-        this.posFinal = novaPosFinal;
+        this.posFinal[0] = novaPosFinal[0];
+        this.posFinal[1] = novaPosFinal[1];
     }
 }

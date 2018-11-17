@@ -15,10 +15,11 @@
         android:layout_marginRight="19dp"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1.5:1"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/painel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableRow
             android:layout_width="0dp"
@@ -716,6 +717,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tabuleiro"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -758,29 +760,41 @@
 
         </RadioGroup>
 
-        <ToggleButton
-            android:id="@+id/btn_alinhamento"
+        <LinearLayout
+            android:id="@+id/botoes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:checked="false"
             android:gravity="center"
-            android:text="ToggleButton"
-            android:textOff="Horizontal"
-            android:textOn="Vertical"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="415dp"
-            tools:layout_editor_absoluteY="162dp" />
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="439dp"
+            tools:layout_editor_absoluteY="256dp">
 
-        <Button
-            android:id="@+id/btn_comecar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Começar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="458dp" />
+            <ToggleButton
+                android:id="@+id/btn_alinhamento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:gravity="center"
+                android:text="ToggleButton"
+                android:textOff="Horizontal"
+                android:textOn="Vertical"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="415dp"
+                tools:layout_editor_absoluteY="162dp" />
+
+            <Button
+                android:id="@+id/btn_comecar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Começar"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="458dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -50,8 +50,8 @@ open class Jogada: AppCompatActivity() {
         }
     }
 
-    fun setImagensTabuleiro(tabuleiro: Tabuleiro){
-        var c: Char?
+    open fun setImagensTabuleiro(tabuleiro: Tabuleiro){
+        var c: Char
         for(i in 0..6){
             for(j in 0..6){
                 c = tabuleiro.tabuleiroPublico[i][j]

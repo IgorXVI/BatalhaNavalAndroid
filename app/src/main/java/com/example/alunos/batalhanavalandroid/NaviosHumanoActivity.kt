@@ -1,5 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Toast
 import android.widget.ToggleButton
+import kotlinx.android.synthetic.main.activity_navios_humano.*
 
 class NaviosHumanoActivity : AppCompatActivity() {
 
@@ -16,7 +18,13 @@ class NaviosHumanoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navios_humano)
 
-        zerarPos()
+        btn_comecar.setOnClickListener {
+            val intent = Intent(this, JogadaHumanoActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        setImagensTabuleiro()
     }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
@@ -26,29 +34,19 @@ class NaviosHumanoActivity : AppCompatActivity() {
         return btn
     }
 
-    fun zerarPos(){
-        var navio: Navio
-
-        for(i in 2..4){
-            navio = g.humano.tabuleiro.getNavio(i)
-            navio.posInicial = navio.posFinal
-            g.humano.tabuleiro.setNavio(navio)
-        }
-    }
-
     fun setImagensTabuleiro(){
         var c: Char
         var tamanho: Int
-        var navio: Navio
 
         for(i in 0..6){
             for(j in 0..6){
                 c = g.humano.tabuleiro.tabuleiroDoJogador[i][j]
-                tamanho = (c - 'a') + 2
-                navio = g.humano.tabuleiro.getNavio(tamanho)
-
-                if(navio.posInicial != navio.posFinal){
+                if(c != '~'){
+                    tamanho = c.toInt() - 95
                     setImagemNavio(i, j, tamanho)
+                }
+                else{
+                    setImagemAgua(i, j)
                 }
             }
         }
@@ -56,14 +54,23 @@ class NaviosHumanoActivity : AppCompatActivity() {
 
     fun setImagemNavio(x: Int, y: Int, tamanho: Int){
         val pos = pegarPos(x, y)
-        if(tamanho == 2){
-            pos.setImageResource(R.mipmap.cruzador)
+        runOnUiThread {
+            if(tamanho == 2){
+                pos.setImageResource(R.mipmap.cruzador)
+            }
+            else if(tamanho == 3){
+                pos.setImageResource(R.mipmap.encouracado)
+            }
+            else if(tamanho == 4){
+                pos.setImageResource(R.mipmap.porta_avioes)
+            }
         }
-        if(tamanho == 3){
-            pos.setImageResource(R.mipmap.encouracado)
-        }
-        if(tamanho == 4){
-            pos.setImageResource(R.mipmap.porta_avioes)
+    }
+
+    fun setImagemAgua(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.agua)
         }
     }
 
@@ -72,7 +79,8 @@ class NaviosHumanoActivity : AppCompatActivity() {
 
         if(tamanho == -1){
             runOnUiThread {
-                val t = Toast.makeText(this, "Selecione um navio.", Toast.LENGTH_SHORT)
+                val t = Toast.makeText(this,
+                        "Selecione um navio.", Toast.LENGTH_SHORT)
                 t.show()
             }
         }
@@ -83,7 +91,7 @@ class NaviosHumanoActivity : AppCompatActivity() {
             var xf: Int
             var yf: Int
 
-            val vertical = findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
+            val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
             val navio = g.humano.tabuleiro.getNavio(tamanho)
 
             if (!vertical) {
@@ -99,17 +107,41 @@ class NaviosHumanoActivity : AppCompatActivity() {
                     yf = yi - tamanho + 1
                 }
             }
+            val posInicio = IntArray(2)
+            val posFim = IntArray(2)
 
-            navio.posInicial[0] = xi
-            navio.posInicial[1] = yi
+            posInicio[0] = xi
+            posInicio[1] = yi
 
-            navio.posFinal[0] = xf
-            navio.posFinal[1] = yf
+            posFim[0] = xf
+            posFim[1] = yf
 
-            g.humano.tabuleiro.setNavio(navio)
-            g.humano.tabuleiro.gerarTabuleiroAux()
+            navio.posInicial = posInicio
+            navio.posFinal = posFim
+            navio.vertical = vertical
 
-            setImagensTabuleiro()
+            var overlap = false
+            for(i in 2..4){
+                if(i != tamanho){
+                    if(g.humano.tabuleiro.overlap(tamanho, i)){
+                        overlap = true
+                        break
+                    }
+                }
+            }
+            if(overlap){
+                runOnUiThread {
+                    val t = Toast.makeText(this,
+                            "Os navios não podem se cruzar.", Toast.LENGTH_SHORT)
+                    t.show()
+                }
+            }
+            else{
+                g.humano.tabuleiro.setNavio(navio)
+                g.humano.tabuleiro.gerarTabuleiroAux()
+
+                setImagensTabuleiro()
+            }
         }
     }
 

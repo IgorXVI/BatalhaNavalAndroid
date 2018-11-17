@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(){
         g.humano = Jogador()
         g.bot = Bot(g.humano)
 
-        val intent =  Intent(this, JogadaHumanoActivity::class.java)
+        val intent =  Intent(this, NaviosHumanoActivity::class.java)
         startActivity(intent)
         finish()
     }

@@ -39,33 +39,39 @@ public class Tabuleiro implements Serializable{
         x4 = navios.get(b).getPosFinal()[0];
         y4 = navios.get(b).getPosFinal()[1];
 
-        if (navios.get(a).getVertical() == navios.get(b).getVertical()) {
-            if (!navios.get(a).getVertical()) {
-                if (x1 > x2) {
-                    aux1 = x2;
-                    x2 = x1;
-                    x1 = aux1;
-                }
-                if (x3 > x4) {
-                    aux1 = x4;
-                    x4 = x3;
-                    x3 = aux1;
-                }
-                return (x3 >= x1 && x3 <= x2) || (x1 >= x3 && x1 <= x4);
-            } else {
-                if (y1 > y2) {
-                    aux1 = y2;
-                    y2 = y1;
-                    y1 = aux1;
-                }
-                if (y3 > y4) {
-                    aux1 = y4;
-                    y4 = y3;
-                    y3 = aux1;
-                }
-                return (y3 >= y1 && y3 <= y2) || (y1 >= y3 && y1 <= y4);
+        boolean verticalA = navios.get(a).getVertical();
+        boolean verticalB = navios.get(b).getVertical();
+
+        if (verticalA && verticalB && x1 == x3) {
+
+            if (y1 > y2) {
+                aux1 = y2;
+                y2 = y1;
+                y1 = aux1;
             }
+            if (y3 > y4) {
+                aux1 = y4;
+                y4 = y3;
+                y3 = aux1;
+            }
+            return (y3 >= y1 && y3 <= y2) || (y1 >= y3 && y1 <= y4);
         }
+
+        if (!verticalA && !verticalB && y1 == y3) {
+
+            if (x1 > x2) {
+                aux1 = x2;
+                x2 = x1;
+                x1 = aux1;
+            }
+            if (x3 > x4) {
+                aux1 = x4;
+                x4 = x3;
+                x3 = aux1;
+            }
+            return (x3 >= x1 && x3 <= x2) || (x1 >= x3 && x1 <= x4);
+        }
+
         /*Aqui eu utilizo uma fórmula para ver se existe intersecção entre dois
         segmentos de reta.
         fonte: http://www.cs.swan.ac.uk/~cssimon/line_intersection.html */
@@ -79,29 +85,46 @@ public class Tabuleiro implements Serializable{
         return (t1 >= 0 && t1 <= 1) && (t2 >= 0 && t2 <= 1);
     }
 
-    public void gerarTabuleiro() {
+    public void resetTabuleiro(){
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
                 this.tabuleiro[i][j] = '~';
+            }
+        }
+    }
+
+    public void resetTabuleiroAux(){
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
                 this.aux[i][j] = '~';
             }
         }
+    }
+
+    public void gerarTabuleiro() {
+        resetTabuleiro();
+
         while (overlap(3, 4)) {
             navios.get(1).gerarPosicoes();
         }
         while (overlap(2, 3) || overlap(2, 4)) {
             navios.get(0).gerarPosicoes();
         }
+
         gerarTabuleiroAux();
     }
 
     public void gerarTabuleiroAux(){
         int xi, xf, yi, yf;
+
+        resetTabuleiroAux();
+
         for (int k = 0; k < 3; k++) {
-            xi = navios.get(k).getPosInicial()[0];
-            yi = navios.get(k).getPosInicial()[1];
-            xf = navios.get(k).getPosFinal()[0];
-            yf = navios.get(k).getPosFinal()[1];
+            Navio n = navios.get(k);
+            xi = n.getPosInicial()[0];
+            yi = n.getPosInicial()[1];
+            xf = n.getPosFinal()[0];
+            yf = n.getPosFinal()[1];
             if (!navios.get(k).getVertical()) {
                 if (xi < xf) {
                     for (int i = xi; i <= xf; i++) {
@@ -160,6 +183,15 @@ public class Tabuleiro implements Serializable{
     public boolean posParteNavioDestruido(int x, int y){
         for(int i = 2; i <= 4; i++){
             if(navioDestruido(i) && posParteNavio(x, y, i)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean posParteDeUmNavio(int x, int y){
+        for(int i = 2; i <= 4; i++){
+            if(posParteNavio(x, y, i)){
                 return true;
             }
         }
