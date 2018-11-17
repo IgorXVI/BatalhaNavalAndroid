@@ -20,15 +20,15 @@
         <activity
             android:name=".JogadaHumanoActivity"
             android:label="Sua Vez"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".JogadaBotActivity"
             android:label="Vez do Bot"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NaviosHumanoActivity"
             android:label="Posicione os Seus Navios"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

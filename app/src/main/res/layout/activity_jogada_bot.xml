@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/agua"
     tools:context=".JogadaBotActivity"
     tools:layout_editor_absoluteY="73dp">
 
     <TableLayout
         android:id="@+id/tabuleiro"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:background="@color/ic_launcher_background"
+        android:paddingBottom="0.5dp"
+        android:paddingTop="0.5dp"
         android:stretchColumns="*"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
