@@ -53,7 +53,7 @@ class JogadaHumanoActivity : Jogada() {
         g.humano.realizarJogada(x, y, g.bot)
         salvarArquivo()
         setImagensTabuleiro(g.bot.tabuleiro)
-        //som(x, y, g.bot.tabuleiro)
+        som(x, y, g.bot.tabuleiro)
 
         val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 

@@ -25,18 +25,19 @@ class JogadaBotActivity : Jogada() {
 
         for(i in 0..6){
             for(j in 0..6){
-                c = g.humano.tabuleiro.tabuleiroDoJogador[i][j]
-                if(c != '~'){
-                    tamanho = c.toInt() - 95
-                    setImagemNavio(i, j, tamanho)
-                }
-
                 c = tabuleiro.tabuleiroPublico[i][j]
                 if(c == 'X'){
                     setAcerto(i, j)
                 }
-                if(c == '*'){
+                else if(c == '*'){
                     setErro(i, j)
+                }
+                else{
+                    c = g.humano.tabuleiro.tabuleiroDoJogador[i][j]
+                    if(c != '~'){
+                        tamanho = c.toInt() - 95
+                        setImagemNavio(i, j, tamanho)
+                    }
                 }
             }
         }
@@ -64,7 +65,7 @@ class JogadaBotActivity : Jogada() {
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
-        //som(x,y, g.humano.tabuleiro)
+        som(x,y, g.humano.tabuleiro)
 
         val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
 
