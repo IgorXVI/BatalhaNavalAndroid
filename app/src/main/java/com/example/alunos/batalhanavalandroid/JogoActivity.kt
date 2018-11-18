@@ -46,7 +46,7 @@ abstract class JogoActivity: AppCompatActivity() {
                     intent = Intent(this, NaviosHumanoActivity::class.java)
                 }
                 else{
-                    intent = Intent(this, JogadaBotActivity::class.java)
+                    intent = Intent(this, JogadaHumanoActivity::class.java)
                 }
                 startActivity(intent)
                 finish()
