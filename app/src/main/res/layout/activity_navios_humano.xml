@@ -9,16 +9,14 @@
 
     <TableLayout
         android:id="@+id/tabuleiro"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="21dp"
         android:foregroundGravity="top"
-        android:gravity="top"
         android:stretchColumns="*"
         app:layout_constraintBottom_toTopOf="@+id/painel"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

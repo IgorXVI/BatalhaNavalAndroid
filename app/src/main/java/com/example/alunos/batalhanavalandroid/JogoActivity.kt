@@ -1,7 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import java.io.ObjectInputStream
@@ -23,22 +22,16 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            val fileName = "humano.ser"
+            val fileName = "save.ser"
             val fi = openFileInput(fileName)
             val oi = ObjectInputStream(fi)
-            val saveHumano = oi.readObject() as Jogador
+            val save = oi.readObject() as Global
             oi.close()
             fi.close()
 
-            val fileNameBot = "bot.ser"
-            val fiBot = openFileInput(fileNameBot)
-            val oiBot = ObjectInputStream(fiBot)
-            val saveBot = oiBot.readObject() as Bot
-            oiBot.close()
-            fiBot.close()
-
-            g.humano = saveHumano
-            g.bot = saveBot
+            g.humano = save.humano
+            g.bot = save.bot
+            g.ultimaActivityIntent = save.ultimaActivityIntent
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
@@ -47,8 +40,7 @@ abstract class JogoActivity: AppCompatActivity() {
                 menssagemErroLoad()
             }
             else{
-                val intent = Intent(this, JogadaHumanoActivity::class.java)
-                startActivity(intent)
+                startActivity(g.ultimaActivityIntent)
                 finish()
             }
         }
@@ -68,20 +60,15 @@ abstract class JogoActivity: AppCompatActivity() {
     }
 
     fun salvarArquivo(){
+        g.ultimaActivityIntent = intent
+
         try {
-            val fileName = "humano.ser"
+            val fileName = "save.ser"
             val f = openFileOutput(fileName, Context.MODE_PRIVATE)
             val o = ObjectOutputStream(f)
-            o.writeObject(g.humano)
+            o.writeObject(g)
             f.close()
             o.close()
-
-            val fileNameBot = "bot.ser"
-            val fBot = openFileOutput(fileNameBot, Context.MODE_PRIVATE)
-            val oBot = ObjectOutputStream(fBot)
-            oBot.writeObject(g.bot)
-            fBot.close()
-            oBot.close()
         }
         catch (e: Exception) {
             menssagemErroSave()
