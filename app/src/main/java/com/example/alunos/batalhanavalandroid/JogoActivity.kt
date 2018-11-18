@@ -14,7 +14,7 @@ abstract class JogoActivity: AppCompatActivity() {
     fun menssagemErroLoad(){
 
         runOnUiThread {
-            val text = Toast.makeText(this, "O jogo ainda não começou.",
+            val text = Toast.makeText(this, "Não existe nenhum jogo salvo.",
                     Toast.LENGTH_SHORT)
             text.show()
         }
@@ -44,9 +44,6 @@ abstract class JogoActivity: AppCompatActivity() {
                 val intent: Intent
                 if(g.ultimaActivity == "NaviosHumanoActivity"){
                     intent = Intent(this, NaviosHumanoActivity::class.java)
-                }
-                else if(g.ultimaActivity == "JogadaBotActivity"){
-                    intent = Intent(this, JogadaBotActivity::class.java)
                 }
                 else{
                     intent = Intent(this, JogadaBotActivity::class.java)

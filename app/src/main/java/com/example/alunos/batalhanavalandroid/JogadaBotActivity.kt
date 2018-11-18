@@ -2,6 +2,7 @@ package com.example.alunos.batalhanavalandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import java.util.*
 import kotlin.concurrent.schedule
@@ -12,16 +13,19 @@ class JogadaBotActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_bot)
 
+        travarTudo()
+        setImagensNavios()
         setImagensTabuleiro()
         Timer().schedule(1000){
             ataque()
         }
     }
 
-    override fun setImagensTabuleiro(){
-        travarTudo()
-        setImagensNavios()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
+    }
 
+    override fun setImagensTabuleiro(){
         var c: Char
 
         for(i in 0..6){
@@ -38,8 +42,6 @@ class JogadaBotActivity : JogadaActivity() {
     }
 
     fun ataque() {
-        travarMenu()
-
         g.bot.realizarJogada()
         setImagensTabuleiro()
 
