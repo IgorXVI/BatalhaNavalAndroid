@@ -52,7 +52,7 @@ class JogadaHumanoActivity : JogadaActivity() {
                 t.show()
             }
 
-            val intent =  Intent()
+            val intent =  Intent(this, MainActivity::class.java)
             mudarActivity(intent)
         }
         else{

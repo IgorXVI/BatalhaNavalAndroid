@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream
 
 abstract class JogoActivity: AppCompatActivity() {
 
-    val g = Global.getInstance()
+    var g = Global.getInstance()
 
     fun menssagemErroLoad(){
 
@@ -23,16 +23,14 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            val fileName = "save.ser"
+            val fileName = "save_batalha_naval"
             val fi = openFileInput(fileName)
             val oi = ObjectInputStream(fi)
             val save = oi.readObject() as Global
             oi.close()
             fi.close()
 
-            g.humano = save.humano
-            g.bot = save.bot
-            g.ultimaActivity = save.ultimaActivity
+            g = save
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
@@ -71,7 +69,7 @@ abstract class JogoActivity: AppCompatActivity() {
         g.ultimaActivity = this.localClassName
 
         try {
-            val fileName = "save.ser"
+            val fileName = "save_batalha_naval"
             val f = openFileOutput(fileName, Context.MODE_PRIVATE)
             val o = ObjectOutputStream(f)
             o.writeObject(g)
