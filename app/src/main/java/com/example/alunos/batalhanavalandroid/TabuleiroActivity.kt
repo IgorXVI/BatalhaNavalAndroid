@@ -8,6 +8,7 @@ import android.widget.ImageButton
 abstract class TabuleiroActivity: JogoActivity() {
 
     var menuPrincipalItem: MenuItem? = null
+    var salvarItem: MenuItem? = null
     var sobreItem: MenuItem? = null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -15,7 +16,8 @@ abstract class TabuleiroActivity: JogoActivity() {
         inflater.inflate(R.menu.menu, menu)
 
         menuPrincipalItem = menu?.getItem(0)
-        sobreItem = menu?.getItem(1)
+        salvarItem = menu?.getItem(1)
+        sobreItem = menu?.getItem(2)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -41,6 +43,7 @@ abstract class TabuleiroActivity: JogoActivity() {
     fun travarMenu(){
         runOnUiThread {
             menuPrincipalItem?.setEnabled(false)
+            salvarItem?.setEnabled(false)
             sobreItem?.setEnabled(false)
         }
     }

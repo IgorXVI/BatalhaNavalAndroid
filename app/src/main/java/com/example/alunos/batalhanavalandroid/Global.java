@@ -1,13 +1,11 @@
 package com.example.alunos.batalhanavalandroid;
 
-import android.content.Intent;
-
 import java.io.Serializable;
 
 public class Global implements Serializable {
     private static Jogador humano;
     private static Bot bot;
-    private static Intent ultimaActivityIntent;
+    private static String ultimaActivity;
     private static Global instance;
 
     Global(){ }
@@ -28,12 +26,12 @@ public class Global implements Serializable {
         return Global.bot;
     }
 
-    public void setUltimaActivityIntent(Intent i){
-        Global.ultimaActivityIntent = i;
+    public void setUltimaActivity(String a){
+        Global.ultimaActivity = a;
     }
 
-    public Intent getUltimaActivityIntent(){
-        return Global.ultimaActivityIntent;
+    public String getUltimaActivity(){
+        return Global.ultimaActivity;
     }
 
     public static synchronized Global getInstance(){

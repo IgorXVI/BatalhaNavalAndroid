@@ -1,6 +1,7 @@
 package com.example.alunos.batalhanavalandroid
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import java.io.ObjectInputStream
@@ -31,7 +32,7 @@ abstract class JogoActivity: AppCompatActivity() {
 
             g.humano = save.humano
             g.bot = save.bot
-            g.ultimaActivityIntent = save.ultimaActivityIntent
+            g.ultimaActivity = save.ultimaActivity
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
@@ -40,7 +41,17 @@ abstract class JogoActivity: AppCompatActivity() {
                 menssagemErroLoad()
             }
             else{
-                startActivity(g.ultimaActivityIntent)
+                val intent: Intent
+                if(g.ultimaActivity == "NaviosHumanoActivity"){
+                    intent = Intent(this, NaviosHumanoActivity::class.java)
+                }
+                else if(g.ultimaActivity == "JogadaBotActivity"){
+                    intent = Intent(this, JogadaBotActivity::class.java)
+                }
+                else{
+                    intent = Intent(this, JogadaBotActivity::class.java)
+                }
+                startActivity(intent)
                 finish()
             }
         }
@@ -60,7 +71,7 @@ abstract class JogoActivity: AppCompatActivity() {
     }
 
     fun salvarArquivo(){
-        g.ultimaActivityIntent = intent
+        g.ultimaActivity = this.localClassName
 
         try {
             val fileName = "save.ser"
