@@ -24,21 +24,13 @@ class NaviosHumanoActivity : TabuleiroActivity() {
     }
 
     override fun setImagensTabuleiro(){
-        var c: Char
-        var tamanho: Int
-
         for(i in 0..6){
             for(j in 0..6){
-                c = g.humano.tabuleiro.tabuleiroDoJogador[i][j]
-                if(c != '~'){
-                    tamanho = c.toInt() - 95
-                    setImagemNavio(i, j, tamanho)
-                }
-                else{
-                    setImagemAgua(i, j)
-                }
+                setImagemAgua(i, j)
             }
         }
+
+        setImagensNavios()
     }
 
     fun posicionarNavio(view: View){

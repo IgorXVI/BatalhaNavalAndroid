@@ -20,9 +20,9 @@ class JogadaBotActivity : JogadaActivity() {
 
     override fun setImagensTabuleiro(){
         travarTudo()
+        setImagensNavios()
 
         var c: Char
-        var tamanho: Int
 
         for(i in 0..6){
             for(j in 0..6){
@@ -30,15 +30,8 @@ class JogadaBotActivity : JogadaActivity() {
                 if(c == 'X'){
                     setAcerto(i, j)
                 }
-                else if(c == '*'){
+                if(c == '*'){
                     setErro(i, j)
-                }
-                else{
-                    c = g.humano.tabuleiro.tabuleiroDoJogador[i][j]
-                    if(c != '~'){
-                        tamanho = c.toInt() - 95
-                        setImagemNavio(i, j, tamanho)
-                    }
                 }
             }
         }
