@@ -26,7 +26,7 @@
         android:layout_marginTop="78dp"
         android:gravity="center"
         android:text="Autor: Igor Tomelero de Almeida"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Ano: 2018"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_materia" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Matéria: Linguagem de Programação II"
-        android:textSize="24sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_autor" />
 

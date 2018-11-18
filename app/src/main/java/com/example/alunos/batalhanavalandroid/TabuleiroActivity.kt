@@ -39,8 +39,10 @@ abstract class TabuleiroActivity: JogoActivity() {
     }
 
     fun travarMenu(){
-        menuPrincipalItem?.setEnabled(false)
-        sobreItem?.setEnabled(false)
+        runOnUiThread {
+            menuPrincipalItem?.setEnabled(false)
+            sobreItem?.setEnabled(false)
+        }
     }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
@@ -51,16 +53,83 @@ abstract class TabuleiroActivity: JogoActivity() {
     }
 
     fun setImagemNavio(x: Int, y: Int, tamanho: Int){
-        val pos = pegarPos(x, y)
+        val arr = g.humano.tabuleiro.getNavio(tamanho).posicoes
+        val vertical = !g.humano.tabuleiro.getNavio(tamanho).vertical
+        var x: Int
+        var y: Int
+
         runOnUiThread {
             if(tamanho == 2){
-                pos.setImageResource(R.mipmap.cruzador)
+                x = arr[0][0]
+                y = arr[0][1]
+                val posI = pegarPos(x, y)
+
+                x = arr[1][0]
+                y = arr[1][1]
+                val posF = pegarPos(x, y)
+
+                if(vertical){
+                    posI.setImageResource(R.mipmap.cvi)
+                    posF.setImageResource(R.mipmap.cvf)
+                }
+                else{
+                    posI.setImageResource(R.mipmap.chi)
+                    posF.setImageResource(R.mipmap.chf)
+                }
             }
             else if(tamanho == 3){
-                pos.setImageResource(R.mipmap.encouracado)
+                x = arr[0][0]
+                y = arr[0][1]
+                val posI = pegarPos(x, y)
+
+                x = arr[1][0]
+                y = arr[1][1]
+                val posM = pegarPos(x, y)
+
+                x = arr[2][0]
+                y = arr[2][1]
+                val posF = pegarPos(x, y)
+
+                if(vertical){
+                    posI.setImageResource(R.mipmap.evi)
+                    posM.setImageResource(R.mipmap.evm)
+                    posF.setImageResource(R.mipmap.evf)
+                }
+                else{
+                    posI.setImageResource(R.mipmap.ehi)
+                    posM.setImageResource(R.mipmap.ehm)
+                    posF.setImageResource(R.mipmap.ehf)
+                }
             }
             else if(tamanho == 4){
-                pos.setImageResource(R.mipmap.porta_avioes)
+                x = arr[0][0]
+                y = arr[0][1]
+                val posI = pegarPos(x, y)
+
+                x = arr[1][0]
+                y = arr[1][1]
+                val posMI = pegarPos(x, y)
+
+                x = arr[2][0]
+                y = arr[2][1]
+                val posMF = pegarPos(x,y)
+
+                x = arr[3][0]
+                y = arr[3][1]
+                val posF = pegarPos(x, y)
+
+                if(vertical){
+                    posI.setImageResource(R.mipmap.pvi)
+                    posMI.setImageResource(R.mipmap.pvmi)
+                    posMF.setImageResource(R.mipmap.pvmf)
+                    posF.setImageResource(R.mipmap.pvf)
+                }
+                else{
+                    posI.setImageResource(R.mipmap.phi)
+                    posMI.setImageResource(R.mipmap.phmi)
+                    posMF.setImageResource(R.mipmap.phmf)
+                    posF.setImageResource(R.mipmap.phf)
+                }
             }
         }
     }

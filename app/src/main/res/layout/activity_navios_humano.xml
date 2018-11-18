@@ -14,7 +14,6 @@
         android:layout_marginBottom="21dp"
         android:foregroundGravity="top"
         android:stretchColumns="*"
-        app:layout_constraintBottom_toTopOf="@+id/painel"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
