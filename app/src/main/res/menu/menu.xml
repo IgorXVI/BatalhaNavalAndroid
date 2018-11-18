@@ -8,6 +8,11 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/Salvar"
+        android:title="Salvar"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/Sobre"
         android:title="Sobre"
         app:showAsAction="never"/>

@@ -1,18 +1,14 @@
 package com.example.alunos.batalhanavalandroid
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Toast
 import android.widget.ToggleButton
 import kotlinx.android.synthetic.main.activity_navios_humano.*
 
-class NaviosHumanoActivity : AppCompatActivity() {
-
-    val g = Global.getInstance()
+class NaviosHumanoActivity : TabuleiroActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +23,7 @@ class NaviosHumanoActivity : AppCompatActivity() {
         setImagensTabuleiro()
     }
 
-    fun pegarPos(x: Int, y:Int): ImageButton {
-        var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
-                "id", this.packageName)
-        var btn: ImageButton = findViewById(id)
-        return btn
-    }
-
-    fun setImagensTabuleiro(){
+    override fun setImagensTabuleiro(){
         var c: Char
         var tamanho: Int
 
@@ -49,28 +38,6 @@ class NaviosHumanoActivity : AppCompatActivity() {
                     setImagemAgua(i, j)
                 }
             }
-        }
-    }
-
-    fun setImagemNavio(x: Int, y: Int, tamanho: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            if(tamanho == 2){
-                pos.setImageResource(R.mipmap.cruzador)
-            }
-            else if(tamanho == 3){
-                pos.setImageResource(R.mipmap.encouracado)
-            }
-            else if(tamanho == 4){
-                pos.setImageResource(R.mipmap.porta_avioes)
-            }
-        }
-    }
-
-    fun setImagemAgua(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua)
         }
     }
 

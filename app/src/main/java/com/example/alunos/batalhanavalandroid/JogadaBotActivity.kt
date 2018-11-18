@@ -6,26 +6,27 @@ import android.widget.Toast
 import java.util.*
 import kotlin.concurrent.schedule
 
-class JogadaBotActivity : Jogada() {
+class JogadaBotActivity : JogadaActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_bot)
 
-        setImagensTabuleiro(g.humano.tabuleiro)
-        travarTudo()
+        setImagensTabuleiro()
         Timer().schedule(1000){
             ataque()
         }
     }
 
-    override fun setImagensTabuleiro(tabuleiro: Tabuleiro){
+    override fun setImagensTabuleiro(){
+        travarTudo()
+
         var c: Char
         var tamanho: Int
 
         for(i in 0..6){
             for(j in 0..6){
-                c = tabuleiro.tabuleiroPublico[i][j]
+                c = g.humano.tabuleiro.tabuleiroPublico[i][j]
                 if(c == 'X'){
                     setAcerto(i, j)
                 }
@@ -43,25 +44,11 @@ class JogadaBotActivity : Jogada() {
         }
     }
 
-    fun setImagemNavio(x: Int, y: Int, tamanho: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            if(tamanho == 2){
-                pos.setImageResource(R.mipmap.cruzador)
-            }
-            else if(tamanho == 3){
-                pos.setImageResource(R.mipmap.encouracado)
-            }
-            else if(tamanho == 4){
-                pos.setImageResource(R.mipmap.porta_avioes)
-            }
-        }
-    }
-
     fun ataque() {
+        travarMenu()
+
         g.bot.realizarJogada()
-        salvarArquivo()
-        setImagensTabuleiro(g.humano.tabuleiro)
+        setImagensTabuleiro()
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
