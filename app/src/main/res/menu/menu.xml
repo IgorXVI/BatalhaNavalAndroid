@@ -8,13 +8,15 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/Salvar"
-        android:title="Salvar"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/Sobre"
         android:title="Sobre"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/Som"
+        android:checked="true"
+        android:title="Som"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="never" />
 
 </menu>

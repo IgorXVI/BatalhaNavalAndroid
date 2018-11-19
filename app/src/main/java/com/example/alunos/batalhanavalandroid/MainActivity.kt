@@ -29,6 +29,7 @@ class MainActivity : JogoActivity(){
     fun novoJogo(){
         g.humano = Jogador()
         g.bot = Bot(g.humano)
+        g.som = true
 
         val intent =  Intent(this, NaviosHumanoActivity::class.java)
         startActivity(intent)

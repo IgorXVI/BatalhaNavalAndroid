@@ -42,20 +42,22 @@ abstract class JogadaActivity: TabuleiroActivity() {
     }
 
     fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
-        var acertou = !(x == -1 && y == -1)
-        if(acertou){
-            acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
-        }
+        if(g.som){
+            var acertou = !(x == -1 && y == -1)
+            if(acertou){
+                acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
+            }
 
-        if(acertou){
-            mp = MediaPlayer.create(this, R.raw.explosao_som)
-        }
-        else{
-            mp = MediaPlayer.create(this, R.raw.espuma_som)
-        }
-        mp?.start()
-        mp?.setOnCompletionListener {
-            mp?.release()
+            if(acertou){
+                mp = MediaPlayer.create(this, R.raw.explosao_som)
+            }
+            else{
+                mp = MediaPlayer.create(this, R.raw.espuma_som)
+            }
+            mp?.start()
+            mp?.setOnCompletionListener {
+                mp?.release()
+            }
         }
     }
 

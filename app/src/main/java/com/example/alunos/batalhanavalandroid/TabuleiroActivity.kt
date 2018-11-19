@@ -8,7 +8,7 @@ import android.widget.ImageButton
 abstract class TabuleiroActivity: JogoActivity() {
 
     var menuPrincipalItem: MenuItem? = null
-    var salvarItem: MenuItem? = null
+    var somItem: MenuItem? = null
     var sobreItem: MenuItem? = null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -16,7 +16,7 @@ abstract class TabuleiroActivity: JogoActivity() {
         inflater.inflate(R.menu.menu, menu)
 
         menuPrincipalItem = menu?.getItem(0)
-        salvarItem = menu?.getItem(1)
+        somItem = menu?.getItem(1)
         sobreItem = menu?.getItem(2)
 
         return super.onCreateOptionsMenu(menu)
@@ -29,12 +29,12 @@ abstract class TabuleiroActivity: JogoActivity() {
                 startActivity(intent)
                 finish()
             }
-            R.id.Salvar -> {
-                salvarArquivo()
-            }
             R.id.Sobre -> {
                 val intent = Intent(this, SobreActivity::class.java)
                 startActivity(intent)
+            }
+            R.id.Som -> {
+                g.som = somItem?.isChecked!!
             }
         }
         return super.onOptionsItemSelected(item)
@@ -43,7 +43,7 @@ abstract class TabuleiroActivity: JogoActivity() {
     fun travarMenu(){
         runOnUiThread {
             menuPrincipalItem?.setEnabled(false)
-            salvarItem?.setEnabled(false)
+            somItem?.setEnabled(false)
             sobreItem?.setEnabled(false)
         }
     }

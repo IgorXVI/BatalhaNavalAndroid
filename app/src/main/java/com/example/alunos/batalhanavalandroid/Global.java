@@ -7,6 +7,7 @@ public class Global implements Serializable {
     private static Bot bot;
     private static String ultimaActivity;
     private static Global instance;
+    private static boolean som;
 
     Global(){ }
 
@@ -33,6 +34,10 @@ public class Global implements Serializable {
     public String getUltimaActivity(){
         return Global.ultimaActivity;
     }
+
+    public void setSom(Boolean s){ Global.som = s; }
+
+    public boolean getSom(){ return Global.som; }
 
     public static synchronized Global getInstance(){
         if(instance == null){
