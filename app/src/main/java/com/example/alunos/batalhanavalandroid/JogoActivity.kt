@@ -1,10 +1,13 @@
 package com.example.alunos.batalhanavalandroid
 
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import java.io.*
+
+
+
+
 
 abstract class JogoActivity: AppCompatActivity() {
 
@@ -23,7 +26,8 @@ abstract class JogoActivity: AppCompatActivity() {
     fun loadArquivo(){
         try {
             val file = "save_batalha_naval"
-            ObjectInputStream(FileInputStream(file)).use { it -> g = it.readObject() as Global }
+            val input = ObjectInputStream(FileInputStream(File(File(filesDir, "").toString() + File.separator + file)))
+            g = input.readObject() as Global
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
@@ -35,6 +39,9 @@ abstract class JogoActivity: AppCompatActivity() {
                 val intent: Intent
                 if(g.ultimaActivity == "NaviosHumanoActivity"){
                     intent = Intent(this, NaviosHumanoActivity::class.java)
+                }
+                else if(g.ultimaActivity == "JogadaBotActivity"){
+                    intent = Intent(this, JogadaBotActivity::class.java)
                 }
                 else{
                     intent = Intent(this, JogadaHumanoActivity::class.java)
@@ -63,7 +70,9 @@ abstract class JogoActivity: AppCompatActivity() {
 
         try {
             val file = "save_batalha_naval"
-            ObjectOutputStream(FileOutputStream(file)).use{ it -> it.writeObject(g)}
+            val out = ObjectOutputStream(FileOutputStream(File(filesDir, "").toString() + File.separator + file))
+            out.writeObject(g);
+            out.close();
         }
         catch (e: Exception) {
             menssagemErroSave()

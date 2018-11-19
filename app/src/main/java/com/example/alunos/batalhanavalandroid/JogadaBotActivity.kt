@@ -13,6 +13,7 @@ class JogadaBotActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_bot)
 
+        salvarArquivo()
         travarTudo()
         setImagensNavios()
         setImagensTabuleiro(g.humano.tabuleiro)

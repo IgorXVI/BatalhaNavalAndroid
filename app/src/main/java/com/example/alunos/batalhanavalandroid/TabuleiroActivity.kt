@@ -18,6 +18,7 @@ abstract class TabuleiroActivity: JogoActivity() {
         menuPrincipalItem = menu?.getItem(0)
         somItem = menu?.getItem(1)
         sobreItem = menu?.getItem(2)
+        sobreItem?.isChecked = g.som
 
         return super.onCreateOptionsMenu(menu)
     }
