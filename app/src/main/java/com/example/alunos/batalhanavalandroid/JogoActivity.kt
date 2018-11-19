@@ -22,14 +22,10 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            val fileName = "save_batalha_naval"
-            val fi = this.openFileInput(fileName)
-            val oi = ObjectInputStream(fi)
-            val save = oi.readObject() as Global
-            oi.close()
-            fi.close()
-
-            g = save
+            if(g.humano == null && g.bot == null){
+                val file = "save_batalha_naval"
+                ObjectInputStream(FileInputStream(file)).use { it -> g = it.readObject() as Global }
+            }
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()
@@ -68,13 +64,8 @@ abstract class JogoActivity: AppCompatActivity() {
         g.ultimaActivity = this.localClassName
 
         try {
-            val fileName = "save_batalha_naval"
-            val f = this.openFileOutput(fileName, Context.MODE_PRIVATE)
-            val o = ObjectOutputStream(f)
-            o.writeObject(g)
-            o.flush()
-            f.close()
-            o.close()
+            val file = "save_batalha_naval"
+            ObjectOutputStream(FileOutputStream(file)).use{ it -> it.writeObject(g)}
         }
         catch (e: Exception) {
             menssagemErroSave()

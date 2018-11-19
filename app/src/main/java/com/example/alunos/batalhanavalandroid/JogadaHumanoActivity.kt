@@ -19,7 +19,6 @@ class JogadaHumanoActivity : JogadaActivity() {
 
     fun ataque(view: View){
         travarTudo()
-        travarMenu()
 
         var nome = resources.getResourceEntryName(view.id)
         var x = nome[4].toInt() - 48
@@ -39,6 +38,8 @@ class JogadaHumanoActivity : JogadaActivity() {
             }
         }
         else{
+            travarMenu()
+
             val intent = Intent(this, JogadaBotActivity::class.java)
             mudarActivity(intent)
         }
