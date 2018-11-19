@@ -11,8 +11,9 @@
         android:id="@+id/tabuleiro"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="51dp"
+        android:foregroundGravity="top"
         android:stretchColumns="*"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -705,5 +706,41 @@
                 tools:layout_editor_absoluteY="155dp" />
         </TableRow>
     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/placar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:foregroundGravity="bottom"
+        android:gravity="center_horizontal"
+        android:minWidth="150dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabuleiro">
+
+        <TextView
+            android:id="@+id/lbl_acertos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Acertos: 0"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <TextView
+            android:id="@+id/lbl_erros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Erros: 0"
+            android:textSize="30sp"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="424dp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

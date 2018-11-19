@@ -23,7 +23,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         setImagensTabuleiro()
     }
 
-    override fun setImagensTabuleiro(){
+    fun setImagensTabuleiro(){
         for(i in 0..6){
             for(j in 0..6){
                 setImagemAgua(i, j)
@@ -44,14 +44,22 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             }
         }
         else{
+            val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
+            val navio = g.humano.tabuleiro.getNavio(tamanho)
+
+            val posInicialAntes = IntArray(2)
+            val posFinalAntes = IntArray(2)
+            val verticalAntes = navio.vertical
+            posInicialAntes[0] = navio.posInicial[0]
+            posInicialAntes[1] = navio.posInicial[1]
+            posFinalAntes[0] = navio.posFinal[0]
+            posFinalAntes[1] = navio.posFinal[1]
+
             var nome = resources.getResourceEntryName(view.id)
             var xi = nome[4].toInt() - 48
             var yi = nome[6].toInt() - 48
             var xf: Int
             var yf: Int
-
-            val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
-            val navio = g.humano.tabuleiro.getNavio(tamanho)
 
             if (!vertical) {
                 yf = yi
@@ -89,6 +97,12 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             if(overlap){
+                navio.posInicial = posInicialAntes
+                navio.posFinal = posFinalAntes
+                navio.vertical = verticalAntes
+
+                g.humano.tabuleiro.setNavio(navio)
+
                 runOnUiThread {
                     val t = Toast.makeText(this,
                             "Os navios não podem se cruzar.", Toast.LENGTH_SHORT)
@@ -98,7 +112,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             else{
                 g.humano.tabuleiro.setNavio(navio)
                 g.humano.tabuleiro.gerarTabuleiroAux()
-
                 setImagensTabuleiro()
             }
         }

@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
+import java.io.*
 
 abstract class JogoActivity: AppCompatActivity() {
 
@@ -24,7 +23,7 @@ abstract class JogoActivity: AppCompatActivity() {
     fun loadArquivo(){
         try {
             val fileName = "save_batalha_naval"
-            val fi = openFileInput(fileName)
+            val fi = this.openFileInput(fileName)
             val oi = ObjectInputStream(fi)
             val save = oi.readObject() as Global
             oi.close()
@@ -70,9 +69,10 @@ abstract class JogoActivity: AppCompatActivity() {
 
         try {
             val fileName = "save_batalha_naval"
-            val f = openFileOutput(fileName, Context.MODE_PRIVATE)
+            val f = this.openFileOutput(fileName, Context.MODE_PRIVATE)
             val o = ObjectOutputStream(f)
             o.writeObject(g)
+            o.flush()
             f.close()
             o.close()
         }

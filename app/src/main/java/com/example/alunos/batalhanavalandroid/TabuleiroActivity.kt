@@ -140,6 +140,24 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
+    fun setErro(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.espuma)
+            pos.isClickable = false
+        }
+    }
+
+    fun setAcerto(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.explosao)
+            pos.isClickable = false
+        }
+    }
+
     fun setImagemAgua(x: Int, y: Int){
         val pos = pegarPos(x, y)
         runOnUiThread {
@@ -159,21 +177,4 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
-    fun setErro(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.espuma)
-            pos.isClickable = false
-        }
-    }
-
-    fun setAcerto(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.explosao)
-            pos.isClickable = false
-        }
-    }
-
-    abstract fun setImagensTabuleiro()
 }

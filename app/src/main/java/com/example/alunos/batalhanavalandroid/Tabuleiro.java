@@ -261,6 +261,30 @@ public class Tabuleiro implements Serializable{
         return false;
     }
 
+    public int numeroAcertos(){
+        int x = 0;
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 7; j++){
+                if(posJaAcertada(i,j)){
+                    x++;
+                }
+            }
+        }
+        return x;
+    }
+
+    public int numeroErros(){
+        int x = 0;
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 7; j++){
+                if(posJaErrada(i,j)){
+                    x++;
+                }
+            }
+        }
+        return x;
+    }
+
     public Navio getNavio(int tamanho){ return this.navios.get(tamanho -2 ); }
 
     public char[][] getTabuleiroDoJogador(){

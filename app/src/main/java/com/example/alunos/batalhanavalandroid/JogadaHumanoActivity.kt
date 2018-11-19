@@ -13,22 +13,8 @@ class JogadaHumanoActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
-        setImagensTabuleiro()
-    }
-
-    override fun setImagensTabuleiro(){
-        var c: Char
-        for(i in 0..6){
-            for(j in 0..6){
-                c = g.bot.tabuleiro.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
+        setImagensTabuleiro(g.bot.tabuleiro)
+        setErrosAcertos(g.bot.tabuleiro)
     }
 
     fun ataque(view: View){
@@ -40,20 +26,17 @@ class JogadaHumanoActivity : JogadaActivity() {
         var y = nome[6].toInt() - 48
 
         g.humano.realizarJogada(x, y, g.bot)
-        setImagensTabuleiro()
+        setImagensTabuleiro(g.bot.tabuleiro)
+        setErrosAcertos(g.bot.tabuleiro)
         som(x, y, g.bot.tabuleiro)
 
         val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
 
         if(ganhou){
-
             runOnUiThread {
                 var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
                 t.show()
             }
-
-            val intent =  Intent(this, MainActivity::class.java)
-            mudarActivity(intent)
         }
         else{
             val intent = Intent(this, JogadaBotActivity::class.java)

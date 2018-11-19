@@ -15,7 +15,8 @@ class JogadaBotActivity : JogadaActivity() {
 
         travarTudo()
         setImagensNavios()
-        setImagensTabuleiro()
+        setImagensTabuleiro(g.humano.tabuleiro)
+        setErrosAcertos(g.humano.tabuleiro)
         Timer().schedule(1000){
             ataque()
         }
@@ -25,25 +26,10 @@ class JogadaBotActivity : JogadaActivity() {
         return false
     }
 
-    override fun setImagensTabuleiro(){
-        var c: Char
-
-        for(i in 0..6){
-            for(j in 0..6){
-                c = g.humano.tabuleiro.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
-    }
-
     fun ataque() {
         g.bot.realizarJogada()
-        setImagensTabuleiro()
+        setImagensTabuleiro(g.humano.tabuleiro)
+        setErrosAcertos(g.humano.tabuleiro)
 
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]

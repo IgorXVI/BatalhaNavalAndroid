@@ -14,8 +14,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     /*
    Passos do ataque:
 
-   primeiro : atacar uma posição randômica útil até acertar a primeira vez, se já ouver um acerto
-   atacar a posição mais provável de conter um navio ->
+   primeiro : atacar uma posição randômica útil até acertar a primeira vez ou até errar 7 vezes, se
+   já ouver um acerto ou 7 erros atacar a posição mais provável de conter um navio ->
 
    segundo : se o primeiro passo resultar em sucesso, atacar posição na vertical
    ou na horizontal do último ataque e repetir esse passo até um acerto, quando o
@@ -234,7 +234,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     private fun primeiroPasso(){
         var x = -1
         var y = -1
-        if(!this.tabuleiro.jaTemAcerto()){
+        if(!this.tabuleiro.jaTemAcerto() && this.tabuleiro.numeroErros() <= 7){
             //aqui a função gera uma posição randômica não atacada e não cercada
             val r = Random()
             x = r.nextInt(7)
