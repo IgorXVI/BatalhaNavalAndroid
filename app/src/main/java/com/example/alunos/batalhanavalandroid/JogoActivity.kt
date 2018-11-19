@@ -22,10 +22,8 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            if(g.humano == null && g.bot == null){
-                val file = "save_batalha_naval"
-                ObjectInputStream(FileInputStream(file)).use { it -> g = it.readObject() as Global }
-            }
+            val file = "save_batalha_naval"
+            ObjectInputStream(FileInputStream(file)).use { it -> g = it.readObject() as Global }
 
             val derrotaHumano = g.humano.tabuleiro.todosNaviosDestruidos()
             val derrotaBot = g.bot.tabuleiro.todosNaviosDestruidos()

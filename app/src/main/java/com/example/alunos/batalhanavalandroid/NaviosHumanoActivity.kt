@@ -24,6 +24,8 @@ class NaviosHumanoActivity : TabuleiroActivity() {
     }
 
     fun setImagensTabuleiro(){
+        salvarArquivo()
+
         for(i in 0..6){
             for(j in 0..6){
                 setImagemAgua(i, j)

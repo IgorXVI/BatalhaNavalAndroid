@@ -13,6 +13,7 @@ class JogadaHumanoActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
+        salvarArquivo()
         setImagensTabuleiro(g.bot.tabuleiro)
         setErrosAcertos(g.bot.tabuleiro)
     }
