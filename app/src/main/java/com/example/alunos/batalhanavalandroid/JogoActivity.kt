@@ -81,11 +81,13 @@ abstract class JogoActivity: AppCompatActivity() {
             oi.close()
             fis.close()
 
-            if(save.humano == null || save.bot == null){
+            if(save.humano == null || save.bot == null || save.som == null){
                 menssagemErroLoad()
             }
             else{
-                Global.setInstance(g)
+                g.humano = save.humano
+                g.bot = save.bot
+                g.som = save.som
 
                 val intent: Intent
                 if(g.ultimaActivity == "NaviosHumanoActivity"){
