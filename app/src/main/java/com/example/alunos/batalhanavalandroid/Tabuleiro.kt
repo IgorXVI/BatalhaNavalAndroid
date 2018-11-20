@@ -58,7 +58,6 @@ class Tabuleiro internal constructor() : Serializable {
         val verticalB = navios[b].vertical
 
         if (verticalA && verticalB && x1 == x3) {
-
             if (y1 > y2) {
                 aux1 = y2
                 y2 = y1
@@ -189,19 +188,29 @@ class Tabuleiro internal constructor() : Serializable {
 
     fun posParteNavio(x: Int, y: Int, tamanho: Int): Boolean {
         val n = this.navios[tamanho - 2]
-        var x1: Int
-        var y1: Int
-        val posicoes = n.posicoes
+        var xi = n.posInicial[0]
+        var yi = n.posInicial[1]
+        var xf = n.posFinal[0]
+        var yf = n.posFinal[1]
+        var aux: Int
 
-        for (i in 0 until tamanho) {
-            x1 = posicoes[i][0]
-            y1 = posicoes[i][1]
-
-            if (x == x1 && y == y1) {
-                return true
+        if (xi == xf) {
+            if (yi > yf) {
+                aux = yf
+                yf = yi
+                yi = aux
             }
+            return y >= yi && y <= yf
         }
-        return false
+        else{
+            if (xi > xf) {
+                aux = xf
+                xf = xi
+                xi = aux
+            }
+            return x >= xi && x <= xf
+        }
+
     }
 
     fun posParteNavioDestruido(x: Int, y: Int): Boolean {

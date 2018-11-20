@@ -36,7 +36,7 @@ abstract class JogoActivity: AppCompatActivity() {
             R.id.Som -> {
                 val antigo = somItem?.isChecked!!
                 somItem?.isChecked = !(antigo)
-                g.som =!(antigo)
+                g.som = !(antigo)
             }
             R.id.Salvar -> {
                 salvarArquivo()
