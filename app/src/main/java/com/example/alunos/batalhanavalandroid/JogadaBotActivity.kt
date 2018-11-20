@@ -23,10 +23,6 @@ class JogadaBotActivity : JogadaActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return false
-    }
-
     fun ataque() {
         g.bot.realizarJogada()
         setImagensTabuleiro(g.humano.tabuleiro)
@@ -43,9 +39,7 @@ class JogadaBotActivity : JogadaActivity() {
                 var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_SHORT)
                 t.show()
             }
-
-            val intent =  Intent(this, MainActivity::class.java)
-            mudarActivity(intent)
+            salvarArquivo()
         }
         else{
             val intent = Intent(this, JogadaHumanoActivity::class.java)

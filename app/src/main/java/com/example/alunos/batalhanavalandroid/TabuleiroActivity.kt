@@ -18,7 +18,7 @@ abstract class TabuleiroActivity: JogoActivity() {
         menuPrincipalItem = menu?.getItem(0)
         somItem = menu?.getItem(1)
         sobreItem = menu?.getItem(2)
-        sobreItem?.isChecked = g.som
+        somItem?.isChecked = g.som
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -35,7 +35,9 @@ abstract class TabuleiroActivity: JogoActivity() {
                 startActivity(intent)
             }
             R.id.Som -> {
-                g.som = somItem?.isChecked!!
+                val antigo = somItem?.isChecked!!
+                somItem?.isChecked = !(antigo)
+                g.som =!(antigo)
             }
         }
         return super.onOptionsItemSelected(item)

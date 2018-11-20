@@ -39,6 +39,8 @@ public class Global implements Serializable {
 
     public boolean getSom(){ return Global.som; }
 
+    public static synchronized void setInstance(Global i){ instance = i; }
+
     public static synchronized Global getInstance(){
         if(instance == null){
             instance = new Global();

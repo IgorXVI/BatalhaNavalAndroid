@@ -37,10 +37,9 @@ class JogadaHumanoActivity : JogadaActivity() {
                 var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
                 t.show()
             }
+            salvarArquivo()
         }
         else{
-            travarMenu()
-
             val intent = Intent(this, JogadaBotActivity::class.java)
             mudarActivity(intent)
         }
