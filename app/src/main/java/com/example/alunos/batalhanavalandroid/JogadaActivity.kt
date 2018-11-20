@@ -15,8 +15,8 @@ abstract class JogadaActivity: TabuleiroActivity() {
         val lbl_acertos = findViewById<TextView>(R.id.lbl_acertos)
         val lbl_erros = findViewById<TextView>(R.id.lbl_erros)
 
-        val textErros = "Erros: " + tabuleiro.numeroErros().toString()
-        val textAcertos = "Acertos: " + tabuleiro.numeroAcertos().toString()
+        val textErros = "Erros: " + tabuleiro.erros.toString()
+        val textAcertos = "Acertos: " + tabuleiro.acertos.toString()
 
         runOnUiThread {
             lbl_erros.text = textErros
@@ -48,7 +48,15 @@ abstract class JogadaActivity: TabuleiroActivity() {
     fun mudarActivity(intent: Intent){
         travarMenu()
 
-        Timer().schedule(3100){
+        val delay: Long
+        if(somItem?.isChecked!!){
+            delay = 3100
+        }
+        else{
+            delay = 310
+        }
+
+        Timer().schedule(delay){
             startActivity(intent)
             finish()
         }

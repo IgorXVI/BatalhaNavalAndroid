@@ -22,10 +22,8 @@ class JogadaBotActivity : JogadaActivity() {
     }
 
     fun ataque() {
-        g.bot.realizarJogada()
-        val x = g.bot.cerebro.posUltimo[0]
-        val y = g.bot.cerebro.posUltimo[1]
-        val ganhou = super.ataque(x, y, g.humano.tabuleiro)
+        val arr = g.bot.realizarJogada()
+        val ganhou = super.ataque(arr[0], arr[1], g.humano.tabuleiro)
 
         if(ganhou){
             runOnUiThread{

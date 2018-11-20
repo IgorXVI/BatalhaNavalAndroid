@@ -13,6 +13,10 @@ class JogadaHumanoActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
+        val intent = Intent(this, JogadaBotActivity::class.java)
+        startActivity(intent)
+        finish()
+
         setErroAcerto(g.bot.tabuleiro)
     }
 

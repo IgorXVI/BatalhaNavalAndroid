@@ -56,6 +56,7 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun travarMenu(){
         runOnUiThread {
+            somItem?.setEnabled(false)
             salvarItem?.setEnabled(false)
             menuPrincipalItem?.setEnabled(false)
             sobreItem?.setEnabled(false)
@@ -81,7 +82,7 @@ abstract class JogoActivity: AppCompatActivity() {
             oi.close()
             fis.close()
 
-            if(save.humano == null || save.bot == null || save.som == null){
+            if(save.humano == null || save.bot == null){
                 menssagemErroLoad()
             }
             else{
@@ -89,18 +90,26 @@ abstract class JogoActivity: AppCompatActivity() {
                 g.bot = save.bot
                 g.som = save.som
 
-                val intent: Intent
-                if(g.ultimaActivity == "NaviosHumanoActivity"){
-                    intent = Intent(this, NaviosHumanoActivity::class.java)
-                }
-                else if(g.ultimaActivity == "JogadaBotActivity"){
-                    intent = Intent(this, JogadaBotActivity::class.java)
+                val vitoriaBot = g.humano.tabuleiro.todosNaviosDestruidos()
+                val vitoriaHumano = g.bot.tabuleiro.todosNaviosDestruidos()
+
+                if(vitoriaBot || vitoriaHumano){
+                    menssagemErroLoad()
                 }
                 else{
-                    intent = Intent(this, JogadaHumanoActivity::class.java)
+                    val intent: Intent
+                    if(g.ultimaActivity == "NaviosHumanoActivity"){
+                        intent = Intent(this, NaviosHumanoActivity::class.java)
+                    }
+                    else if(g.ultimaActivity == "JogadaBotActivity"){
+                        intent = Intent(this, JogadaBotActivity::class.java)
+                    }
+                    else{
+                        intent = Intent(this, JogadaHumanoActivity::class.java)
+                    }
+                    startActivity(intent)
+                    finish()
                 }
-                startActivity(intent)
-                finish()
             }
 
         }

@@ -90,7 +90,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 navio.posInicial = posInicialAntes
                 navio.posFinal = posFinalAntes
                 navio.vertical = verticalAntes
-
                 g.humano.tabuleiro.setNavio(navio)
 
                 runOnUiThread {
@@ -100,6 +99,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
+                navio.gerarTodasPosicoes()
                 g.humano.tabuleiro.setNavio(navio)
                 g.humano.tabuleiro.gerarTabuleiroAux()
                 setImagensAgua()
