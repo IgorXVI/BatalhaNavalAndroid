@@ -13,31 +13,23 @@ class JogadaHumanoActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
-        salvarArquivo()
-        setImagensTabuleiro(g.bot.tabuleiro)
-        setErrosAcertos(g.bot.tabuleiro)
+        inicio(g.bot.tabuleiro)
     }
 
     fun ataque(view: View){
         travarTudo()
 
-        var nome = resources.getResourceEntryName(view.id)
-        var x = nome[4].toInt() - 48
-        var y = nome[6].toInt() - 48
-
+        val nome = resources.getResourceEntryName(view.id)
+        val x = nome[4].toInt() - 48
+        val y = nome[6].toInt() - 48
         g.humano.realizarJogada(x, y, g.bot)
-        setImagensTabuleiro(g.bot.tabuleiro)
-        setErrosAcertos(g.bot.tabuleiro)
-        som(x, y, g.bot.tabuleiro)
-
-        val ganhou = g.bot.tabuleiro.todosNaviosDestruidos()
+        val ganhou = super.ataque(x, y, g.bot.tabuleiro)
 
         if(ganhou){
             runOnUiThread {
                 var t = Toast.makeText(this, "Você Ganhou!", Toast.LENGTH_SHORT)
                 t.show()
             }
-            salvarArquivo()
         }
         else{
             val intent = Intent(this, JogadaBotActivity::class.java)

@@ -1,55 +1,8 @@
 package com.example.alunos.batalhanavalandroid
 
-import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageButton
 
 abstract class TabuleiroActivity: JogoActivity() {
-
-    var menuPrincipalItem: MenuItem? = null
-    var somItem: MenuItem? = null
-    var sobreItem: MenuItem? = null
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-
-        menuPrincipalItem = menu?.getItem(0)
-        somItem = menu?.getItem(1)
-        sobreItem = menu?.getItem(2)
-        somItem?.isChecked = g.som
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.MenuPrincipal -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            R.id.Sobre -> {
-                val intent = Intent(this, SobreActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.Som -> {
-                val antigo = somItem?.isChecked!!
-                somItem?.isChecked = !(antigo)
-                g.som =!(antigo)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun travarMenu(){
-        runOnUiThread {
-            menuPrincipalItem?.setEnabled(false)
-            somItem?.setEnabled(false)
-            sobreItem?.setEnabled(false)
-        }
-    }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
         var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
@@ -58,13 +11,13 @@ abstract class TabuleiroActivity: JogoActivity() {
         return btn
     }
 
-    fun setImagensNavios(){
+    fun setImagensNavios(tabuleiro: Tabuleiro){
         var x: Int
         var y: Int
 
         for(tamanho in 2..4){
-            val arr = g.humano.tabuleiro.getNavio(tamanho).posicoes
-            val vertical = !g.humano.tabuleiro.getNavio(tamanho).vertical
+            val arr = tabuleiro.getNavio(tamanho).posicoes
+            val vertical = !tabuleiro.getNavio(tamanho).vertical
 
             runOnUiThread {
                 if(tamanho == 2){
@@ -176,6 +129,30 @@ abstract class TabuleiroActivity: JogoActivity() {
                     pos = pegarPos(i, j)
                     pos.isClickable = false
                 }
+            }
+        }
+    }
+
+    fun setImagensErroAcerto(tabuleiro: Tabuleiro){
+        var c: Char
+
+        for(i in 0..6){
+            for(j in 0..6){
+                c = tabuleiro.tabuleiroPublico[i][j]
+                if(c == 'X'){
+                    setAcerto(i, j)
+                }
+                if(c == '*'){
+                    setErro(i, j)
+                }
+            }
+        }
+    }
+
+    fun setImagensAgua(){
+        for(i in 0..6){
+            for(j in 0..6){
+                setImagemAgua(i, j)
             }
         }
     }

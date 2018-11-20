@@ -19,20 +19,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             startActivity(intent)
             finish()
         }
-
-        setImagensTabuleiro()
-    }
-
-    fun setImagensTabuleiro(){
-        salvarArquivo()
-
-        for(i in 0..6){
-            for(j in 0..6){
-                setImagemAgua(i, j)
-            }
-        }
-
-        setImagensNavios()
     }
 
     fun posicionarNavio(view: View){
@@ -114,7 +100,9 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             else{
                 g.humano.tabuleiro.setNavio(navio)
                 g.humano.tabuleiro.gerarTabuleiroAux()
-                setImagensTabuleiro()
+                setImagensAgua()
+                setImagensNavios(g.humano.tabuleiro)
+                salvarArquivo()
             }
         }
     }

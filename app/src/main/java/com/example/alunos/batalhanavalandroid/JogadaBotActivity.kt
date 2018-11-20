@@ -13,11 +13,9 @@ class JogadaBotActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_bot)
 
-        salvarArquivo()
         travarTudo()
-        setImagensNavios()
-        setImagensTabuleiro(g.humano.tabuleiro)
-        setErrosAcertos(g.humano.tabuleiro)
+        inicio(g.humano.tabuleiro)
+        setImagensNavios(g.humano.tabuleiro)
         Timer().schedule(1000){
             ataque()
         }
@@ -25,21 +23,15 @@ class JogadaBotActivity : JogadaActivity() {
 
     fun ataque() {
         g.bot.realizarJogada()
-        setImagensTabuleiro(g.humano.tabuleiro)
-        setErrosAcertos(g.humano.tabuleiro)
-
         val x = g.bot.cerebro.posUltimo[0]
         val y = g.bot.cerebro.posUltimo[1]
-        som(x,y, g.humano.tabuleiro)
-
-        val ganhou = g.humano.tabuleiro.todosNaviosDestruidos()
+        val ganhou = super.ataque(x, y, g.humano.tabuleiro)
 
         if(ganhou){
             runOnUiThread{
                 var t = Toast.makeText(this, "Você Perdeu!", Toast.LENGTH_SHORT)
                 t.show()
             }
-            salvarArquivo()
         }
         else{
             val intent = Intent(this, JogadaHumanoActivity::class.java)

@@ -11,23 +11,7 @@ abstract class JogadaActivity: TabuleiroActivity() {
 
     var mp: MediaPlayer? = null
 
-    fun setImagensTabuleiro(tabuleiro: Tabuleiro){
-        var c: Char
-
-        for(i in 0..6){
-            for(j in 0..6){
-                c = tabuleiro.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
-    }
-
-    fun setErrosAcertos(tabuleiro: Tabuleiro){
+    fun setNumErroAcerto(tabuleiro: Tabuleiro){
         val lbl_acertos = findViewById<TextView>(R.id.lbl_acertos)
         val lbl_erros = findViewById<TextView>(R.id.lbl_erros)
 
@@ -61,10 +45,29 @@ abstract class JogadaActivity: TabuleiroActivity() {
         }
     }
 
-    open fun mudarActivity(intent: Intent){
+    fun mudarActivity(intent: Intent){
+        travarMenu()
+
         Timer().schedule(3100){
             startActivity(intent)
             finish()
         }
     }
+
+    fun setErroAcerto(tabuleiro: Tabuleiro){
+        setImagensErroAcerto(tabuleiro)
+        setNumErroAcerto(tabuleiro)
+    }
+
+    fun inicio(tabuleiro: Tabuleiro){
+        salvarArquivo()
+        setErroAcerto(tabuleiro)
+    }
+
+    open fun ataque(x: Int, y: Int, tabuleiro: Tabuleiro): Boolean{
+        som(x,y, tabuleiro)
+        setErroAcerto(tabuleiro)
+        return tabuleiro.todosNaviosDestruidos()
+    }
+
 }

@@ -234,7 +234,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     private fun primeiroPasso(){
         var x = -1
         var y = -1
-        if(!this.tabuleiro.jaTemAcerto() && this.tabuleiro.numeroErros() <= 7){
+        if(!this.tabuleiro.jaTemAcerto() && this.tabuleiro.numeroErros() <= 3){
             //aqui a função gera uma posição randômica não atacada e não cercada
             val r = Random()
             x = r.nextInt(7)
