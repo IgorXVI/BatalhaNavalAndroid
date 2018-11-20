@@ -14,6 +14,8 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navios_humano)
 
+        setImagensNavios(g.humano.tabuleiro)
+
         btn_comecar.setOnClickListener {
             val intent = Intent(this, JogadaHumanoActivity::class.java)
             startActivity(intent)
@@ -102,7 +104,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 g.humano.tabuleiro.gerarTabuleiroAux()
                 setImagensAgua()
                 setImagensNavios(g.humano.tabuleiro)
-                salvarArquivo()
             }
         }
     }

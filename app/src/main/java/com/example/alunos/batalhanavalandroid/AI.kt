@@ -14,8 +14,8 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
     /*
    Passos do ataque:
 
-   primeiro : atacar uma posição randômica útil até acertar a primeira vez ou até errar 7 vezes, se
-   já ouver um acerto ou 7 erros atacar a posição mais provável de conter um navio ->
+   primeiro : atacar uma posição randômica útil até acertar a primeira vez ou até errar 3 vezes, se
+   já ouver um acerto ou 3 erros atacar a posição mais provável de conter um navio ->
 
    segundo : se o primeiro passo resultar em sucesso, atacar posição na vertical
    ou na horizontal do último ataque e repetir esse passo até um acerto, quando o

@@ -14,7 +14,7 @@ class JogadaBotActivity : JogadaActivity() {
         setContentView(R.layout.activity_jogada_bot)
 
         travarTudo()
-        inicio(g.humano.tabuleiro)
+        setErroAcerto(g.humano.tabuleiro)
         setImagensNavios(g.humano.tabuleiro)
         Timer().schedule(1000){
             ataque()

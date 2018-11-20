@@ -13,7 +13,7 @@ class JogadaHumanoActivity : JogadaActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_humano)
 
-        inicio(g.bot.tabuleiro)
+        setErroAcerto(g.bot.tabuleiro)
     }
 
     fun ataque(view: View){

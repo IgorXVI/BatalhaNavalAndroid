@@ -12,17 +12,20 @@ import android.view.MenuItem
 abstract class JogoActivity: AppCompatActivity() {
 
     var g = Global.getInstance()
+    var somItem: MenuItem? = null
+    var salvarItem: MenuItem? = null
     var menuPrincipalItem: MenuItem? = null
     var sobreItem: MenuItem? = null
-    var somItem: MenuItem? = null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
 
-        menuPrincipalItem = menu?.getItem(0)
-        sobreItem = menu?.getItem(1)
-        somItem = menu?.getItem(2)
+        somItem = menu?.getItem(0)
+        salvarItem = menu?.getItem(1)
+        menuPrincipalItem = menu?.getItem(2)
+        sobreItem = menu?.getItem(3)
+
         somItem?.isChecked = g.som
 
         return super.onCreateOptionsMenu(menu)
@@ -30,8 +33,15 @@ abstract class JogoActivity: AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.Som -> {
+                val antigo = somItem?.isChecked!!
+                somItem?.isChecked = !(antigo)
+                g.som =!(antigo)
+            }
+            R.id.Salvar -> {
+                salvarArquivo()
+            }
             R.id.MenuPrincipal -> {
-                g.ultimaActivity = this.localClassName
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -40,19 +50,14 @@ abstract class JogoActivity: AppCompatActivity() {
                 val intent = Intent(this, SobreActivity::class.java)
                 startActivity(intent)
             }
-            R.id.Som -> {
-                val antigo = somItem?.isChecked!!
-                somItem?.isChecked = !(antigo)
-                g.som =!(antigo)
-            }
         }
         return super.onOptionsItemSelected(item)
     }
 
     fun travarMenu(){
         runOnUiThread {
+            salvarItem?.setEnabled(false)
             menuPrincipalItem?.setEnabled(false)
-            somItem?.setEnabled(false)
             sobreItem?.setEnabled(false)
         }
     }
@@ -68,42 +73,38 @@ abstract class JogoActivity: AppCompatActivity() {
     }
 
     fun loadArquivo(){
-        if(g.humano != null && g.bot != null){
-            iniciarUltimaActivity()
-        }
-        else{
-            try {
-                val file = "save_batalha_naval.ser"
-                val fis = openFileInput(file)
-                val oi = ObjectInputStream(fis)
-                val save = oi.readObject() as Global
-                oi.close()
-                fis.close()
+        try {
+            val file = "save_batalha_naval.ser"
+            val fis = openFileInput(file)
+            val oi = ObjectInputStream(fis)
+            val save = oi.readObject() as Global
+            oi.close()
+            fis.close()
 
-                g.humano = save.humano
-                g.bot = save.bot
-
-                iniciarUltimaActivity()
-            }
-            catch (e: Exception) {
+            if(save.humano == null || save.bot == null){
                 menssagemErroLoad()
             }
-        }
-    }
+            else{
+                Global.setInstance(g)
 
-    fun iniciarUltimaActivity(){
-        val intent: Intent
-        if(g.ultimaActivity == "NaviosHumanoActivity"){
-            intent = Intent(this, NaviosHumanoActivity::class.java)
+                val intent: Intent
+                if(g.ultimaActivity == "NaviosHumanoActivity"){
+                    intent = Intent(this, NaviosHumanoActivity::class.java)
+                }
+                else if(g.ultimaActivity == "JogadaBotActivity"){
+                    intent = Intent(this, JogadaBotActivity::class.java)
+                }
+                else{
+                    intent = Intent(this, JogadaHumanoActivity::class.java)
+                }
+                startActivity(intent)
+                finish()
+            }
+
         }
-        else if(g.ultimaActivity == "JogadaBotActivity"){
-            intent = Intent(this, JogadaBotActivity::class.java)
+        catch (e: Exception) {
+            menssagemErroLoad()
         }
-        else{
-            intent = Intent(this, JogadaHumanoActivity::class.java)
-        }
-        startActivity(intent)
-        finish()
     }
 
     fun menssagemErroSave(){

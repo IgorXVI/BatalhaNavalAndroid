@@ -59,11 +59,6 @@ abstract class JogadaActivity: TabuleiroActivity() {
         setNumErroAcerto(tabuleiro)
     }
 
-    fun inicio(tabuleiro: Tabuleiro){
-        salvarArquivo()
-        setErroAcerto(tabuleiro)
-    }
-
     open fun ataque(x: Int, y: Int, tabuleiro: Tabuleiro): Boolean{
         som(x,y, tabuleiro)
         setErroAcerto(tabuleiro)

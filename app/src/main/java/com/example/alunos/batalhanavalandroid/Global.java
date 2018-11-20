@@ -39,7 +39,11 @@ public class Global implements Serializable {
 
     public boolean getSom(){ return Global.som; }
 
-    public static synchronized void setInstance(Global i){ instance = i; }
+    public static synchronized void setInstance(Global i){
+        instance.setBot(i.getBot());
+        instance.setHumano(i.getHumano());
+        instance.setSom(i.getSom());
+    }
 
     public static synchronized Global getInstance(){
         if(instance == null){
