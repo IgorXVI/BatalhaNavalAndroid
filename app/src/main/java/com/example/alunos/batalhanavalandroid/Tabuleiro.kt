@@ -193,8 +193,9 @@ class Tabuleiro internal constructor() : Serializable {
         var xf = n.posFinal[0]
         var yf = n.posFinal[1]
         var aux: Int
+        val vertical = n.vertical
 
-        if (xi == xf) {
+        if (vertical && x == xi) {
             if (yi > yf) {
                 aux = yf
                 yf = yi
@@ -202,13 +203,16 @@ class Tabuleiro internal constructor() : Serializable {
             }
             return y >= yi && y <= yf
         }
-        else{
+        else if(!vertical && y == yi){
             if (xi > xf) {
                 aux = xf
                 xf = xi
                 xi = aux
             }
             return x >= xi && x <= xf
+        }
+        else{
+            return false
         }
 
     }

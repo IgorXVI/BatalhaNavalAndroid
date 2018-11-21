@@ -34,9 +34,9 @@ class MainActivity : JogoActivity(){
     fun novoJogo(){
         g.humano = Jogador()
         g.bot = Bot(g.humano)
-        g.som = true
+        g.som = false
 
-        val intent =  Intent(this, NaviosHumanoActivity::class.java)
+        val intent =  Intent(this, JogadaBotActivity::class.java)
         startActivity(intent)
         finish()
     }
