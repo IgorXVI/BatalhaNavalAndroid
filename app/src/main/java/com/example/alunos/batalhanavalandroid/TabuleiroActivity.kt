@@ -133,6 +133,18 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
+    fun desTravarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..6){
+                for(j in 0..6){
+                    pos = pegarPos(i, j)
+                    pos.isClickable = true
+                }
+            }
+        }
+    }
+
     fun setImagensErroAcerto(tabuleiro: Tabuleiro){
         var c: Char
 

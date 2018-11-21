@@ -3,6 +3,7 @@
     package="com.example.alunos.batalhanavalandroid">
 
     <application
+        android:name=".Global"
         android:allowBackup="true"
         android:icon="@mipmap/ic_navio"
         android:label="Batalha Naval"
@@ -18,12 +19,8 @@
             android:label="Sobre"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".JogadaHumanoActivity"
+            android:name=".JogadaActivity"
             android:label="Sua Vez"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".JogadaBotActivity"
-            android:label="Vez do Bot"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".NaviosHumanoActivity"

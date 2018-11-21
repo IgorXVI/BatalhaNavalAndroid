@@ -11,7 +11,7 @@ import android.view.MenuItem
 
 abstract class JogoActivity: AppCompatActivity() {
 
-    var g = Global.getInstance()
+    var g = this.application as Global
     var somItem: MenuItem? = null
     var salvarItem: MenuItem? = null
     var menuPrincipalItem: MenuItem? = null
@@ -63,6 +63,15 @@ abstract class JogoActivity: AppCompatActivity() {
         }
     }
 
+    fun desTravarMenu(){
+        runOnUiThread {
+            somItem?.setEnabled(true)
+            salvarItem?.setEnabled(true)
+            menuPrincipalItem?.setEnabled(true)
+            sobreItem?.setEnabled(true)
+        }
+    }
+
     fun menssagemErroLoad(){
 
         runOnUiThread {
@@ -101,11 +110,8 @@ abstract class JogoActivity: AppCompatActivity() {
                     if(g.ultimaActivity == "NaviosHumanoActivity"){
                         intent = Intent(this, NaviosHumanoActivity::class.java)
                     }
-                    else if(g.ultimaActivity == "JogadaBotActivity"){
-                        intent = Intent(this, JogadaBotActivity::class.java)
-                    }
                     else{
-                        intent = Intent(this, JogadaHumanoActivity::class.java)
+                        intent = Intent(this, JogadaActivity::class.java)
                     }
                     startActivity(intent)
                     finish()

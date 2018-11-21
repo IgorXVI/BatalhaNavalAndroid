@@ -17,7 +17,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         setImagensNavios(g.humano.tabuleiro)
 
         btn_comecar.setOnClickListener {
-            val intent = Intent(this, JogadaHumanoActivity::class.java)
+            val intent = Intent(this, JogadaActivity::class.java)
             startActivity(intent)
             finish()
         }
