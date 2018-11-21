@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.batalhanavalandroid"
+        applicationId "com.example.alunos.batalhanavalandroid"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
