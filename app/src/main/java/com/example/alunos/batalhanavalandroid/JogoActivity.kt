@@ -84,39 +84,32 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            val file = "save_batalha_naval.ser"
-            val fis = openFileInput(file)
-            val oi = ObjectInputStream(fis)
-            val save = oi.readObject() as Global
-            oi.close()
-            fis.close()
+            val fileHumano = "save_humano.ser"
+            val fisHumano = openFileInput(fileHumano)
+            val oiHumano = ObjectInputStream(fisHumano)
+            val saveHumano = oiHumano.readObject() as Jogador
+            oiHumano.close()
+            fisHumano.close()
 
-            if(save.humano == null || save.bot == null){
-                menssagemErroLoad()
+            val fileBot = "save_bot.ser"
+            val fisBot = openFileInput(fileBot)
+            val oiBot = ObjectInputStream(fisBot)
+            val saveBot = oiBot.readObject() as Bot
+            oiHumano.close()
+            fisHumano.close()
+
+            g.humano = saveHumano
+            g.bot = saveBot
+
+            val intent: Intent
+            if(g.ultimaActivity == "NaviosHumanoActivity"){
+                intent = Intent(this, NaviosHumanoActivity::class.java)
             }
             else{
-                g.humano = save.humano
-                g.bot = save.bot
-                g.som = save.som
-
-                val vitoriaBot = g.humano.tabuleiro.todosNaviosDestruidos()
-                val vitoriaHumano = g.bot.tabuleiro.todosNaviosDestruidos()
-
-                if(vitoriaBot || vitoriaHumano){
-                    menssagemErroLoad()
-                }
-                else{
-                    val intent: Intent
-                    if(g.ultimaActivity == "NaviosHumanoActivity"){
-                        intent = Intent(this, NaviosHumanoActivity::class.java)
-                    }
-                    else{
-                        intent = Intent(this, JogadaActivity::class.java)
-                    }
-                    startActivity(intent)
-                    finish()
-                }
+                intent = Intent(this, JogadaActivity::class.java)
             }
+            startActivity(intent)
+            finish()
 
         }
         catch (e: Exception) {
@@ -138,12 +131,19 @@ abstract class JogoActivity: AppCompatActivity() {
         g.ultimaActivity = this.localClassName
 
         try {
-            val file = "save_batalha_naval.ser"
-            val fos = openFileOutput(file, Context.MODE_PRIVATE)
-            val os = ObjectOutputStream(fos)
-            os.writeObject(g)
-            os.close()
-            fos.close()
+            val fileHumano = "save_humano.ser"
+            val fosHumano = openFileOutput(fileHumano, Context.MODE_PRIVATE)
+            val osHumano = ObjectOutputStream(fosHumano)
+            osHumano.writeObject(g.humano)
+            osHumano.close()
+            fosHumano.close()
+
+            val fileBot = "save_bot.ser"
+            val fosBot = openFileOutput(fileBot, Context.MODE_PRIVATE)
+            val osBot = ObjectOutputStream(fosBot)
+            osBot.writeObject(g.bot)
+            osBot.close()
+            fosBot.close()
         }
         catch (e: Exception) {
             menssagemErroSave()
