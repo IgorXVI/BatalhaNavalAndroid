@@ -70,6 +70,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
 
         var erro = false
         var peso = 1
+        val incremento = 1000
 
         var xFinal = tamanho - 1
 
@@ -81,7 +82,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                         break
                     }
                     if(this.tabuleiro.posJaAcertada(x, y)){
-                        peso += 3
+                        peso += incremento
                     }
                 }
                 if(!erro){
@@ -107,7 +108,7 @@ class AI(val tabuleiro: Tabuleiro): Serializable {
                         break
                     }
                     if(this.tabuleiro.posJaAcertada(x, y)){
-                        peso += 3
+                        peso += incremento
                     }
                 }
                 if(!erro){
