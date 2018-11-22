@@ -84,25 +84,18 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun loadArquivo(){
         try {
-            val fileHumano = "save_humano.ser"
-            val fisHumano = openFileInput(fileHumano)
-            val oiHumano = ObjectInputStream(fisHumano)
-            val saveHumano = oiHumano.readObject() as Jogador
-            oiHumano.close()
-            fisHumano.close()
+            val file = "save_jogo.ser"
+            val fis = openFileInput(file)
+            val oi = ObjectInputStream(fis)
+            val save = oi.readObject() as Save
+            oi.close()
+            fis.close()
 
-            val fileBot = "save_bot.ser"
-            val fisBot = openFileInput(fileBot)
-            val oiBot = ObjectInputStream(fisBot)
-            val saveBot = oiBot.readObject() as Bot
-            oiHumano.close()
-            fisHumano.close()
-
-            g.humano = saveHumano
-            g.bot = saveBot
+            g.humano = save.humano
+            g.bot = save.bot
 
             val intent: Intent
-            if(g.ultimaActivity == "NaviosHumanoActivity"){
+            if(save.ultima == "NaviosHumanoActivity"){
                 intent = Intent(this, NaviosHumanoActivity::class.java)
             }
             else{
@@ -128,22 +121,16 @@ abstract class JogoActivity: AppCompatActivity() {
     }
 
     fun salvarArquivo(){
-        g.ultimaActivity = this.localClassName
+        val ultima = this.localClassName
+        val save = Save(g.humano, g.bot, ultima)
 
         try {
-            val fileHumano = "save_humano.ser"
-            val fosHumano = openFileOutput(fileHumano, Context.MODE_PRIVATE)
-            val osHumano = ObjectOutputStream(fosHumano)
-            osHumano.writeObject(g.humano)
-            osHumano.close()
-            fosHumano.close()
-
-            val fileBot = "save_bot.ser"
-            val fosBot = openFileOutput(fileBot, Context.MODE_PRIVATE)
-            val osBot = ObjectOutputStream(fosBot)
-            osBot.writeObject(g.bot)
-            osBot.close()
-            fosBot.close()
+            val file = "save_jogo.ser"
+            val fos = openFileOutput(file, Context.MODE_PRIVATE)
+            val os = ObjectOutputStream(fos)
+            os.writeObject(save)
+            os.close()
+            fos.close()
         }
         catch (e: Exception) {
             menssagemErroSave()
