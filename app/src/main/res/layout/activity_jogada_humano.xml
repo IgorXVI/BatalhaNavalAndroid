@@ -727,7 +727,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Acertos: 0"
-            android:textSize="30sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="377dp" />
 
@@ -737,9 +737,20 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Erros: 0"
-            android:textSize="30sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="424dp" />
+
+        <Switch
+            android:id="@+id/switch_bomba"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="center"
+            android:text="Bomba"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="276dp"
+            tools:layout_editor_absoluteY="418dp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.alunos.batalhanavalandroid
 
 import java.io.Serializable
+import java.util.*
 
 class Bot(nome: String, tabuleiro: Tabuleiro, val humano: Jogador) : Jogador(nome, tabuleiro), Serializable {
 
@@ -8,7 +9,11 @@ class Bot(nome: String, tabuleiro: Tabuleiro, val humano: Jogador) : Jogador(nom
 
     fun realizarJogada(): IntArray {
         val arr = this.cerebro.ataque()
-        super.realizarJogada(arr[0], arr[1], this.humano)
+
+        val r = Random()
+        val bomba = r.nextBoolean()
+
+        super.realizarJogada(arr[0], arr[1], this.humano, bomba)
         return arr
     }
 

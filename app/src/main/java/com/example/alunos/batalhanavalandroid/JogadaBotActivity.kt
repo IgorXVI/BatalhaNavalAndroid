@@ -14,16 +14,16 @@ class JogadaBotActivity : JogadaActivity() {
 
         travarMenu()
         travarTudo()
-        setImagensNavios(g!!.humano.tabuleiro)
-        setErroAcerto(g!!.humano.tabuleiro)
+        setImagensNavios(g?.humano!!.tabuleiro)
+        setErroAcerto(g?.humano!!.tabuleiro)
         Timer().schedule(500){
             ataqueBot()
         }
     }
 
     fun ataqueBot() {
-        val arr = g!!.bot.realizarJogada()
-        val ganhou = ataque(arr[0], arr[1], g!!.humano.tabuleiro)
+        val arr = g?.bot!!.realizarJogada()
+        val ganhou = ataque(arr[0], arr[1], g?.humano!!.tabuleiro)
 
         if(ganhou){
             mensagemFim("Você Perdeu!")

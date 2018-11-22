@@ -16,7 +16,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
 
         g = this.application as Global
 
-        setImagensNavios(g!!.humano.tabuleiro)
+        setImagensNavios(g?.humano!!.tabuleiro)
 
         btn_comecar.setOnClickListener {
             val intent = Intent(this, JogadaHumanoActivity::class.java)
@@ -37,7 +37,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         }
         else{
             val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
-            val navio = g!!.humano.tabuleiro.navios[tamanho]!!
+            val navio = g?.humano!!.tabuleiro.navios[tamanho]!!
 
             val posicoesAntes = navio.posicoes
             val verticalAntes = navio.vertical
@@ -49,10 +49,10 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             navio.vertical = vertical
             navio.gerarPosicoes(xi, yi, g!!.linhas-1, g!!.colunas-1)
 
-            if(g!!.humano.tabuleiro.temOverlapNoTabuleiro(tamanho)){
+            if(g?.humano!!.tabuleiro.temOverlapNoTabuleiro(tamanho)){
                 navio.posicoes = posicoesAntes
                 navio.vertical = verticalAntes
-                g!!.humano.tabuleiro.navios[tamanho] = navio
+                g?.humano!!.tabuleiro.navios[tamanho] = navio
 
                 runOnUiThread {
                     val t = Toast.makeText(this,
@@ -61,10 +61,10 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
-                g!!.humano.tabuleiro.navios[tamanho] = navio
-                g!!.humano.tabuleiro.gerarTabuleiroAux()
+                g?.humano!!.tabuleiro.navios[tamanho] = navio
+                g?.humano!!.tabuleiro.gerarTabuleiroAux()
                 setImagensAgua()
-                setImagensNavios(g!!.humano.tabuleiro)
+                setImagensNavios(g?.humano!!.tabuleiro)
             }
         }
     }

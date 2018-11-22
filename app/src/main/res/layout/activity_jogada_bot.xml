@@ -678,7 +678,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Acertos: 0"
-            android:textSize="30sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="377dp" />
 
@@ -688,7 +688,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Erros: 0"
-            android:textSize="30sp"
+            android:textSize="18sp"
             tools:layout_editor_absoluteX="151dp"
             tools:layout_editor_absoluteY="424dp" />
     </LinearLayout>
