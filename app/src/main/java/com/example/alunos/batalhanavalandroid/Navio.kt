@@ -25,8 +25,7 @@ class Navio internal constructor(var tamanho: Int) : Serializable {
             }
             for (i in 0..this.tamanho-1) {
                 this.posicoes[i][1] = yi
-                this.posicoes[i][0] = inicio
-                inicio++
+                this.posicoes[i][0] = inicio + i
             }
 
         } else {
@@ -39,8 +38,7 @@ class Navio internal constructor(var tamanho: Int) : Serializable {
             }
             for (i in 0..this.tamanho-1) {
                 this.posicoes[i][0] = xi
-                this.posicoes[i][1] = inicio
-                inicio++
+                this.posicoes[i][1] = inicio + i
             }
 
         }
@@ -48,9 +46,12 @@ class Navio internal constructor(var tamanho: Int) : Serializable {
     }
 
     fun gerarPosicoesRandomicas(xMax: Int, yMax: Int){
+        val rxMax = xMax + 1
+        val ryMax = yMax + 1
         val r = Random()
-        val xi = r.nextInt(xMax + 1)
-        val yi = r.nextInt(yMax + 1)
+        val xi = r.nextInt(rxMax)
+        val yi = r.nextInt(ryMax)
+
         this.vertical = r.nextBoolean()
         gerarPosicoes(xi, yi, xMax, yMax)
     }

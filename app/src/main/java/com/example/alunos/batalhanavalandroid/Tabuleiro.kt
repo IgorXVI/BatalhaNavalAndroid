@@ -14,6 +14,8 @@ class Tabuleiro internal constructor(val linhas: Int, val colunas: Int, var navi
         this.erros = 0
         this.tabuleiroPublico = Array(this.linhas) { CharArray(this.colunas) }
         this.tabuleiroDoJogador = Array(this.linhas) { CharArray(this.colunas) }
+
+        this.gerarTabuleiro()
     }
 
     fun temOverlapNoTabuleiro(tamanho: Int): Boolean{
@@ -45,10 +47,13 @@ class Tabuleiro internal constructor(val linhas: Int, val colunas: Int, var navi
 
     fun gerarTabuleiro() {
         resetTabuleiro()
+        val xMax = this.linhas - 1
+        val yMax = this.colunas - 1
 
         for((key, value) in this.navios){
+            value.gerarPosicoesRandomicas(xMax, yMax)
             while(temOverlapNoTabuleiro(key)){
-                value.gerarPosicoesRandomicas(this.linhas-1, this.colunas-1)
+                value.gerarPosicoesRandomicas(xMax, yMax)
             }
         }
 

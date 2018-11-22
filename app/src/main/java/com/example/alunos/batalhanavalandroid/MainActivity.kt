@@ -53,8 +53,7 @@ class MainActivity : JogoActivity(){
             mapa[i] = Navio(i)
         }
 
-        val t = Tabuleiro(7, 7, mapa)
-        t.gerarTabuleiro()
+        val t = Tabuleiro(g!!.linhas, g!!.linhas, mapa)
         return t
     }
 
