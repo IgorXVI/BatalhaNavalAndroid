@@ -122,7 +122,7 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun salvarArquivo(){
         val ultima = this.localClassName
-        val save = Save(g!!.humano, g!!.bot, ultima)
+        val save = Save(g?.humano!!, g?.bot!!, ultima)
 
         try {
             val file = "save_jogo.ser"
