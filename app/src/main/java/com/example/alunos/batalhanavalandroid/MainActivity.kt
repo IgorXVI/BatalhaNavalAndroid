@@ -13,6 +13,9 @@ class MainActivity : JogoActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        g = this.application as Global
+
         btn_continuar.setOnClickListener {
             loadArquivo()
         }
@@ -32,12 +35,27 @@ class MainActivity : JogoActivity(){
     }
 
     fun novoJogo(){
-        g.humano = Jogador()
-        g.bot = Bot(g.humano)
+        g?.linhas = 7
+        g?.colunas = 7
+        g?.som = false
+        g?.humano = Jogador("Humano", gerarTabuleiro())
+        g?.bot = Bot("Bot", gerarTabuleiro(), g!!.humano)
 
         val intent =  Intent(this, NaviosHumanoActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun gerarTabuleiro(): Tabuleiro{
+        val mapa = mutableMapOf<Int, Navio>()
+
+        for(i in 2..4){
+            mapa[i] = Navio(i)
+        }
+
+        val t = Tabuleiro(7, 7, mapa)
+        t.gerarTabuleiro()
+        return t
     }
 
 }

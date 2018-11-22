@@ -2,13 +2,9 @@ package com.example.alunos.batalhanavalandroid
 
 import java.io.Serializable
 
-class Bot(private val humano: Jogador) : Jogador(), Serializable {
-    val cerebro: AI
+class Bot(nome: String, tabuleiro: Tabuleiro, val humano: Jogador) : Jogador(nome, tabuleiro), Serializable {
 
-    init {
-        this.nome = "Bot"
-        this.cerebro = AI(humano.tabuleiro)
-    }
+    val cerebro = AI(humano.tabuleiro)
 
     fun realizarJogada(): IntArray {
         val arr = this.cerebro.ataque()

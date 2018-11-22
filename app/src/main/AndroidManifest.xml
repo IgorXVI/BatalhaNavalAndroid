@@ -13,24 +13,29 @@
         <activity
             android:name=".MainActivity"
             android:label="Menu Principal"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SobreActivity"
             android:label="Sobre"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".JogadaActivity"
+            android:name=".JogadaHumanoActivity"
             android:label="Sua Vez"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JogadaBotActivity"
+            android:label="Vez do Bot"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NaviosHumanoActivity"
             android:label="Posicione os Seus Navios"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

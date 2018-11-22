@@ -1,5 +1,6 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -8,12 +9,7 @@ import android.widget.Toast
 import java.util.*
 import kotlin.concurrent.schedule
 
-class JogadaActivity: TabuleiroActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_jogada_humano)
-    }
+abstract class JogadaActivity: TabuleiroActivity() {
 
     var mp: MediaPlayer? = null
 
@@ -32,13 +28,8 @@ class JogadaActivity: TabuleiroActivity() {
     }
 
     fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
-        if(g.som){
-            var acertou = !(x == -1 && y == -1)
-            if(acertou){
-                acertou = tabuleiro.tabuleiroPublico[x][y] == 'X'
-            }
-
-            if(acertou){
+        if(g!!.som){
+            if(tabuleiro.posJaAcertada(x, y)){
                 mp = MediaPlayer.create(this, R.raw.explosao_som)
             }
             else{
@@ -62,84 +53,25 @@ class JogadaActivity: TabuleiroActivity() {
         return tabuleiro.todosNaviosDestruidos()
     }
 
-    fun ataqueHumano(view: View){
-        travarTudo()
-
-        val nome = resources.getResourceEntryName(view.id)
-        val x = nome[4].toInt() - 48
-        val y = nome[6].toInt() - 48
-        g.humano.realizarJogada(x, y, g.bot)
-        val ganhou = ataque(x, y, g.bot.tabuleiro)
-
-        if(ganhou){
-            mensagemFim("Você Ganhou!")
-        }
-        else{
-            mudarVez("Bot")
-        }
-    }
-
-    fun ataqueBot() {
-        val arr = g.bot.realizarJogada()
-        val ganhou = ataque(arr[0], arr[1], g.humano.tabuleiro)
-
-        if(ganhou){
-            desTravarMenu()
-            mensagemFim("Você Perdeu!")
-        }
-        else{
-            mudarVez("Humano")
-        }
-    }
-
-    fun delay(): Long{
-        val delay: Long
-        if(somItem?.isChecked!!){
-            delay = 3100
-        }
-        else{
-            delay = 500
-        }
-        return delay
-    }
-
     fun mudarVez(deQuem: String){
-        Timer().schedule(delay()){
-            if(deQuem == "Humano"){
-                vezHumano()
-            }
-            else{
-                vezBot()
-            }
+        var intent: Intent
+        if(deQuem == "Humano"){
+            intent = Intent(this, JogadaHumanoActivity::class.java)
         }
-    }
+        else{
+            intent = Intent(this, JogadaBotActivity::class.java)
+        }
 
-    fun vezHumano(){
-        setContentView(R.layout.activity_jogada_humano)
-
-        actionBar.title = "Sua Vez"
-        setErroAcerto(g.bot.tabuleiro)
-        desTravarTudo()
-        desTravarMenu()
-    }
-
-    fun vezBot(){
-        setContentView(R.layout.activity_jogada_bot)
-
-       actionBar.title = "Vez do Bot"
-        travarMenu()
-        travarTudo()
-        setImagensNavios(g.humano.tabuleiro)
-        setErroAcerto(g.humano.tabuleiro)
-        Timer().schedule(500){
-            ataqueBot()
+        Timer().schedule(1000){
+            startActivity(intent)
+            finish()
         }
     }
 
     fun mensagemFim(mensagem: String){
-        salvarItem?.setEnabled(false)
-
+        desTravarMenu()
         runOnUiThread{
+            salvarItem?.setEnabled(false)
             var t = Toast.makeText(this, mensagem, Toast.LENGTH_SHORT)
             t.show()
         }

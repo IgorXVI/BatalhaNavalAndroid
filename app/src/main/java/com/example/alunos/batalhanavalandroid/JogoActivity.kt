@@ -11,7 +11,7 @@ import android.view.MenuItem
 
 abstract class JogoActivity: AppCompatActivity() {
 
-    var g = this.application as Global
+    var g: Global? = null
     var somItem: MenuItem? = null
     var salvarItem: MenuItem? = null
     var menuPrincipalItem: MenuItem? = null
@@ -26,7 +26,7 @@ abstract class JogoActivity: AppCompatActivity() {
         menuPrincipalItem = menu?.getItem(2)
         sobreItem = menu?.getItem(3)
 
-        somItem?.isChecked = g.som
+        somItem?.isChecked = g!!.som
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -36,7 +36,7 @@ abstract class JogoActivity: AppCompatActivity() {
             R.id.Som -> {
                 val antigo = somItem?.isChecked!!
                 somItem?.isChecked = !(antigo)
-                g.som = !(antigo)
+                g?.som = !(antigo)
             }
             R.id.Salvar -> {
                 salvarArquivo()
@@ -91,15 +91,15 @@ abstract class JogoActivity: AppCompatActivity() {
             oi.close()
             fis.close()
 
-            g.humano = save.humano
-            g.bot = save.bot
+            g?.humano = save.humano
+            g?.bot = save.bot
 
             val intent: Intent
             if(save.ultima == "NaviosHumanoActivity"){
                 intent = Intent(this, NaviosHumanoActivity::class.java)
             }
             else{
-                intent = Intent(this, JogadaActivity::class.java)
+                intent = Intent(this, JogadaHumanoActivity::class.java)
             }
             startActivity(intent)
             finish()
@@ -122,7 +122,7 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun salvarArquivo(){
         val ultima = this.localClassName
-        val save = Save(g.humano, g.bot, ultima)
+        val save = Save(g!!.humano, g!!.bot, ultima)
 
         try {
             val file = "save_jogo.ser"

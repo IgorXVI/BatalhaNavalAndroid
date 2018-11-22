@@ -2,15 +2,7 @@ package com.example.alunos.batalhanavalandroid
 
 import java.io.Serializable
 
-open class Jogador internal constructor() : Serializable {
-
-    var nome: String
-    val tabuleiro: Tabuleiro
-
-    init {
-        this.nome = "Humano"
-        this.tabuleiro = Tabuleiro()
-    }
+open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
 
     fun realizarJogada(x: Int, y: Int, adversario: Jogador) {
         if (!adversario.tabuleiro.posTemNavio(x, y)) {
@@ -19,4 +11,5 @@ open class Jogador internal constructor() : Serializable {
             adversario.tabuleiro.setAcerto(x, y)
         }
     }
+
 }
