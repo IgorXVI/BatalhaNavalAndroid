@@ -748,6 +748,7 @@
             android:foregroundGravity="center_horizontal"
             android:gravity="center"
             android:text="Bomba"
+            android:textColor="@android:color/holo_green_dark"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="276dp"
             tools:layout_editor_absoluteY="418dp" />

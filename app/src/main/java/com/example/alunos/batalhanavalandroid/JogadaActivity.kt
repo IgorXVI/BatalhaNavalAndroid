@@ -13,12 +13,12 @@ abstract class JogadaActivity: TabuleiroActivity() {
 
     var mp: MediaPlayer? = null
 
-    fun setNumErroAcerto(tabuleiro: Tabuleiro){
+    fun setNumErroAcerto(){
         val lbl_acertos = findViewById<TextView>(R.id.lbl_acertos)
         val lbl_erros = findViewById<TextView>(R.id.lbl_erros)
 
-        val textErros = "Erros: " + tabuleiro.erros.toString()
-        val textAcertos = "Acertos: " + tabuleiro.acertos.toString()
+        val textErros = "Erros: " + tabuleiro!!.erros.toString()
+        val textAcertos = "Acertos: " + tabuleiro!!.acertos.toString()
 
         runOnUiThread {
             lbl_erros.text = textErros
@@ -27,9 +27,9 @@ abstract class JogadaActivity: TabuleiroActivity() {
 
     }
 
-    fun som(x: Int, y: Int, tabuleiro: Tabuleiro){
+    fun som(x: Int, y: Int){
         if(g!!.som){
-            if(tabuleiro.posJaAcertada(x, y)){
+            if(tabuleiro!!.posJaAcertada(x, y)){
                 mp = MediaPlayer.create(this, R.raw.explosao_som)
             }
             else{
@@ -42,15 +42,11 @@ abstract class JogadaActivity: TabuleiroActivity() {
         }
     }
 
-    fun setErroAcerto(tabuleiro: Tabuleiro){
-        setImagensErroAcerto(tabuleiro)
-        setNumErroAcerto(tabuleiro)
-    }
-
-    open fun ataque(x: Int, y: Int, tabuleiro: Tabuleiro): Boolean{
-        som(x,y, tabuleiro)
-        setErroAcerto(tabuleiro)
-        return tabuleiro.todosNaviosDestruidos()
+    open fun ataque(x: Int, y: Int): Boolean{
+        som(x,y)
+        setErrosAcertosTabuleiro()
+        setNumErroAcerto()
+        return tabuleiro!!.todosNaviosDestruidos()
     }
 
     fun mudarVez(deQuem: String){

@@ -4,13 +4,15 @@ import android.widget.ImageButton
 
 abstract class TabuleiroActivity: JogoActivity() {
 
-    fun setImagensNavios(tabuleiro: Tabuleiro){
+    var tabuleiro: Tabuleiro? = null
+
+    fun setImagensNavios(){
         var x: Int
         var y: Int
 
         for(tamanho in 2..4){
-            val arr = tabuleiro.navios[tamanho]!!.posicoes
-            val vertical = !tabuleiro.navios[tamanho]!!.vertical
+            val arr = tabuleiro!!.navios[tamanho]!!.posicoes
+            val vertical = !tabuleiro!!.navios[tamanho]!!.vertical
 
             runOnUiThread {
                 if(tamanho == 2){
@@ -114,6 +116,27 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
+    fun setErroOuAcerto(x: Int, y: Int){
+        val c: Char
+        c = tabuleiro!!.tabuleiroPublico[x][y]
+        if(c == 'X'){
+            setAcerto(x, y)
+        }
+        if(c == '*'){
+            setErro(x, y)
+        }
+    }
+
+    fun setErrosAcertosTabuleiro(){
+
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
+                setErroOuAcerto(i, j)
+            }
+        }
+
+    }
+
     fun setImagemAgua(x: Int, y: Int){
         val pos = pegarPos(x, y)
         runOnUiThread {
@@ -121,28 +144,11 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
-    fun setImagensErroAcerto(tabuleiro: Tabuleiro){
-        var c: Char
-
-        for(i in 0..tabuleiro.linhas-1){
-            for(j in 0..tabuleiro.colunas-1){
-                c = tabuleiro.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
-
-    }
-
     fun travarTudo(){
         var pos: ImageButton
         runOnUiThread{
-            for(i in 0..g!!.linhas-1){
-                for(j in 0..g!!.colunas-1){
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
                     pos = pegarPos(i, j)
                     pos.isClickable = false
                 }
@@ -153,8 +159,8 @@ abstract class TabuleiroActivity: JogoActivity() {
     fun desTravarTudo(){
         var pos: ImageButton
         runOnUiThread{
-            for(i in 0..g!!.linhas-1){
-                for(j in 0..g!!.colunas-1){
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
                     pos = pegarPos(i, j)
                     pos.isClickable = true
                 }
@@ -163,8 +169,8 @@ abstract class TabuleiroActivity: JogoActivity() {
     }
 
     fun setImagensAgua(){
-        for(i in 0..g!!.linhas-1){
-            for(j in 0..g!!.colunas-1){
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
                 setImagemAgua(i, j)
             }
         }

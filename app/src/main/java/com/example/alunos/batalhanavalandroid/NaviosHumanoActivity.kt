@@ -15,8 +15,9 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         setContentView(R.layout.activity_navios_humano)
 
         g = this.application as Global
+        tabuleiro = g!!.humano!!.tabuleiro
 
-        setImagensNavios(g?.humano!!.tabuleiro)
+        setImagensNavios()
 
         btn_comecar.setOnClickListener {
             val intent = Intent(this, JogadaHumanoActivity::class.java)
@@ -37,7 +38,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         }
         else{
             val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
-            val navio = g?.humano!!.tabuleiro.navios[tamanho]!!
+            val navio = tabuleiro!!.navios[tamanho]!!
 
             val posicoesAntes = navio.posicoes
             val verticalAntes = navio.vertical
@@ -47,12 +48,12 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             var yi = nome[6].toInt() - 48
 
             navio.vertical = vertical
-            navio.gerarPosicoes(xi, yi, g!!.linhas-1, g!!.colunas-1)
+            navio.gerarPosicoes(xi, yi, tabuleiro!!.linhas-1, tabuleiro!!.colunas-1)
 
-            if(g?.humano!!.tabuleiro.temOverlapNoTabuleiro(tamanho)){
+            if(tabuleiro!!.temOverlapNoTabuleiro(tamanho)){
                 navio.posicoes = posicoesAntes
                 navio.vertical = verticalAntes
-                g?.humano!!.tabuleiro.navios[tamanho] = navio
+                tabuleiro!!.navios[tamanho] = navio
 
                 runOnUiThread {
                     val t = Toast.makeText(this,
@@ -61,10 +62,10 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
-                g?.humano!!.tabuleiro.navios[tamanho] = navio
-                g?.humano!!.tabuleiro.gerarTabuleiroAux()
+                tabuleiro!!.navios[tamanho] = navio
+                tabuleiro!!.gerarTabuleiroAux()
                 setImagensAgua()
-                setImagensNavios(g?.humano!!.tabuleiro)
+                setImagensNavios()
             }
         }
     }

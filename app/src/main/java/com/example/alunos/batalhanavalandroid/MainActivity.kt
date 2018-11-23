@@ -39,7 +39,7 @@ class MainActivity : JogoActivity(){
         g?.colunas = 7
         g?.som = false
         g?.humano = Jogador("Humano", gerarTabuleiro())
-        g?.bot = Bot("Bot", gerarTabuleiro(), g?.humano!!)
+        g?.bot = Bot("Bot", gerarTabuleiro())
 
         val intent =  Intent(this, NaviosHumanoActivity::class.java)
         startActivity(intent)
