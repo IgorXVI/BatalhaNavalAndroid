@@ -34,21 +34,13 @@ class JogadaHumanoActivity : JogadaActivity() {
         val y = nome[6].toInt() - 48
 
         val bomba = findViewById<Switch>(R.id.switch_bomba).isChecked
-
+        val tabuleiroAntes = tabuleiro!!.tabuleiroPublico.clone()
         humano!!.realizarJogada(x, y, tabuleiro!!, bomba)
-
         if(bomba){
             setBotaoBomba()
         }
 
-        val ganhou = ataque(x, y)
-
-        if(ganhou){
-            mensagemFim("Você Ganhou!")
-        }
-        else{
-            mudarVez("Bot")
-        }
+        fimAtaque(tabuleiroAntes, "Humano")
     }
 
     fun setBotaoBomba(){

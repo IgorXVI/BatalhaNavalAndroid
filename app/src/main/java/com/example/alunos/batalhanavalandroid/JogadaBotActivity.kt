@@ -26,15 +26,9 @@ class JogadaBotActivity : JogadaActivity() {
     }
 
     fun ataqueBot() {
+        val tabuleiroAntes = tabuleiro!!.tabuleiroPublico.clone()
         bot!!.realizarJogada(tabuleiro!!)
 
-        val ganhou = ataque(bot!!.x, bot!!.y)
-
-        if(ganhou){
-            mensagemFim("Você Perdeu!")
-        }
-        else{
-            mudarVez("Humano")
-        }
+        fimAtaque(tabuleiroAntes, "Bot")
     }
 }
