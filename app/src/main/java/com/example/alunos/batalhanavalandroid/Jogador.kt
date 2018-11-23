@@ -4,8 +4,6 @@ import java.io.Serializable
 import android.R.attr.y
 import android.R.attr.x
 
-
-
 open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
 
     var x = -1

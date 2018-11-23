@@ -102,7 +102,7 @@ abstract class TabuleiroActivity: JogoActivity() {
         val pos = pegarPos(x, y)
 
         runOnUiThread {
-            pos.setImageResource(R.mipmap.espuma)
+            pos.setImageResource(R.mipmap.agua_escura)
             pos.isClickable = false
         }
     }

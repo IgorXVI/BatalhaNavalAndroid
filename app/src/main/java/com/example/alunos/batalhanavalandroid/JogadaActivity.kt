@@ -29,16 +29,19 @@ abstract class JogadaActivity: TabuleiroActivity() {
 
     fun som(x: Int, y: Int){
         if(g!!.som){
-            if(tabuleiro!!.posJaAcertada(x, y)){
-                mp = MediaPlayer.create(this, R.raw.explosao_som)
-            }
-            else{
-                mp = MediaPlayer.create(this, R.raw.espuma_som)
-            }
+            mp = MediaPlayer.create(this, R.raw.ataque_som)
             mp?.start()
-            mp?.setOnCompletionListener {
-                mp?.release()
+
+            if(tabuleiro!!.posJaAcertada(x, y)){
+                mp?.setOnCompletionListener {
+                    if(tabuleiro!!.posJaAcertada(x, y)){
+                        mp?.release()
+                        mp = MediaPlayer.create(this, R.raw.explosao_som)
+                        mp?.start()
+                    }
+                }
             }
+
         }
     }
 
@@ -58,10 +61,16 @@ abstract class JogadaActivity: TabuleiroActivity() {
             intent = Intent(this, JogadaBotActivity::class.java)
         }
 
-        Timer().schedule(1000){
-            startActivity(intent)
-            finish()
+        mp?.setOnCompletionListener {
+            mp?.release()
+
+            Timer().schedule(500){
+                startActivity(intent)
+                finish()
+            }
+
         }
+
     }
 
     fun mensagemFim(mensagem: String){
