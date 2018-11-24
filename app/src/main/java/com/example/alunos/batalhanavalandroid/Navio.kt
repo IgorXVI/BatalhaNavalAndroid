@@ -8,10 +8,6 @@ class Navio internal constructor(var tamanho: Int) : Serializable {
     var posicoes = Array(this.tamanho) { IntArray(2) }
     var vertical = false
 
-    init {
-        gerarPosicoesRandomicas(this.tamanho, this.tamanho)
-    }
-
     fun gerarPosicoes(xi: Int, yi: Int, xMax: Int, yMax: Int){
         var inicio: Int
 

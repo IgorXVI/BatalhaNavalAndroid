@@ -1,6 +1,8 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -16,7 +18,6 @@ class JogadaBotActivity : JogadaActivity() {
         tabuleiro = g!!.humano!!.tabuleiro
         bot = g!!.bot!!
 
-        travarMenu()
         setImagensNavios()
         setNumErroAcerto()
         setErrosAcertosTabuleiro()
@@ -25,10 +26,14 @@ class JogadaBotActivity : JogadaActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
+    }
+
     fun ataqueBot() {
-        val tabuleiroAntes = tabuleiro!!.tabuleiroPublico.clone()
         bot!!.realizarJogada(tabuleiro!!)
 
-        fimAtaque(tabuleiroAntes, "Bot")
+        val intent = Intent(this, JogadaHumanoActivity::class.java)
+        fim(intent, "Você Perdeu!")
     }
 }

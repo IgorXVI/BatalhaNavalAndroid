@@ -1,12 +1,10 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Switch
-import kotlinx.android.synthetic.main.activity_jogada_humano.*
 
 class JogadaHumanoActivity : JogadaActivity() {
 
@@ -34,13 +32,13 @@ class JogadaHumanoActivity : JogadaActivity() {
         val y = nome[6].toInt() - 48
 
         val bomba = findViewById<Switch>(R.id.switch_bomba).isChecked
-        val tabuleiroAntes = tabuleiro!!.tabuleiroPublico.clone()
         humano!!.realizarJogada(x, y, tabuleiro!!, bomba)
         if(bomba){
             setBotaoBomba()
         }
 
-        fimAtaque(tabuleiroAntes, "Humano")
+        val intent = Intent(this, JogadaBotActivity::class.java)
+        fim(intent, "Você Ganhou!")
     }
 
     fun setBotaoBomba(){

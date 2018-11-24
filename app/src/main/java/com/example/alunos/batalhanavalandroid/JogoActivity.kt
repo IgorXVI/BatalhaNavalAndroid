@@ -56,19 +56,10 @@ abstract class JogoActivity: AppCompatActivity() {
 
     fun travarMenu(){
         runOnUiThread {
-            somItem?.setEnabled(false)
-            salvarItem?.setEnabled(false)
-            menuPrincipalItem?.setEnabled(false)
-            sobreItem?.setEnabled(false)
-        }
-    }
-
-    fun desTravarMenu(){
-        runOnUiThread {
-            somItem?.setEnabled(true)
-            salvarItem?.setEnabled(true)
-            menuPrincipalItem?.setEnabled(true)
-            sobreItem?.setEnabled(true)
+            somItem?.isEnabled = false
+            salvarItem?.isEnabled = false
+            menuPrincipalItem?.isEnabled = false
+            sobreItem?.isEnabled = false
         }
     }
 
