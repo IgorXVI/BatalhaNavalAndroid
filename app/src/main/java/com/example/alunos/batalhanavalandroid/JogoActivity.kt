@@ -12,56 +12,6 @@ import android.view.MenuItem
 abstract class JogoActivity: AppCompatActivity() {
 
     var g: Global? = null
-    var somItem: MenuItem? = null
-    var salvarItem: MenuItem? = null
-    var menuPrincipalItem: MenuItem? = null
-    var sobreItem: MenuItem? = null
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-
-        somItem = menu?.getItem(0)
-        salvarItem = menu?.getItem(1)
-        menuPrincipalItem = menu?.getItem(2)
-        sobreItem = menu?.getItem(3)
-
-        somItem?.isChecked = g!!.som
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.Som -> {
-                val antigo = somItem?.isChecked!!
-                somItem?.isChecked = !(antigo)
-                g?.som = !(antigo)
-            }
-            R.id.Salvar -> {
-                salvarArquivo()
-            }
-            R.id.MenuPrincipal -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            R.id.Sobre -> {
-                val intent = Intent(this, SobreActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun travarMenu(){
-        runOnUiThread {
-            somItem?.isEnabled = false
-            salvarItem?.isEnabled = false
-            menuPrincipalItem?.isEnabled = false
-            sobreItem?.isEnabled = false
-        }
-    }
 
     fun menssagemErroLoad(){
 

@@ -148,6 +148,7 @@ class Bot(nome: String, tabuleiro: Tabuleiro) : Jogador(nome, tabuleiro), Serial
     }
 
     fun realizarJogada(tabuleiroAdversario: Tabuleiro){
+        this.acertou = false
         this.tabuleiroAdversario = tabuleiroAdversario
 
         val arr = this.ataque()

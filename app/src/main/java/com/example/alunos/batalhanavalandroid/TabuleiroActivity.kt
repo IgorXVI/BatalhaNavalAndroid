@@ -1,10 +1,75 @@
 package com.example.alunos.batalhanavalandroid
 
+import android.content.Intent
+import android.media.AudioAttributes
+import android.media.AudioManager
+import android.media.SoundPool
+import android.os.Build
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageButton
 
 abstract class TabuleiroActivity: JogoActivity() {
 
     var tabuleiro: Tabuleiro? = null
+    var soundPool: SoundPool? = null
+    var somItem: MenuItem? = null
+    var salvarItem: MenuItem? = null
+    var menuPrincipalItem: MenuItem? = null
+    var sobreItem: MenuItem? = null
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+
+        somItem = menu?.getItem(0)
+        salvarItem = menu?.getItem(1)
+        menuPrincipalItem = menu?.getItem(2)
+        sobreItem = menu?.getItem(3)
+
+        somItem?.isChecked = g!!.som
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.Som -> {
+                val antigo = somItem?.isChecked!!
+                somItem?.isChecked = !(antigo)
+                g?.som = !(antigo)
+            }
+            R.id.Salvar -> {
+                salvarArquivo()
+            }
+            R.id.MenuPrincipal -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.Sobre -> {
+                val intent = Intent(this, SobreActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun travarMenu(){
+        runOnUiThread {
+            somItem?.isEnabled = false
+            salvarItem?.isEnabled = false
+            menuPrincipalItem?.isEnabled = false
+            sobreItem?.isEnabled = false
+        }
+    }
+
+    fun pegarPos(x: Int, y:Int): ImageButton {
+        var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
+                "id", this.packageName)
+        var btn: ImageButton = findViewById(id)
+        return btn
+    }
 
     fun setImagensNavios(){
         var x: Int
@@ -91,11 +156,11 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
-    fun pegarPos(x: Int, y:Int): ImageButton {
-        var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
-                "id", this.packageName)
-        var btn: ImageButton = findViewById(id)
-        return btn
+    fun setNavioInvisivel(tamanho: Int){
+        val posicoes = tabuleiro!!.navios[tamanho]!!.posicoes
+        for(i in 0..tamanho-1){
+            setImagemAgua(posicoes[i][0], posicoes[i][1])
+        }
     }
 
     fun setErro(x: Int, y: Int){
@@ -116,34 +181,6 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
-    fun setErroOuAcerto(x: Int, y: Int){
-        val c: Char
-        c = tabuleiro!!.tabuleiroPublico[x][y]
-        if(c == 'X'){
-            setAcerto(x, y)
-        }
-        if(c == '*'){
-            setErro(x, y)
-        }
-    }
-
-    fun setErrosAcertosTabuleiro(){
-
-        for(i in 0..tabuleiro!!.linhas-1){
-            for(j in 0..tabuleiro!!.colunas-1){
-                setErroOuAcerto(i, j)
-            }
-        }
-
-    }
-
-    fun setImagemAgua(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua)
-        }
-    }
-
     fun travarTudo(){
         var pos: ImageButton
         runOnUiThread{
@@ -156,23 +193,86 @@ abstract class TabuleiroActivity: JogoActivity() {
         }
     }
 
-    fun desTravarTudo(){
-        var pos: ImageButton
-        runOnUiThread{
-            for(i in 0..tabuleiro!!.linhas-1){
-                for(j in 0..tabuleiro!!.colunas-1){
-                    pos = pegarPos(i, j)
-                    pos.isClickable = true
+    fun setImagemAgua(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.agua)
+        }
+    }
+
+    fun setErrosAcertosTabuleiro(){
+        var c: Char
+
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
+                c = tabuleiro!!.tabuleiroPublico[i][j]
+                if(c == 'X'){
+                    setAcerto(i, j)
                 }
+                if(c == '*'){
+                    setErro(i, j)
+                }
+            }
+        }
+
+    }
+
+    fun setErrosAcertosTabuleiro(posicoes: MutableList<IntArray>){
+        for(pos in posicoes){
+            if(tabuleiro!!.posJaAcertada(pos[0], pos[1])){
+                setAcerto(pos[0], pos[1])
+            }
+            if(tabuleiro!!.posJaErrada(pos[0], pos[1])){
+                setErro(pos[0], pos[1])
             }
         }
     }
 
-    fun setImagensAgua(){
-        for(i in 0..tabuleiro!!.linhas-1){
-            for(j in 0..tabuleiro!!.colunas-1){
-                setImagemAgua(i, j)
+    fun criarSom(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            val audioAtributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+            soundPool = SoundPool.Builder()
+                    .setMaxStreams(1)
+                    .setAudioAttributes(audioAtributes)
+                    .build()
+        }
+        else{
+            soundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
+        }
+    }
+
+    fun somTorpedo(tocar: Boolean): Long{
+        if(g!!.som){
+            if(soundPool == null){
+                criarSom()
             }
+            val torpedo = soundPool!!.load(this, R.raw.ataque_som, 1)
+            soundPool?.play(torpedo, 1F, 1F, 0, 0, 1F)
+            return 5000
+        }
+        return 0
+    }
+
+    fun somExplosao(tocar: Boolean): Long{
+        if(tocar && g!!.som){
+            if(soundPool == null){
+                criarSom()
+            }
+            val explosao = soundPool!!.load(this, R.raw.explosao_som, 1)
+            soundPool?.play(explosao, 1F, 1F, 0, 0, 1F)
+            return 3000
+        }
+        return 0
+    }
+
+    override fun onDestroy() {
+        if(soundPool != null){
+            super.onDestroy()
+            soundPool?.release()
+            soundPool = null
         }
     }
 

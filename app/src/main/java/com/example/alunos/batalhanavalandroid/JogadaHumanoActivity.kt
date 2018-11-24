@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Switch
+import java.util.*
+import kotlin.concurrent.schedule
 
 class JogadaHumanoActivity : JogadaActivity() {
 
@@ -18,9 +20,9 @@ class JogadaHumanoActivity : JogadaActivity() {
         tabuleiro = g!!.bot!!.tabuleiro
         humano = g!!.humano!!
 
-        setBotaoBomba()
+        setImagensNavios()
         setNumErroAcerto()
-        setErrosAcertosTabuleiro()
+        setBotaoBomba()
     }
 
     fun ataqueHumano(view: View){
@@ -38,7 +40,22 @@ class JogadaHumanoActivity : JogadaActivity() {
         }
 
         val intent = Intent(this, JogadaBotActivity::class.java)
-        fim(intent, "Você Ganhou!")
+
+        Timer().schedule(somTorpedo(true)){
+            setNumErroAcerto()
+            setErrosAcertosTabuleiro(humano!!.tiros!!)
+
+            Timer().schedule(somTorpedo(humano!!.acertou)){
+                val ganhou = tabuleiro!!.todosNaviosDestruidos()
+                if(!ganhou){
+                    mudarVez(intent)
+                }
+                else{
+                    fim("Você Ganhou!")
+                }
+            }
+
+        }
     }
 
     fun setBotaoBomba(){

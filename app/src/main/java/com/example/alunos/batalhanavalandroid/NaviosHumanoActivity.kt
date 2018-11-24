@@ -62,9 +62,9 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
+                setNavioInvisivel(tamanho)
                 tabuleiro!!.navios[tamanho] = navio
                 tabuleiro!!.gerarTabuleiroAux()
-                setImagensAgua()
                 setImagensNavios()
             }
         }
@@ -91,4 +91,5 @@ class NaviosHumanoActivity : TabuleiroActivity() {
 
         return tamanho
     }
+
 }

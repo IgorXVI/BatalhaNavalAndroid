@@ -9,9 +9,13 @@ open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
     var x = -1
     var y = -1
     var temBomba = true
-    protected var tabuleiroAdversario: Tabuleiro? = null
+    var acertou = false
+    var tiros: MutableList<IntArray>? = null
+    var tabuleiroAdversario: Tabuleiro? = null
+
 
     fun realizarJogada(x: Int, y: Int, tabuleiroAdversario: Tabuleiro, bomba: Boolean) {
+        this.acertou = false
         this.x = x
         this.y = y
         this.tabuleiroAdversario = tabuleiroAdversario
@@ -20,14 +24,19 @@ open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
         if(bomba){
             usarBomba()
         }
-
     }
 
     protected fun atirar() {
+        val arr = IntArray(2)
+        arr[0] = this.x
+        arr[1] = this.y
+        this.tiros?.add(arr)
+
         if (!this.tabuleiroAdversario!!.posTemNavio(x, y)) {
-           this.tabuleiroAdversario!!.setErro(x, y)
+            this.tabuleiroAdversario!!.setErro(x, y)
         } else {
             this.tabuleiroAdversario!!.setAcerto(x, y)
+            this.acertou = true
         }
     }
 

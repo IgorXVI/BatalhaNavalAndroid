@@ -21,6 +21,7 @@ class JogadaBotActivity : JogadaActivity() {
         setImagensNavios()
         setNumErroAcerto()
         setErrosAcertosTabuleiro()
+
         Timer().schedule(500){
             ataqueBot()
         }
@@ -34,6 +35,21 @@ class JogadaBotActivity : JogadaActivity() {
         bot!!.realizarJogada(tabuleiro!!)
 
         val intent = Intent(this, JogadaHumanoActivity::class.java)
-        fim(intent, "Você Perdeu!")
+
+        Timer().schedule(somTorpedo(true)){
+            setNumErroAcerto()
+            setErrosAcertosTabuleiro(bot!!.tiros!!)
+
+            Timer().schedule(somTorpedo(bot!!.acertou)){
+                val ganhou = tabuleiro!!.todosNaviosDestruidos()
+                if(!ganhou){
+                    mudarVez(intent)
+                }
+                else{
+                    fim("Você Perdeu!")
+                }
+            }
+
+        }
     }
 }
