@@ -45,6 +45,18 @@ abstract class JogadaActivity: TabuleiroActivity() {
         }
     }
 
+    fun desTravarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
+                    pos = pegarPos(i, j)
+                    pos.isClickable = true
+                }
+            }
+        }
+    }
+
     fun setErrosAcertosTabuleiro(){
         var c: Char
 
@@ -60,17 +72,6 @@ abstract class JogadaActivity: TabuleiroActivity() {
             }
         }
 
-    }
-
-    fun setErrosAcertosTabuleiro(posicoes: MutableList<IntArray>){
-        for(pos in posicoes){
-            if(tabuleiro!!.posJaAcertada(pos[0], pos[1])){
-                setAcerto(pos[0], pos[1])
-            }
-            if(tabuleiro!!.posJaErrada(pos[0], pos[1])){
-                setErro(pos[0], pos[1])
-            }
-        }
     }
 
     fun setNumErroAcerto(){
@@ -137,11 +138,11 @@ abstract class JogadaActivity: TabuleiroActivity() {
 
     fun fimAtaque(){
         val ganhou = tabuleiro!!.todosNaviosDestruidos()
-        if(!ganhou){
-            mudarVez()
-        }
-        else{
+        if(ganhou){
             mensagemFim()
+        }
+        else if(!jogador!!.acertou){
+            mudarVez()
         }
     }
 

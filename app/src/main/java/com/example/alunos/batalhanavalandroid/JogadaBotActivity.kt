@@ -33,6 +33,13 @@ class JogadaBotActivity : JogadaActivity() {
 
     fun ataqueBot() {
         g?.bot?.realizarJogada(tabuleiro!!)
+
         ataque()
+
+        if(!tabuleiro!!.todosNaviosDestruidos() && g!!.bot!!.acertou){
+            Timer().schedule(500){
+                ataqueBot()
+            }
+        }
     }
 }

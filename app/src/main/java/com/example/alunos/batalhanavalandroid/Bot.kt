@@ -140,7 +140,7 @@ class Bot(nome: String, tabuleiro: Tabuleiro) : Jogador(nome, tabuleiro), Serial
 
         for(i in 0..linhas-1){
 
-            for(j in 0..this.tabuleiro.colunas-1){
+            for(j in 0..colunas-1){
                 this.tabuleiroProb!![i][j] = 0
             }
 

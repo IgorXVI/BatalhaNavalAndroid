@@ -10,7 +10,6 @@ open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
     var y = -1
     var temBomba = true
     var acertou = false
-    var tiros: MutableList<IntArray>? = null
     var tabuleiroAdversario: Tabuleiro? = null
 
 
@@ -27,11 +26,6 @@ open class Jogador(val nome: String, val tabuleiro: Tabuleiro) : Serializable {
     }
 
     protected fun atirar() {
-        val arr = IntArray(2)
-        arr[0] = this.x
-        arr[1] = this.y
-        this.tiros?.add(arr)
-
         if (!this.tabuleiroAdversario!!.posTemNavio(x, y)) {
             this.tabuleiroAdversario!!.setErro(x, y)
         } else {

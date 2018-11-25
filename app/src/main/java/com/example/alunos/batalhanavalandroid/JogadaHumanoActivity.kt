@@ -37,6 +37,10 @@ class JogadaHumanoActivity : JogadaActivity() {
         }
 
         ataque()
+
+        if(g!!.humano!!.acertou){
+            desTravarTudo()
+        }
     }
 
     fun setBotaoBomba(){

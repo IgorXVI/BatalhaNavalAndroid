@@ -61,7 +61,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
-                setAguaTabuleiro()
+                setAguaTabuleiro(tamanho)
                 tabuleiro!!.gerarTabuleiroAux()
                 setImagensNavios()
             }
@@ -75,10 +75,12 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         }
     }
 
-    fun setAguaTabuleiro(){
+    fun setAguaTabuleiro(tamanho: Int){
+        val c = ('a'.toInt() + tamanho).toChar()
+
         for(i in 0..tabuleiro!!.linhas-1){
             for(j in 0..tabuleiro!!.colunas-1){
-                if(tabuleiro!!.tabuleiroDoJogador[i][j] != '~'){
+                if(tabuleiro!!.tabuleiroDoJogador[i][j] == c){
                     setImagemAgua(i, j)
                 }
             }
