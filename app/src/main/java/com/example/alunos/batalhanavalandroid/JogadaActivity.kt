@@ -50,8 +50,10 @@ abstract class JogadaActivity: TabuleiroActivity() {
         runOnUiThread{
             for(i in 0..tabuleiro!!.linhas-1){
                 for(j in 0..tabuleiro!!.colunas-1){
-                    pos = pegarPos(i, j)
-                    pos.isClickable = true
+                    if(!tabuleiro!!.posJaAtacada(i, j)){
+                        pos = pegarPos(i, j)
+                        pos.isClickable = true
+                    }
                 }
             }
         }
