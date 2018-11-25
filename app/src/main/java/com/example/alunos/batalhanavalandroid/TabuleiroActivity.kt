@@ -155,4 +155,30 @@ abstract class TabuleiroActivity: JogoActivity() {
 
     }
 
+    fun travarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
+                    pos = pegarPos(i, j)
+                    pos.isClickable = false
+                }
+            }
+        }
+    }
+
+    fun desTravarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
+                    if(!tabuleiro!!.posJaAtacada(i, j)){
+                        pos = pegarPos(i, j)
+                        pos.isClickable = true
+                    }
+                }
+            }
+        }
+    }
+
 }
