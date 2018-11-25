@@ -63,7 +63,7 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             else{
                 setAguaTabuleiro(tamanho)
                 tabuleiro!!.gerarTabuleiroAux()
-                setImagensNavios()
+                setImagemNavio(tamanho)
             }
         }
     }

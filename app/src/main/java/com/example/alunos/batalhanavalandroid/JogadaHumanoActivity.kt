@@ -38,8 +38,9 @@ class JogadaHumanoActivity : JogadaActivity() {
 
         ataque()
 
-        if(g!!.humano!!.acertou){
+        if(!tabuleiro!!.todosNaviosDestruidos() && g!!.humano!!.acertou){
             desTravarTudo()
+            desTravarMenu()
         }
     }
 
