@@ -161,4 +161,9 @@ abstract class JogoActivity: AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        limparMp()
+    }
+
 }

@@ -75,9 +75,4 @@ abstract class JogadaActivity: TabuleiroActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        limparMp()
-    }
-
 }
