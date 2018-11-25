@@ -40,12 +40,12 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             val vertical = !findViewById<ToggleButton>(R.id.btn_alinhamento).isChecked
             val navio = tabuleiro!!.navios[tamanho]!!
 
-            val posicoesAntes = navio.posicoes
             val verticalAntes = navio.vertical
+            val posicoesAntes = navio.posicoes
 
-            var nome = resources.getResourceEntryName(view.id)
-            var xi = nome[4].toInt() - 48
-            var yi = nome[6].toInt() - 48
+            val nome = resources.getResourceEntryName(view.id)
+            val xi = nome[4].toInt() - 48
+            val yi = nome[6].toInt() - 48
 
             navio.vertical = vertical
             navio.gerarPosicoes(xi, yi, tabuleiro!!.linhas-1, tabuleiro!!.colunas-1)
@@ -53,7 +53,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
             if(tabuleiro!!.temOverlapNoTabuleiro(tamanho)){
                 navio.posicoes = posicoesAntes
                 navio.vertical = verticalAntes
-                tabuleiro!!.navios[tamanho] = navio
 
                 runOnUiThread {
                     val t = Toast.makeText(this,
@@ -62,10 +61,26 @@ class NaviosHumanoActivity : TabuleiroActivity() {
                 }
             }
             else{
-                setNavioInvisivel(tamanho)
-                tabuleiro!!.navios[tamanho] = navio
+                setAguaTabuleiro()
                 tabuleiro!!.gerarTabuleiroAux()
                 setImagensNavios()
+            }
+        }
+    }
+
+    fun setImagemAgua(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.agua)
+        }
+    }
+
+    fun setAguaTabuleiro(){
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
+                if(tabuleiro!!.tabuleiroDoJogador[i][j] != '~'){
+                    setImagemAgua(i, j)
+                }
             }
         }
     }

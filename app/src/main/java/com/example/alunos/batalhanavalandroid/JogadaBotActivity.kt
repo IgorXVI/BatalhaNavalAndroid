@@ -8,15 +8,15 @@ import kotlin.concurrent.schedule
 
 class JogadaBotActivity : JogadaActivity() {
 
-    var bot: Bot? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogada_bot)
 
         g = this.application as Global
         tabuleiro = g!!.humano!!.tabuleiro
-        bot = g!!.bot!!
+        jogador = g!!.bot
+        proximaVez = Intent(this, JogadaHumanoActivity::class.java)
+        mensagemFim = "Você Perdeu!"
 
         setImagensNavios()
         setNumErroAcerto()
@@ -32,24 +32,7 @@ class JogadaBotActivity : JogadaActivity() {
     }
 
     fun ataqueBot() {
-        bot!!.realizarJogada(tabuleiro!!)
-
-        val intent = Intent(this, JogadaHumanoActivity::class.java)
-
-        Timer().schedule(somTorpedo(true)){
-            setNumErroAcerto()
-            setErrosAcertosTabuleiro(bot!!.tiros!!)
-
-            Timer().schedule(somTorpedo(bot!!.acertou)){
-                val ganhou = tabuleiro!!.todosNaviosDestruidos()
-                if(!ganhou){
-                    mudarVez(intent)
-                }
-                else{
-                    fim("Você Perdeu!")
-                }
-            }
-
-        }
+        g?.bot?.realizarJogada(tabuleiro!!)
+        ataque()
     }
 }

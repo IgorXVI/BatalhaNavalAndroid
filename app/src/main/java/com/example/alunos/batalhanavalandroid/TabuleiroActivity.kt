@@ -12,7 +12,6 @@ import android.widget.ImageButton
 abstract class TabuleiroActivity: JogoActivity() {
 
     var tabuleiro: Tabuleiro? = null
-    var soundPool: SoundPool? = null
     var somItem: MenuItem? = null
     var salvarItem: MenuItem? = null
     var menuPrincipalItem: MenuItem? = null
@@ -153,126 +152,6 @@ abstract class TabuleiroActivity: JogoActivity() {
                     }
                 }
             }
-        }
-    }
-
-    fun setNavioInvisivel(tamanho: Int){
-        val posicoes = tabuleiro!!.navios[tamanho]!!.posicoes
-        for(i in 0..tamanho-1){
-            setImagemAgua(posicoes[i][0], posicoes[i][1])
-        }
-    }
-
-    fun setErro(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua_escura)
-            pos.isClickable = false
-        }
-    }
-
-    fun setAcerto(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.explosao)
-            pos.isClickable = false
-        }
-    }
-
-    fun travarTudo(){
-        var pos: ImageButton
-        runOnUiThread{
-            for(i in 0..tabuleiro!!.linhas-1){
-                for(j in 0..tabuleiro!!.colunas-1){
-                    pos = pegarPos(i, j)
-                    pos.isClickable = false
-                }
-            }
-        }
-    }
-
-    fun setImagemAgua(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua)
-        }
-    }
-
-    fun setErrosAcertosTabuleiro(){
-        var c: Char
-
-        for(i in 0..tabuleiro!!.linhas-1){
-            for(j in 0..tabuleiro!!.colunas-1){
-                c = tabuleiro!!.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
-
-    }
-
-    fun setErrosAcertosTabuleiro(posicoes: MutableList<IntArray>){
-        for(pos in posicoes){
-            if(tabuleiro!!.posJaAcertada(pos[0], pos[1])){
-                setAcerto(pos[0], pos[1])
-            }
-            if(tabuleiro!!.posJaErrada(pos[0], pos[1])){
-                setErro(pos[0], pos[1])
-            }
-        }
-    }
-
-    fun criarSom(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            val audioAtributes = AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build()
-            soundPool = SoundPool.Builder()
-                    .setMaxStreams(1)
-                    .setAudioAttributes(audioAtributes)
-                    .build()
-        }
-        else{
-            soundPool = SoundPool(1, AudioManager.STREAM_MUSIC, 0)
-        }
-    }
-
-    fun somTorpedo(tocar: Boolean): Long{
-        if(g!!.som){
-            if(soundPool == null){
-                criarSom()
-            }
-            val torpedo = soundPool!!.load(this, R.raw.ataque_som, 1)
-            soundPool?.play(torpedo, 1F, 1F, 0, 0, 1F)
-            return 5000
-        }
-        return 0
-    }
-
-    fun somExplosao(tocar: Boolean): Long{
-        if(tocar && g!!.som){
-            if(soundPool == null){
-                criarSom()
-            }
-            val explosao = soundPool!!.load(this, R.raw.explosao_som, 1)
-            soundPool?.play(explosao, 1F, 1F, 0, 0, 1F)
-            return 3000
-        }
-        return 0
-    }
-
-    override fun onDestroy() {
-        if(soundPool != null){
-            super.onDestroy()
-            soundPool?.release()
-            soundPool = null
         }
     }
 
