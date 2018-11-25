@@ -68,25 +68,6 @@ class NaviosHumanoActivity : TabuleiroActivity() {
         }
     }
 
-    fun setImagemAgua(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua)
-        }
-    }
-
-    fun setAguaTabuleiro(tamanho: Int){
-        val c = ('a'.toInt() + tamanho).toChar()
-
-        for(i in 0..tabuleiro!!.linhas-1){
-            for(j in 0..tabuleiro!!.colunas-1){
-                if(tabuleiro!!.tabuleiroDoJogador[i][j] == c){
-                    setImagemAgua(i, j)
-                }
-            }
-        }
-    }
-
     fun navioSelecionado(): Int{
         val cruzador = findViewById<RadioButton>(R.id.radioBtn_cruzador).isChecked
         val encouracado = findViewById<RadioButton>(R.id.radioBtn_encouracado).isChecked

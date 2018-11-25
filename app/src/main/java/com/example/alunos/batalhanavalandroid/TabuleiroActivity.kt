@@ -1,76 +1,10 @@
 package com.example.alunos.batalhanavalandroid
 
-import android.content.Intent
-import android.media.AudioAttributes
-import android.media.AudioManager
-import android.media.SoundPool
-import android.os.Build
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageButton
 
 abstract class TabuleiroActivity: JogoActivity() {
 
     var tabuleiro: Tabuleiro? = null
-    var somItem: MenuItem? = null
-    var salvarItem: MenuItem? = null
-    var menuPrincipalItem: MenuItem? = null
-    var sobreItem: MenuItem? = null
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-
-        somItem = menu?.getItem(0)
-        salvarItem = menu?.getItem(1)
-        menuPrincipalItem = menu?.getItem(2)
-        sobreItem = menu?.getItem(3)
-
-        somItem?.isChecked = g!!.som
-
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.Som -> {
-                val antigo = somItem?.isChecked!!
-                somItem?.isChecked = !(antigo)
-                g?.som = !(antigo)
-            }
-            R.id.Salvar -> {
-                salvarArquivo()
-            }
-            R.id.MenuPrincipal -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-            R.id.Sobre -> {
-                val intent = Intent(this, SobreActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun travarMenu(){
-        runOnUiThread {
-            somItem?.isEnabled = false
-            salvarItem?.isEnabled = false
-            menuPrincipalItem?.isEnabled = false
-            sobreItem?.isEnabled = false
-        }
-    }
-
-    fun desTravarMenu(){
-        runOnUiThread {
-            somItem?.isEnabled = true
-            salvarItem?.isEnabled = true
-            menuPrincipalItem?.isEnabled = true
-            sobreItem?.isEnabled = true
-        }
-    }
 
     fun pegarPos(x: Int, y:Int): ImageButton {
         var id = resources.getIdentifier("pos_"+x.toString()+"_"+y.toString(),
@@ -165,6 +99,60 @@ abstract class TabuleiroActivity: JogoActivity() {
                 }
             }
         }
+    }
+
+    fun setImagemAgua(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.agua)
+        }
+    }
+
+    fun setAguaTabuleiro(tamanho: Int){
+        val c = ('a'.toInt() + tamanho).toChar()
+
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
+                if(tabuleiro!!.tabuleiroDoJogador[i][j] == c){
+                    setImagemAgua(i, j)
+                }
+            }
+        }
+    }
+
+    fun setErro(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.agua_escura)
+            pos.isClickable = false
+        }
+    }
+
+    fun setAcerto(x: Int, y: Int){
+        val pos = pegarPos(x, y)
+
+        runOnUiThread {
+            pos.setImageResource(R.mipmap.explosao)
+            pos.isClickable = false
+        }
+    }
+
+    fun setErrosAcertosTabuleiro(){
+        var c: Char
+
+        for(i in 0..tabuleiro!!.linhas-1){
+            for(j in 0..tabuleiro!!.colunas-1){
+                c = tabuleiro!!.tabuleiroPublico[i][j]
+                if(c == 'X'){
+                    setAcerto(i, j)
+                }
+                if(c == '*'){
+                    setErro(i, j)
+                }
+            }
+        }
+
     }
 
 }

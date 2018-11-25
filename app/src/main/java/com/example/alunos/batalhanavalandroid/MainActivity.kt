@@ -30,6 +30,10 @@ class MainActivity : JogoActivity(){
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
+    }
+
     fun novoJogo(){
         g?.linhas = 7
         g?.colunas = 7

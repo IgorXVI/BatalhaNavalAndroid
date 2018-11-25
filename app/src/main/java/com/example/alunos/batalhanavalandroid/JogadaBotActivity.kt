@@ -24,10 +24,6 @@ class JogadaBotActivity : JogadaActivity() {
         ataqueBot()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        return false
-    }
-
     fun ataqueBot() {
         Timer().schedule(500){
             g?.bot?.realizarJogada(tabuleiro!!)

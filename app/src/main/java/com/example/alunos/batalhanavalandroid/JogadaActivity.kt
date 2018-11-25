@@ -13,42 +13,6 @@ abstract class JogadaActivity: TabuleiroActivity() {
     var jogador: Jogador? = null
     var mensagemFim: String? = null
     var proximaVez: Intent? = null
-    var mp: MediaPlayer? = null
-
-    fun setErro(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.agua_escura)
-            pos.isClickable = false
-        }
-    }
-
-    fun setAcerto(x: Int, y: Int){
-        val pos = pegarPos(x, y)
-
-        runOnUiThread {
-            pos.setImageResource(R.mipmap.explosao)
-            pos.isClickable = false
-        }
-    }
-
-    fun setErrosAcertosTabuleiro(){
-        var c: Char
-
-        for(i in 0..tabuleiro!!.linhas-1){
-            for(j in 0..tabuleiro!!.colunas-1){
-                c = tabuleiro!!.tabuleiroPublico[i][j]
-                if(c == 'X'){
-                    setAcerto(i, j)
-                }
-                if(c == '*'){
-                    setErro(i, j)
-                }
-            }
-        }
-
-    }
 
     fun setNumErroAcerto(){
         val lbl_acertos = findViewById<TextView>(R.id.lbl_acertos)
@@ -62,28 +26,6 @@ abstract class JogadaActivity: TabuleiroActivity() {
             lbl_acertos.text = textAcertos
         }
 
-    }
-
-    fun somTorpedo(volume: Float){
-        limparMp()
-        mp = MediaPlayer.create(this, R.raw.ataque_som)
-        mp?.setVolume(volume, volume)
-        mp?.start()
-    }
-
-    fun somAcerto(volume: Float){
-        limparMp()
-        mp = MediaPlayer.create(this, R.raw.explosao_som)
-        mp?.setVolume(volume, volume)
-        mp?.start()
-    }
-
-    fun limparMp(){
-        if(mp != null){
-            mp?.stop()
-            mp?.release()
-            mp = null
-        }
     }
 
     fun ataque(){

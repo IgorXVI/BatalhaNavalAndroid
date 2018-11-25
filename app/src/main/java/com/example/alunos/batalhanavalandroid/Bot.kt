@@ -74,7 +74,7 @@ class Bot(nome: String, tabuleiro: Tabuleiro) : Jogador(nome, tabuleiro), Serial
 
         var erro = false
         var peso = 1
-        val incremento = 1000
+        val incremento = 100
         val tabAd = this.tabuleiroAdversario!!
         val linhas = tabAd.linhas
         val colunas = tabAd.colunas
@@ -89,7 +89,7 @@ class Bot(nome: String, tabuleiro: Tabuleiro) : Jogador(nome, tabuleiro), Serial
                         break
                     }
                     if(tabAd.posJaAcertada(x, y)){
-                        peso += incremento
+                        peso *= incremento
                     }
                 }
                 if(!erro){
@@ -115,7 +115,7 @@ class Bot(nome: String, tabuleiro: Tabuleiro) : Jogador(nome, tabuleiro), Serial
                         break
                     }
                     if(tabAd.posJaAcertada(x, y)){
-                        peso += incremento
+                        peso *= incremento
                     }
                 }
                 if(!erro){

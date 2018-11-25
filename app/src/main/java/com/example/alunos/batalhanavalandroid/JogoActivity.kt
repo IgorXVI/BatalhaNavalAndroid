@@ -2,6 +2,7 @@ package com.example.alunos.batalhanavalandroid
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import java.io.*
@@ -12,6 +13,88 @@ import android.view.MenuItem
 abstract class JogoActivity: AppCompatActivity() {
 
     var g: Global? = null
+    var mp: MediaPlayer? = null
+    var somItem: MenuItem? = null
+    var salvarItem: MenuItem? = null
+    var menuPrincipalItem: MenuItem? = null
+    var sobreItem: MenuItem? = null
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+
+        somItem = menu?.getItem(0)
+        salvarItem = menu?.getItem(1)
+        menuPrincipalItem = menu?.getItem(2)
+        sobreItem = menu?.getItem(3)
+
+        somItem?.isChecked = g!!.som
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.Som -> {
+                val antigo = somItem?.isChecked!!
+                somItem?.isChecked = !(antigo)
+                g?.som = !(antigo)
+            }
+            R.id.Salvar -> {
+                salvarArquivo()
+            }
+            R.id.MenuPrincipal -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.Sobre -> {
+                val intent = Intent(this, SobreActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun travarMenu(){
+        runOnUiThread {
+            somItem?.isEnabled = false
+            salvarItem?.isEnabled = false
+            menuPrincipalItem?.isEnabled = false
+            sobreItem?.isEnabled = false
+        }
+    }
+
+    fun desTravarMenu(){
+        runOnUiThread {
+            somItem?.isEnabled = true
+            salvarItem?.isEnabled = true
+            menuPrincipalItem?.isEnabled = true
+            sobreItem?.isEnabled = true
+        }
+    }
+
+    fun somTorpedo(volume: Float){
+        limparMp()
+        mp = MediaPlayer.create(this, R.raw.ataque_som)
+        mp?.setVolume(volume, volume)
+        mp?.start()
+    }
+
+    fun somAcerto(volume: Float){
+        limparMp()
+        mp = MediaPlayer.create(this, R.raw.explosao_som)
+        mp?.setVolume(volume, volume)
+        mp?.start()
+    }
+
+    fun limparMp(){
+        if(mp != null){
+            mp?.stop()
+            mp?.release()
+            mp = null
+        }
+    }
 
     fun menssagemErroLoad(){
 
