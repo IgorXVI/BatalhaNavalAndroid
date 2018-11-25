@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.Switch
 
 class JogadaHumanoActivity : JogadaActivity() {
@@ -44,6 +45,20 @@ class JogadaHumanoActivity : JogadaActivity() {
         }
     }
 
+    override fun fimAtaque() {
+        val ganhou = tabuleiro!!.todosNaviosDestruidos()
+        if(ganhou){
+            mensagemFim()
+        }
+        else if(!jogador!!.acertou){
+            mudarVez()
+        }
+        else{
+            desTravarTudo()
+            desTravarMenu()
+        }
+    }
+
     fun setBotaoBomba(){
 
         runOnUiThread {
@@ -55,6 +70,32 @@ class JogadaHumanoActivity : JogadaActivity() {
             }
         }
 
+    }
+
+    fun travarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
+                    pos = pegarPos(i, j)
+                    pos.isClickable = false
+                }
+            }
+        }
+    }
+
+    fun desTravarTudo(){
+        var pos: ImageButton
+        runOnUiThread{
+            for(i in 0..tabuleiro!!.linhas-1){
+                for(j in 0..tabuleiro!!.colunas-1){
+                    if(!tabuleiro!!.posJaAtacada(i, j)){
+                        pos = pegarPos(i, j)
+                        pos.isClickable = true
+                    }
+                }
+            }
+        }
     }
 
 

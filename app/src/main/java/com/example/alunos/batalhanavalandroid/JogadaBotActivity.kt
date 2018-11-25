@@ -21,10 +21,7 @@ class JogadaBotActivity : JogadaActivity() {
         setImagensNavios()
         setNumErroAcerto()
         setErrosAcertosTabuleiro()
-
-        Timer().schedule(500){
-            ataqueBot()
-        }
+        ataqueBot()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -32,14 +29,23 @@ class JogadaBotActivity : JogadaActivity() {
     }
 
     fun ataqueBot() {
-        g?.bot?.realizarJogada(tabuleiro!!)
-
-        ataque()
-
-        if(!tabuleiro!!.todosNaviosDestruidos() && g!!.bot!!.acertou){
-            Timer().schedule(500){
-                ataqueBot()
-            }
+        Timer().schedule(500){
+            g?.bot?.realizarJogada(tabuleiro!!)
+            ataque()
         }
     }
+
+    override fun fimAtaque() {
+        val ganhou = tabuleiro!!.todosNaviosDestruidos()
+        if(ganhou){
+            mensagemFim()
+        }
+        else if(!jogador!!.acertou){
+            mudarVez()
+        }
+        else{
+            ataqueBot()
+        }
+    }
+
 }
