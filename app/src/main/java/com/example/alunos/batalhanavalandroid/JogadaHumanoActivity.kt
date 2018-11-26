@@ -38,11 +38,6 @@ class JogadaHumanoActivity : JogadaActivity() {
         }
 
         ataque()
-
-        if(!tabuleiro!!.todosNaviosDestruidos() && g!!.humano!!.acertou){
-            desTravarTudo()
-            desTravarMenu()
-        }
     }
 
     override fun fimAtaque() {
